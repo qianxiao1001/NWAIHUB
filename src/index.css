@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  
+  --color-accent-500: #64748b; /* Changed from Purple to Slate/Blue-ish for more professional look */
+  --color-accent-600: #475569;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 font-sans antialiased;
+  background-image: radial-gradient(circle at 15% -20%, rgba(37, 99, 235, 0.04), transparent 42%),
+    radial-gradient(circle at 90% 0%, rgba(15, 23, 42, 0.03), transparent 36%);
+}
+
+.glass-panel {
+  @apply bg-white border border-slate-200 shadow-[0_8px_24px_-22px_rgba(15,23,42,0.55)];
+}
+
+.glass-card {
+  @apply bg-white border border-slate-200 shadow-[0_8px_24px_-22px_rgba(15,23,42,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_14px_34px_-24px_rgba(15,23,42,0.5)];
+}
+
+.brand-gradient-text {
+  @apply text-slate-900;
+}
+
+.brand-gradient-bg {
+  @apply bg-blue-600;
+}
+
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.ui-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.58s ease-out, transform 0.58s ease-out;
+  will-change: opacity, transform;
+}
+
+.ui-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ui-reveal-group .ui-reveal-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.54s ease-out, transform 0.54s ease-out;
+}
+
+.ui-reveal-group.is-visible .ui-reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ui-reveal-group.is-visible .ui-reveal-item:nth-child(1) { transition-delay: 0.06s; }
+.ui-reveal-group.is-visible .ui-reveal-item:nth-child(2) { transition-delay: 0.1s; }
+.ui-reveal-group.is-visible .ui-reveal-item:nth-child(3) { transition-delay: 0.14s; }
+.ui-reveal-group.is-visible .ui-reveal-item:nth-child(4) { transition-delay: 0.18s; }
+.ui-reveal-group.is-visible .ui-reveal-item:nth-child(5) { transition-delay: 0.22s; }
+.ui-reveal-group.is-visible .ui-reveal-item:nth-child(6) { transition-delay: 0.26s; }
+
+.ui-list-item {
+  position: relative;
+  transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.ui-list-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16%;
+  width: 2px;
+  height: 68%;
+  border-radius: 9999px;
+  background: rgba(59, 130, 246, 0.44);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.ui-list-item:hover::before {
+  opacity: 1;
+}
