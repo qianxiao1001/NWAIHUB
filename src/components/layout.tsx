@@ -15,11 +15,10 @@ const NAV_ITEMS = [
   { name: '培训认证', path: '/training' },
   { name: '活动社群', path: '/community' },
 ];
-const BASE_URL = '/NWAIHUB/';
-const NORTH_LATITUDE_LOGO = `${BASE_URL}Logos/微信图片_20260308232726_966_99.jpg`;
-const NORTH_LATITUDE_WHITE_LOGO = `${BASE_URL}Logos/北纬白色.png`;
-const RUANJIMU_LOGO = `${BASE_URL}Logos/图片1.png`;
-const CAICT_LOGO = `${BASE_URL}Logos/20260307072409-c0c263379b8032a24285272397b28a05-18c9a7.png`;
+const NORTH_LATITUDE_LOGO = `/Logos/微信图片_20260308232726_966_99.jpg`;
+const NORTH_LATITUDE_WHITE_LOGO = `/Logos/北纬白色.png`;
+const RUANJIMU_LOGO = `/Logos/图片1.png`;
+const CAICT_LOGO = `/Logos/20260307072409-c0c263379b8032a24285272397b28a05-18c9a7.png`;
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
