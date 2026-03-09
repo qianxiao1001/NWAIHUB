@@ -13,67 +13,61 @@ const BASE_URL = import.meta.env.BASE_URL;
 
 // --- Hero Section: Model Matrix ---
 const HeroSection = () => (
-  <div className="relative bg-slate-50 border-b border-slate-200 pt-12 pb-14 overflow-hidden ui-reveal">
-    {/* Background Image */}
-    <div
-      className="absolute inset-0 bg-center bg-cover opacity-[0.24]"
-      style={{ backgroundImage: `url('${BASE_URL}Logos/training-talent-hero-cover.svg')` }}
-    />
+  <div className="relative bg-white border-b border-slate-200 py-5 overflow-hidden ui-reveal">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div className="flex flex-col lg:flex-row gap-8 items-center">
+      <div className="flex flex-col lg:flex-row gap-5 items-center justify-between">
         <div className="flex-1 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold mb-3">
             <Layers className="w-3.5 h-3.5" />
             MaaS 模型即服务
           </div>
-          <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mb-4 leading-[1.15]">
-            全场景一站式
-            <br />
-            <span className="text-blue-700">大模型服务平台</span>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-3">
+            全场景一站式 <span className="text-blue-700">大模型服务平台</span>
           </h1>
-          <p className="text-base text-slate-600 mb-6 leading-relaxed">
+          <p className="text-xs text-slate-600 mb-5 leading-relaxed max-w-xl">
             聚合智谱 GLM、通义千问等主流基座模型，覆盖通用语言、多模态理解与行业场景能力，支持 API 调用与企业级部署。
           </p>
           <div className="flex flex-wrap gap-3">
-            <Button size="lg" className="bg-blue-700 hover:bg-blue-800 text-white shadow-sm px-8">
+            <Button size="sm" className="bg-blue-700 hover:bg-blue-800 text-white shadow-sm px-5 h-8 text-xs">
               申请接入
             </Button>
-            <Button variant="secondary" size="lg" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
+            <Button variant="secondary" size="sm" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50 h-8 text-xs">
               查看文档
             </Button>
           </div>
         </div>
-        <div className="flex-1 w-full max-w-xl">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_16px_40px_-30px_rgba(15,23,42,0.5)]">
-            <div className="flex items-center justify-between gap-3 mb-5">
+        
+        <div className="flex-1 w-full max-w-lg lg:max-w-xl">
+          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="flex items-center justify-between gap-3 mb-4">
               <div>
                 <p className="text-sm font-semibold text-slate-900">模型服务矩阵</p>
-                <p className="text-xs text-slate-500 mt-1">统一接入 · 统一编排 · 统一治理</p>
+                <p className="text-xs text-slate-500 mt-0.5">统一接入 · 统一编排 · 统一治理</p>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[11px] font-medium">
+              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 服务可用性 99.9%
               </div>
             </div>
-            <div className="grid sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3">
               {[
                 { title: '多模型调度', desc: '统一调用编排引擎', dot: 'bg-indigo-500' },
                 { title: '行业场景适配', desc: '客服 / 办公 / 设计', dot: 'bg-blue-500' },
                 { title: '企业级部署', desc: '私有化与混合云支持', dot: 'bg-slate-500' },
                 { title: '安全合规治理', desc: '权限与审计策略可控', dot: 'bg-cyan-500' },
               ].map((item) => (
-                <div key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-3">
+                <div key={item.title} className="rounded-lg border border-slate-100 bg-slate-50/50 px-3 py-2.5 hover:border-blue-100 transition-colors">
                   <div className="flex items-center gap-2 mb-1">
                     <span className={cn('w-1.5 h-1.5 rounded-full', item.dot)} />
                     <p className="text-xs font-semibold text-slate-800">{item.title}</p>
                   </div>
-                  <p className="text-[11px] text-slate-500">{item.desc}</p>
+                  <p className="text-[10px] text-slate-500">{item.desc}</p>
                 </div>
               ))}
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {['API 接入', '私有部署', '向量检索', '国产算力集群'].map((tag) => (
-                <span key={tag} className="text-[10px] px-2 py-1 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                <span key={tag} className="text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
                   {tag}
                 </span>
               ))}
@@ -230,83 +224,94 @@ const ModelCatalog = () => {
   } as const;
 
   return (
-    <Section className="bg-white py-12">
+    <Section className="bg-white py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-4 mb-6">
-          <div className="relative flex-1">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-4 mb-5">
+          <div className="relative flex-1 max-w-lg">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="搜索模型名称、厂商、能力、关键词…"
-              className="w-full h-10 rounded-lg border border-slate-300 bg-white pl-10 pr-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+              className="w-full h-9 rounded-md border border-slate-300 bg-white pl-9 pr-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors placeholder:text-slate-400"
             />
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="secondary" className="h-10 border-slate-200 text-slate-700">模型对比</Button>
-            <Button variant="secondary" className="h-10 border-slate-200 text-slate-700">接入指南</Button>
+             <div className="flex items-center gap-1 bg-slate-100 rounded-md p-0.5 border border-slate-200">
+              {(['精选模型', '开源模型', '企业模型', '海外模型'] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={cn(
+                    'px-3 h-7 rounded-[4px] text-xs font-medium transition-all',
+                    activeTab === tab
+                      ? 'bg-white text-slate-900 shadow-sm border border-slate-200/50'
+                      : 'text-slate-500 hover:text-slate-800 hover:bg-slate-200/50'
+                  )}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+            <div className="h-4 w-px bg-slate-200 mx-1" />
+            <Button variant="secondary" className="h-8 px-3 text-xs border-slate-200 text-slate-600 hover:bg-slate-50">模型对比</Button>
+            <Button variant="secondary" className="h-8 px-3 text-xs border-slate-200 text-slate-600 hover:bg-slate-50">接入指南</Button>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4 mb-6">
+        {/* Featured Models - Compact & Professional */}
+        <div className="grid md:grid-cols-3 gap-3 mb-6">
           {featuredModels.map((item) => (
-            <article key={item.name} className="group rounded-xl border border-slate-200 bg-white overflow-hidden hover:-translate-y-1 transition-all duration-300 hover:shadow-lg">
-              <div className={cn('h-28 bg-gradient-to-br p-4 relative overflow-hidden', item.gradient)}>
-                <div className="absolute right-3 top-3">
-                  <Badge className="bg-white/15 text-white border border-white/30">{item.status}</Badge>
+            <div key={item.name} className="group rounded-lg border border-slate-200 bg-white p-3 hover:border-blue-300 hover:shadow-md transition-all duration-200 cursor-pointer">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br text-white shadow-sm", item.gradient)}>
+                    <Brain className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{item.name}</h3>
+                    <p className="text-xs text-slate-500">{item.subtitle}</p>
+                  </div>
                 </div>
-                <div className="absolute -bottom-6 -right-8 w-28 h-28 rounded-full bg-white/20" />
-                <div className="absolute top-5 left-4 w-2 h-2 rounded-full bg-white/80" />
-                <div className="absolute top-9 left-8 w-1.5 h-1.5 rounded-full bg-white/65" />
+                <Badge variant="outline" className="text-[10px] py-0 h-5 bg-slate-50 text-slate-600 border-slate-200 font-normal">
+                  {item.status}
+                </Badge>
               </div>
-              <div className="p-4">
-                <h3 className="text-base font-semibold text-slate-900">{item.name}</h3>
-                <p className="text-xs text-blue-700 mt-0.5">{item.subtitle}</p>
-                <p className="text-sm text-slate-500 mt-2 leading-6">{item.desc}</p>
-              </div>
-            </article>
+              <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+                {item.desc}
+              </p>
+            </div>
           ))}
         </div>
 
-        <div className="flex items-center gap-2 bg-slate-50 rounded-lg p-1 border border-slate-200 w-fit mb-8">
-          {(['精选模型', '开源模型', '企业模型', '海外模型'] as const).map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                'px-4 h-8 rounded-md text-xs font-medium transition-all',
-                activeTab === tab
-                  ? 'bg-white text-slate-900 border border-slate-200 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
-              )}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        <div className="space-y-6">
+        <div className="space-y-3">
           {searchedGroups.map((group) => (
-            <section key={group.name} className="rounded-xl border border-slate-200 bg-white">
-              <div className="px-5 py-4 border-b border-slate-100">
-                <h3 className="text-base font-semibold text-slate-900">{group.name}</h3>
-                <p className="text-sm text-slate-500 mt-1">{group.desc}</p>
+            <section key={group.name} className="rounded-lg border border-slate-200 bg-white overflow-hidden">
+              <div className="px-3 py-2 bg-slate-50/50 border-b border-slate-100 flex items-center gap-2">
+                <h3 className="text-sm font-bold text-slate-800">{group.name}</h3>
+                <span className="text-xs text-slate-400">·</span>
+                <p className="text-xs text-slate-500">{group.desc}</p>
               </div>
-              <div className="grid md:grid-cols-2">
+              <div className="divide-y divide-slate-100">
                 {group.items.map((item) => (
-                  <div key={item.name} className="px-5 py-4 border-b border-slate-100 md:[&:nth-last-child(-n+2)]:border-b-0 hover:bg-slate-50/80 transition-colors">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 text-blue-700 flex items-center justify-center shrink-0">
-                        <Brain className="w-4 h-4" />
+                  <div key={item.name} className="ui-list-item group flex items-center justify-between px-3 py-2 transition-colors cursor-pointer hover:bg-blue-50/30">
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className="w-8 h-8 rounded-md bg-white border border-slate-200 text-slate-500 flex items-center justify-center shrink-0 shadow-sm group-hover:border-blue-200 group-hover:text-blue-600 transition-colors">
+                        <Box className="w-4 h-4" />
                       </div>
                       <div className="min-w-0">
-                        <div className="flex items-center flex-wrap gap-1.5">
-                          <h4 className="text-sm font-semibold text-slate-900">{item.name}</h4>
-                          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-600">{item.provider}</span>
-                          <span className={cn('text-[10px] px-1.5 py-0.5 rounded-full border', tagStyle[item.tag])}>{item.tag}</span>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm font-semibold text-slate-900 group-hover:text-blue-700 transition-colors">{item.name}</h4>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-500 border border-slate-200">{item.provider}</span>
                         </div>
-                        <p className="mt-1 text-xs text-slate-500 leading-5">{item.info}</p>
+                        <p className="text-[11px] text-slate-500 mt-0.5 truncate pr-4">{item.info}</p>
                       </div>
+                    </div>
+                    <div className="flex items-center gap-4 shrink-0">
+                      <span className={cn('text-[10px] px-2 py-0.5 rounded border hidden sm:inline-block', tagStyle[item.tag])}>{item.tag}</span>
+                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0 rounded-full text-slate-400 hover:text-blue-600 hover:bg-blue-50">
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
                     </div>
                   </div>
                 ))}
@@ -321,11 +326,14 @@ const ModelCatalog = () => {
 
 // --- Enterprise Solutions ---
 const EnterpriseSolutions = () => (
-  <Section className="bg-slate-50 py-16 border-t border-slate-200">
+  <Section className="bg-slate-50 py-10 border-t border-slate-200">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeader title="企业级解决方案" subtitle="针对不同业务规模与安全需求，提供灵活的交付模式" />
+      <div className="text-center mb-8">
+        <h2 className="text-xl font-bold text-slate-900">企业级解决方案</h2>
+        <p className="text-sm text-slate-500 mt-2">针对不同业务规模与安全需求，提供灵活的交付模式</p>
+      </div>
       
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-4">
         {[
           {
             title: "公有云 API",
@@ -346,18 +354,20 @@ const EnterpriseSolutions = () => (
             icon: Box
           }
         ].map((item, idx) => (
-          <div key={idx} className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-md transition-all">
-            <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-600 mb-4">
-              <item.icon className="w-5 h-5" />
+          <div key={idx} className="bg-white rounded-lg border border-slate-200 p-5 hover:border-blue-300 hover:shadow-sm transition-all duration-200 group">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 bg-blue-50 rounded-md flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <item.icon className="w-4 h-4" />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">{item.title}</h3>
             </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6">
+            <p className="text-xs text-slate-500 leading-relaxed mb-4 min-h-[40px]">
               {item.desc}
             </p>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5">
               {item.features.map((feat, i) => (
                 <li key={i} className="flex items-center gap-2 text-xs text-slate-600">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+                  <CheckCircle2 className="w-3 h-3 text-emerald-500" />
                   {feat}
                 </li>
               ))}

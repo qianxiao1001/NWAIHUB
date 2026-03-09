@@ -10,44 +10,44 @@ import { cn } from '@/lib/utils';
 
 // --- Hero Section ---
 const DatasetHero = () => (
-  <div className="relative bg-slate-50 border-b border-slate-200 pt-10 pb-12 overflow-hidden ui-reveal">
+  <div className="relative bg-slate-50 border-b border-slate-200 py-5 overflow-hidden ui-reveal">
     <div className="absolute inset-0 bg-grid-pattern opacity-[0.16]" />
     
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-4xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-4">
-          <Database className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-2 px-2 py-0.5 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold mb-3">
+          <Database className="w-3 h-3" />
           海量高质量数据资源
         </div>
         
-        <h1 className="text-3xl md:text-[38px] font-bold text-slate-900 mb-4 tracking-tight">
+        <h1 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 tracking-tight">
           数据资源交易平台
         </h1>
         
-        <p className="text-base text-slate-600 mb-7 max-w-2xl mx-auto">
+        <p className="text-xs text-slate-600 mb-4 max-w-2xl mx-auto">
           汇聚金融、医疗、政务等垂直领域高质量数据集，支持在线检索、预览与安全交易，赋能大模型训练与行业应用。
         </p>
         
         {/* Search Box */}
-        <div className="relative max-w-2xl mx-auto mb-6">
-          <div className="relative flex items-center bg-white rounded-lg border border-slate-300 focus-within:ring-2 focus-within:ring-blue-500/15 focus-within:border-blue-400 transition-all duration-200 shadow-[0_8px_20px_-18px_rgba(15,23,42,0.5)]">
-             <div className="pl-4 pr-3 text-slate-400">
-               <Search className="w-5 h-5" />
+        <div className="relative max-w-xl mx-auto mb-3">
+          <div className="relative flex items-center bg-white rounded-lg border border-slate-300 focus-within:ring-2 focus-within:ring-blue-500/15 focus-within:border-blue-400 transition-all duration-200 shadow-sm">
+             <div className="pl-3 pr-2 text-slate-400">
+               <Search className="w-3.5 h-3.5" />
              </div>
              <input 
                type="text" 
                placeholder="搜索数据集名称、ID、供应商..." 
-               className="w-full py-3 bg-transparent border-none focus:outline-none text-slate-900 placeholder:text-slate-400 text-sm"
+               className="w-full py-2 bg-transparent border-none focus:outline-none text-slate-900 placeholder:text-slate-400 text-xs"
              />
-             <div className="pr-2 flex items-center gap-2">
-               <div className="h-6 w-px bg-slate-200 mx-1" />
-               <select className="bg-transparent text-sm text-slate-600 font-medium focus:outline-none cursor-pointer hover:text-blue-600 transition-colors">
+             <div className="pr-1 flex items-center gap-2">
+               <div className="h-4 w-px bg-slate-200 mx-1" />
+               <select className="bg-transparent text-[11px] text-slate-600 font-medium focus:outline-none cursor-pointer hover:text-blue-600 transition-colors">
                  <option>全部类目</option>
                  <option>文本数据</option>
                  <option>图像数据</option>
                  <option>音频数据</option>
                </select>
-               <Button className="rounded-md px-6 bg-blue-600 hover:bg-blue-700 text-white shadow-sm ml-1">
+               <Button className="rounded-md px-3 h-7 bg-blue-600 hover:bg-blue-700 text-white shadow-sm ml-1 text-[11px]">
                  搜索
                </Button>
              </div>
@@ -55,17 +55,17 @@ const DatasetHero = () => (
         </div>
 
         {/* Quick Stats */}
-        <div className="flex justify-center gap-6 text-sm text-slate-500">
-          <div className="flex items-center gap-2">
-            <Database className="w-4 h-4 text-blue-600" />
+        <div className="flex justify-center gap-5 text-[11px] text-slate-500">
+          <div className="flex items-center gap-1.5">
+            <Database className="w-3 h-3 text-blue-600" />
             <span><strong className="text-slate-900">5,000+</strong> 数据集</span>
           </div>
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center gap-1.5">
+            <ShieldCheck className="w-3 h-3 text-blue-600" />
             <span><strong className="text-slate-900">100%</strong> 官方认证</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Download className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center gap-1.5">
+            <Download className="w-3 h-3 text-blue-600" />
             <span><strong className="text-slate-900">10PB+</strong> 累计下载</span>
           </div>
         </div>
@@ -152,32 +152,32 @@ const DatasetList = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen py-6">
+    <div className="bg-white min-h-screen py-5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-6">
+        <div className="grid lg:grid-cols-12 gap-5">
           
           {/* Sidebar Filters */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-2.5">
             {/* Categories */}
             <div>
-              <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-blue-600" />
+              <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2 text-[13px]">
+                <Layers className="w-3.5 h-3.5 text-blue-600" />
                 数据分类
               </h3>
-              <div className="space-y-1">
+              <div className="space-y-0.5">
                 {categories.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.id)}
                     className={cn(
-                      "w-full flex items-center justify-between px-3 py-2 text-sm rounded-md transition-all duration-200",
+                      "w-full flex items-center justify-between px-2.5 py-1 text-[13px] rounded-md transition-all duration-200",
                       activeCategory === cat.id
                         ? "bg-blue-50 text-blue-700 font-medium"
                         : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                     )}
                   >
                     <span>{cat.name}</span>
-                    <span className="text-xs text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded-full">{cat.count}</span>
+                    <span className="text-[10px] text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded-full">{cat.count}</span>
                   </button>
                 ))}
               </div>
@@ -185,28 +185,28 @@ const DatasetList = () => {
 
             {/* Filters */}
             <div>
-              <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <Filter className="w-4 h-4 text-blue-600" />
+              <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2 text-[13px]">
+                <Filter className="w-3.5 h-3.5 text-blue-600" />
                 筛选条件
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-2.5">
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 mb-2 block uppercase">数据格式</label>
-                  <div className="space-y-2">
+                  <label className="text-[11px] font-semibold text-slate-500 mb-1 block uppercase">数据格式</label>
+                  <div className="space-y-1">
                     {['文本 (Text)', '图像 (Image)', '音频 (Audio)', '视频 (Video)', '表格 (Table)'].map((fmt, i) => (
-                      <label key={i} className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer hover:text-slate-900">
-                        <input type="checkbox" className="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                      <label key={i} className="flex items-center gap-2 text-[13px] text-slate-600 cursor-pointer hover:text-slate-900">
+                        <input type="checkbox" className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-3 h-3" />
                         {fmt}
                       </label>
                     ))}
                   </div>
                 </div>
-                <div className="pt-4 border-t border-slate-100">
-                  <label className="text-xs font-semibold text-slate-500 mb-2 block uppercase">价格区间</label>
-                  <div className="space-y-2">
+                <div className="pt-3 border-t border-slate-100">
+                  <label className="text-[11px] font-semibold text-slate-500 mb-1 block uppercase">价格区间</label>
+                  <div className="space-y-1">
                     {['免费', '¥1 - ¥1,000', '¥1,000 - ¥10,000', '¥10,000+'].map((price, i) => (
-                      <label key={i} className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer hover:text-slate-900">
-                        <input type="checkbox" className="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                      <label key={i} className="flex items-center gap-2 text-[13px] text-slate-600 cursor-pointer hover:text-slate-900">
+                        <input type="checkbox" className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-3 h-3" />
                         {price}
                       </label>
                     ))}
@@ -219,10 +219,10 @@ const DatasetList = () => {
           {/* Main List */}
           <div className="lg:col-span-9">
             {/* Toolbar */}
-            <div className="flex flex-wrap justify-between items-center mb-5 gap-4">
-              <div className="flex items-center gap-2 text-sm text-slate-500">
+            <div className="flex flex-wrap justify-between items-center mb-2.5 gap-3">
+              <div className="flex items-center gap-2 text-[13px] text-slate-500">
                 <span>排序：</span>
-                <select className="bg-transparent border-none font-medium text-slate-900 focus:ring-0 cursor-pointer p-0">
+                <select className="bg-transparent border-none font-medium text-slate-900 focus:ring-0 cursor-pointer p-0 text-[13px]">
                   <option>综合推荐</option>
                   <option>最新发布</option>
                   <option>下载量</option>
@@ -230,52 +230,57 @@ const DatasetList = () => {
                 </select>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" className="h-8 text-xs">
-                  <Globe className="w-3.5 h-3.5 mr-1.5" />
+                <Button variant="outline" size="sm" className="h-7 text-[11px]">
+                  <Globe className="w-3 h-3 mr-1.5" />
                   API 接入文档
                 </Button>
               </div>
             </div>
 
             {/* Dataset Cards */}
-            <div className="space-y-3.5">
+            <div className="space-y-2">
               {datasets.map((item, idx) => (
-                <div key={idx} className="ui-list-item group bg-white rounded-lg border border-slate-200 p-4.5 hover:shadow-[0_14px_30px_-24px_rgba(37,99,235,0.45)] hover:border-blue-300 transition-all duration-200 hover:-translate-y-0.5">
-                  <div className="flex flex-col md:flex-row gap-5">
+                <div key={idx} className="card-enterprise group p-2.5 sm:p-3 hover:shadow-md hover:border-blue-300 transition-all duration-200">
+                  <div className="flex flex-col md:flex-row gap-2.5">
                     {/* Left: Icon & Basic Info */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between mb-1.5">
-                        <div className="flex items-center gap-3">
-                          <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors truncate">
-                            {item.name}
-                          </h3>
-                          {item.certified && (
-                            <div className="flex items-center gap-1 text-[10px] font-medium text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100" title="官方认证">
-                              <ShieldCheck className="w-3 h-3" /> 官方认证
-                            </div>
-                          )}
+                      <div className="flex items-center flex-wrap gap-2 mb-1">
+                        <h3 className="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors truncate">
+                          {item.name}
+                        </h3>
+                        {item.certified && (
+                          <div className="flex items-center gap-0.5 text-[10px] font-medium text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100 shrink-0" title="官方认证">
+                            <ShieldCheck className="w-3 h-3" /> 官方认证
+                          </div>
+                        )}
+                        <div className="hidden sm:flex gap-1 ml-1">
+                          {item.tags?.map((tag) => (
+                            <span key={tag} className="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
+                              {tag}
+                            </span>
+                          ))}
                         </div>
-                        <span className="text-lg font-bold text-slate-900 md:hidden">{item.price}</span>
+                        <span className="text-[15px] font-bold text-slate-900 md:hidden ml-auto">{item.price}</span>
                       </div>
                       
-                      <p className="text-sm text-slate-500 mb-3 line-clamp-2 leading-relaxed">
+                      <p className="text-xs text-slate-500 mb-2 line-clamp-2 leading-relaxed">
                         {item.desc}
                       </p>
                       
-                      <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-500">
-                        <div className="flex items-center gap-1.5">
+                      <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-[11px] text-slate-500">
+                        <div className="flex items-center gap-1">
                           <span className="text-slate-400">供应商:</span>
                           <span className="font-medium text-slate-700">{item.provider}</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1">
                           <span className="text-slate-400">数据量:</span>
                           <span className="font-medium text-slate-700">{item.size}</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1">
                           <span className="text-slate-400">格式:</span>
                           <span className="font-medium text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">{item.format}</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1">
                           <span className="text-slate-400">下载:</span>
                           <span className="font-medium text-slate-700">{item.downloads}</span>
                         </div>
@@ -283,19 +288,19 @@ const DatasetList = () => {
                     </div>
 
                     {/* Right: Price & Action */}
-                    <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-3 md:pl-5 md:border-l md:border-slate-100 min-w-[136px]">
+                    <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-2 md:pl-4 md:border-l md:border-slate-100 min-w-[120px]">
                       <div className="hidden md:block text-right">
-                        <div className="text-xl font-bold text-slate-900">{item.price}</div>
-                        <div className="text-xs text-slate-400 mt-1">含税价</div>
+                        <div className="text-base font-bold text-slate-900">{item.price}</div>
+                        <div className="text-[10px] text-slate-400">含税价</div>
                       </div>
                       
-                      <div className="flex gap-2 w-full md:w-auto">
-                        <Button variant="outline" size="sm" className="flex-1 md:flex-none text-xs h-9 border-slate-300 hover:bg-slate-50">
-                          <Eye className="w-3.5 h-3.5 md:mr-1.5" />
+                      <div className="flex gap-1.5 w-full md:w-auto">
+                        <Button variant="outline" size="sm" className="flex-1 md:flex-none text-xs h-7 border-slate-300 hover:bg-slate-50 px-2.5">
+                          <Eye className="w-3 h-3 md:mr-1" />
                           <span className="hidden md:inline">预览</span>
                         </Button>
-                        <Button size="sm" className="flex-1 md:flex-none text-xs h-9 bg-blue-600 hover:bg-blue-700 shadow-sm">
-                          <ShoppingCart className="w-3.5 h-3.5 md:mr-1.5" />
+                        <Button size="sm" className="flex-1 md:flex-none text-xs h-7 bg-blue-600 hover:bg-blue-700 shadow-sm px-2.5">
+                          <ShoppingCart className="w-3 h-3 md:mr-1" />
                           <span className="hidden md:inline">购买</span>
                           <span className="md:hidden">购买</span>
                         </Button>

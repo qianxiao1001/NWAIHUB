@@ -10,34 +10,36 @@ import { cn } from '@/lib/utils';
 
 // --- Hero Section ---
 const PolicyHero = () => (
-  <div className="relative bg-slate-50 border-b border-slate-200 pt-12 pb-14 overflow-hidden ui-reveal">
-    <div className="absolute inset-0 bg-grid-pattern opacity-[0.16]" />
-    
+  <div className="relative bg-white border-b border-slate-200 py-6 ui-reveal">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div className="max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-4">
-          <Scale className="w-3.5 h-3.5" />
-          政策法规与行业标准
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+        <div className="max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-3">
+            <Scale className="w-3.5 h-3.5" />
+            政策法规与行业标准
+          </div>
+          
+          <h1 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
+            政策与标准中心
+          </h1>
+          
+          <p className="text-sm text-slate-600 leading-relaxed max-w-xl">
+            汇聚人工智能产业最新政策法规、技术标准与合规指南，助力企业把握发展机遇，构建可信赖的人工智能应用。
+          </p>
         </div>
         
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight leading-[1.15]">
-          政策与标准中心
-        </h1>
-        
-        <p className="text-base text-slate-600 mb-6 leading-relaxed max-w-2xl">
-          汇聚人工智能产业最新政策法规、技术标准与合规指南，助力企业把握发展机遇，构建可信赖的人工智能应用。
-        </p>
-        
-        <div className="relative max-w-xl">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-          <input 
-            type="text" 
-            placeholder="搜索政策文件、标准编号或关键词..." 
-            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-300 rounded-lg shadow-[0_8px_20px_-18px_rgba(15,23,42,0.5)] focus:ring-2 focus:ring-blue-500/15 focus:border-blue-400 transition-all duration-200 text-sm"
-          />
-          <Button className="absolute right-1.5 top-1.5 bottom-1.5 bg-blue-600 hover:bg-blue-700 text-white shadow-sm px-6">
-            搜索
-          </Button>
+        <div className="w-full md:w-auto md:min-w-[400px]">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input 
+              type="text" 
+              placeholder="搜索政策文件、标准编号或关键词..." 
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500/15 focus:border-blue-400 transition-all duration-200 text-sm"
+            />
+            <Button size="sm" className="absolute right-1 top-1 bottom-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-sm px-4 h-auto text-xs">
+              搜索
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -49,10 +51,10 @@ const PolicyContent = () => {
   const [activeCategory, setActiveCategory] = useState('policy');
 
   const categories = [
-    { id: 'policy', name: '产业政策', icon: Landmark },
-    { id: 'standard', name: '技术标准', icon: Gavel },
-    { id: 'compliance', name: '合规指南', icon: Shield },
-    { id: 'report', name: '研究报告', icon: BookOpen },
+    { id: 'policy', name: '产业政策', icon: Landmark, count: 12 },
+    { id: 'standard', name: '技术标准', icon: Gavel, count: 8 },
+    { id: 'compliance', name: '合规指南', icon: Shield, count: 5 },
+    { id: 'report', name: '研究报告', icon: BookOpen, count: 3 },
   ];
 
   const documents = {
@@ -133,44 +135,45 @@ const PolicyContent = () => {
   };
 
   return (
-    <div className="bg-white py-8 min-h-screen">
+    <div className="bg-slate-50/50 py-6 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-7">
+        <div className="grid lg:grid-cols-12 gap-6">
           
           {/* Sidebar */}
           <div className="lg:col-span-3">
-            <div className="sticky top-20 space-y-6">
-              <div>
-                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 px-2">文档分类</h3>
-                <div className="space-y-1">
-                  {categories.map((cat) => (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveCategory(cat.id)}
-                      className={cn(
-                        "w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
-                        activeCategory === cat.id
-                          ? "bg-blue-50 text-blue-700 shadow-sm border border-blue-100"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                      )}
-                    >
+            <div className="sticky top-20 space-y-5">
+              <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-1.5">
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={cn(
+                      "w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-sm transition-all duration-200 mb-0.5 last:mb-0",
+                      activeCategory === cat.id
+                        ? "bg-blue-50 text-blue-700 font-medium"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                    )}
+                  >
+                    <div className="flex items-center gap-2.5">
                       <cat.icon className={cn("w-4 h-4", activeCategory === cat.id ? "text-blue-600" : "text-slate-400")} />
                       {cat.name}
-                      {activeCategory === cat.id && <ChevronRight className="w-4 h-4 ml-auto text-blue-400" />}
-                    </button>
-                  ))}
-                </div>
+                    </div>
+                    <span className={cn("text-xs py-0.5 px-1.5 rounded-full", activeCategory === cat.id ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-slate-500")}>
+                      {cat.count}
+                    </span>
+                  </button>
+                ))}
               </div>
 
-              <div className="bg-slate-50 rounded-xl p-4.5 border border-slate-200">
-                <h4 className="font-bold text-slate-900 mb-2 text-sm flex items-center gap-2">
-                  <FileCheck className="w-4 h-4 text-emerald-500" />
+              <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg p-4 text-white shadow-md">
+                <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
+                  <FileCheck className="w-4 h-4 text-blue-200" />
                   申报助手
                 </h4>
-                <p className="text-xs text-slate-500 mb-4 leading-relaxed">
-                  不知道您的企业符合哪些政策？使用智能申报助手快速匹配。
+                <p className="text-xs text-blue-100 mb-3 leading-relaxed opacity-90">
+                  智能匹配企业适用的政策补贴与资质认定项目。
                 </p>
-                <Button size="sm" className="w-full bg-white text-blue-600 border border-blue-200 hover:bg-blue-50 text-xs shadow-sm">
+                <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0 text-xs backdrop-blur-sm">
                   开始匹配
                 </Button>
               </div>
@@ -179,67 +182,74 @@ const PolicyContent = () => {
 
           {/* Main List */}
           <div className="lg:col-span-9">
-            <div className="flex justify-between items-end mb-5 border-b border-slate-100 pb-3.5">
-              <div>
-                <h2 className="text-xl font-bold text-slate-900">
-                  {categories.find(c => c.id === activeCategory)?.name}
-                </h2>
-                <p className="text-sm text-slate-500 mt-1">
-                  共找到 {documents[activeCategory as keyof typeof documents]?.length || 0} 份相关文档
-                </p>
-              </div>
-              <div className="flex gap-2">
-                <select className="text-sm border-slate-200 rounded-md text-slate-600 focus:ring-blue-500 focus:border-blue-500">
-                  <option>按发布时间排序</option>
-                  <option>按热度排序</option>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                {categories.find(c => c.id === activeCategory)?.name}
+                <span className="text-xs font-normal text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded-full">
+                  {documents[activeCategory as keyof typeof documents]?.length || 0}
+                </span>
+              </h2>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-slate-500">排序:</span>
+                <select className="text-xs border-none bg-transparent p-0 text-slate-700 font-medium focus:ring-0 cursor-pointer hover:text-blue-600">
+                  <option>最新发布</option>
+                  <option>热度最高</option>
                 </select>
               </div>
             </div>
 
-            <div className="space-y-3.5">
+            <div className="space-y-2.5">
               {/* @ts-ignore */}
               {documents[activeCategory as keyof typeof documents]?.map((doc, idx) => (
-                <div key={idx} className="ui-list-item group bg-white rounded-xl border border-slate-200 p-5 hover:shadow-[0_14px_30px_-24px_rgba(37,99,235,0.4)] hover:border-blue-200 transition-all duration-200 hover:-translate-y-0.5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Badge variant="secondary" className={cn(
-                          "font-normal border",
-                          doc.type.includes("标准") ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
-                          doc.type.includes("资金") ? "bg-amber-50 text-amber-700 border-amber-100" :
-                          "bg-blue-50 text-blue-700 border-blue-100"
-                        )}>
-                          {doc.type}
-                        </Badge>
-                        <span className="text-xs text-slate-400 flex items-center gap-1">
+                <div key={idx} className="card-enterprise group relative bg-white rounded-lg border border-slate-200 p-4 hover:border-blue-300 hover:shadow-md transition-all duration-200">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-4 mb-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Badge variant="secondary" className={cn(
+                            "font-medium border px-1.5 py-0 text-[10px] h-5",
+                            doc.type.includes("标准") ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
+                            doc.type.includes("资金") ? "bg-amber-50 text-amber-700 border-amber-100" :
+                            "bg-blue-50 text-blue-700 border-blue-100"
+                          )}>
+                            {doc.type}
+                          </Badge>
+                          <h3 className="text-base font-bold text-slate-900 truncate max-w-[500px] group-hover:text-blue-600 transition-colors cursor-pointer">
+                            {doc.title}
+                          </h3>
+                        </div>
+                        <span className="text-xs text-slate-400 flex-shrink-0 flex items-center gap-1">
                           <Clock className="w-3 h-3" /> {doc.date}
                         </span>
-                        {/* @ts-ignore */}
-                        {doc.id && <span className="text-xs font-mono text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">{doc.id}</span>}
                       </div>
                       
-                      <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
-                        {doc.title}
-                      </h3>
-                      
-                      <p className="text-sm text-slate-500 leading-relaxed mb-4 line-clamp-2">
+                      <p className="text-xs text-slate-500 leading-relaxed mb-3 line-clamp-2 pl-0.5">
                         {doc.desc}
                       </p>
                       
-                      <div className="flex items-center gap-2 text-xs text-slate-400">
-                        <span className="font-medium text-slate-600 bg-slate-50 px-2 py-1 rounded">
-                          发布部门: {doc.dept}
-                        </span>
+                      <div className="flex items-center justify-between mt-auto">
+                        <div className="flex items-center gap-3 text-xs text-slate-400">
+                          <span className="flex items-center gap-1.5">
+                            <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                            {doc.dept}
+                          </span>
+                          {/* @ts-ignore */}
+                          {doc.id && (
+                            <span className="font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-slate-100 text-slate-500">
+                              {doc.id}
+                            </span>
+                          )}
+                        </div>
+                        
+                        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute right-4 bottom-4 sm:static sm:opacity-100">
+                          <button className="text-xs text-slate-500 hover:text-blue-600 font-medium px-2 py-1">
+                            预览
+                          </button>
+                          <button className="text-xs flex items-center gap-1 text-blue-600 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-md font-medium transition-colors">
+                            <Download className="w-3 h-3" /> 下载
+                          </button>
+                        </div>
                       </div>
-                    </div>
-
-                    <div className="flex flex-col gap-2 flex-shrink-0">
-                      <Button variant="outline" size="sm" className="w-24 text-xs h-8">
-                        在线预览
-                      </Button>
-                      <Button size="sm" className="w-24 text-xs h-8 bg-slate-900 text-white hover:bg-blue-600 border-0">
-                        <Download className="w-3 h-3 mr-1.5" /> 下载
-                      </Button>
                     </div>
                   </div>
                 </div>

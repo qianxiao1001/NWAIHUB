@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/common';
 import { Menu, X, ChevronRight, ShieldCheck, MapPin, Phone, Mail } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 
 const NAV_ITEMS = [
   { name: '首页', path: '/' },
@@ -39,30 +38,33 @@ export const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur",
         isScrolled 
-          ? "border-slate-200 shadow-sm" 
-          : "border-slate-100"
+          ? "border-slate-200 shadow-sm h-[46px]" 
+          : "border-slate-100 h-[50px]"
       )}
     >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-[52px] flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="h-full flex items-center justify-between">
           <Link to="/" className="lg:hidden flex items-center">
-            <img src={NORTH_LATITUDE_LOGO} alt="中关村AI北纬社区 Logo" className="h-8 w-auto object-contain" />
+            <img src={NORTH_LATITUDE_LOGO} alt="中关村AI北纬社区 Logo" className="h-7 w-auto object-contain" />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-5">
+          <nav className="hidden lg:flex items-center gap-6">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 className={cn(
-                  "text-[13px] font-medium transition-all duration-200 relative py-1 px-2 rounded-md",
+                  "text-[13px] font-medium transition-all duration-200 relative py-1.5",
                   location.pathname === item.path
-                    ? "text-blue-700 font-semibold bg-blue-50/70 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-blue-700/80 after:rounded-full"
-                    : "text-slate-600 hover:text-blue-700 hover:bg-blue-50/55 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:bg-blue-300/0 hover:after:bg-blue-300/70 after:rounded-full after:transition-colors after:duration-200"
+                    ? "text-blue-700 font-semibold"
+                    : "text-slate-600 hover:text-blue-600"
                 )}
               >
                 {item.name}
+                {location.pathname === item.path && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-600 rounded-full" />
+                )}
               </Link>
             ))}
           </nav>
@@ -70,13 +72,13 @@ export const Header = () => {
           {/* Right Actions */}
           <div className="hidden lg:flex items-center">
             <Link to="/" className="flex items-center">
-              <img src={NORTH_LATITUDE_LOGO} alt="中关村AI北纬社区 Logo" className="h-8 w-auto object-contain" />
+              <img src={NORTH_LATITUDE_LOGO} alt="中关村AI北纬社区 Logo" className="h-7 w-auto object-contain" />
             </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 text-slate-600 hover:bg-slate-50 rounded-md"
+            className="lg:hidden p-1.5 text-slate-600 hover:bg-slate-50 rounded-md"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -85,68 +87,64 @@ export const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-slate-100 overflow-hidden shadow-lg"
-          >
-            <div className="px-4 py-6 space-y-2">
-              {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={cn(
-                    "block px-4 py-3 text-base font-medium rounded-lg transition-colors",
-                    location.pathname === item.path 
-                      ? "bg-blue-50 text-blue-700" 
-                      : "text-slate-700 hover:bg-slate-50"
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-4 border-t border-slate-100 flex flex-col gap-3 mt-4">
-                <Button variant="secondary" className="w-full justify-center border-slate-200">企业入驻</Button>
-                <Button variant="primary" className="w-full justify-center bg-blue-700 hover:bg-blue-800">企业认证</Button>
-              </div>
-            </div>
-          </motion.div>
+      <div 
+        className={cn(
+          "lg:hidden bg-white border-t border-slate-100 overflow-hidden transition-all duration-300 ease-in-out shadow-lg",
+          mobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         )}
-      </AnimatePresence>
+      >
+        <div className="px-4 py-4 space-y-1">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={cn(
+                "block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors",
+                location.pathname === item.path 
+                  ? "bg-blue-50 text-blue-700" 
+                  : "text-slate-700 hover:bg-slate-50"
+              )}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
+          <div className="pt-3 border-t border-slate-100 flex flex-col gap-2 mt-3">
+            <Button variant="secondary" className="w-full justify-center border-slate-200 h-9 text-xs">企业入驻</Button>
+            <Button variant="primary" className="w-full justify-center bg-blue-700 hover:bg-blue-800 h-9 text-xs">企业认证</Button>
+          </div>
+        </div>
+      </div>
     </header>
   );
 };
 
 export const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+    <footer className="bg-slate-900 text-slate-300 py-6 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-5">
           {/* Brand Column */}
           <div className="col-span-1 md:col-span-4">
-            <div className="mb-6">
-              <img src={NORTH_LATITUDE_WHITE_LOGO} alt="中关村AI北纬社区 Logo（白）" className="h-10 w-auto object-contain" />
+            <div className="mb-4">
+              <img src={NORTH_LATITUDE_WHITE_LOGO} alt="中关村AI北纬社区 Logo（白）" className="h-8 w-auto object-contain" />
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-sm">
+            <p className="text-xs text-slate-400 leading-relaxed mb-5 max-w-sm">
               围绕AI创业与产业生态建设的综合服务平台，提供模型、算力、数据、政策等全方位支持，助力中国AI产业蓬勃发展。
             </p>
-            <div className="rounded-xl border border-slate-200 bg-white p-4.5 max-w-sm">
-              <p className="text-xs text-slate-600 font-medium mb-2">平台战略合作伙伴</p>
-              <div className="flex items-center justify-center gap-8 px-1">
-                <img src={CAICT_LOGO} alt="中国信通院 Logo" className="h-10 w-auto object-contain" />
-                <img src={RUANJIMU_LOGO} alt="软积木 Logo" className="h-10 w-auto object-contain" />
+            <div className="rounded-lg border border-slate-700/50 bg-slate-800/50 p-3 max-w-sm">
+              <p className="text-[10px] text-slate-500 font-medium mb-1.5">平台战略合作伙伴</p>
+              <div className="flex items-center gap-4 px-1">
+                <img src={CAICT_LOGO} alt="中国信通院 Logo" className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                <img src={RUANJIMU_LOGO} alt="软积木 Logo" className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
               </div>
             </div>
           </div>
           
           {/* Links Columns */}
           <div className="col-span-1 md:col-span-2 md:col-start-6">
-            <h3 className="text-white font-semibold mb-5 text-sm tracking-wide border-l-2 border-blue-600 pl-3">平台服务</h3>
-            <ul className="space-y-3 text-sm">
+            <h3 className="text-white font-semibold mb-3 text-xs tracking-wide border-l-2 border-blue-600 pl-2.5">平台服务</h3>
+            <ul className="space-y-2 text-xs">
               <li><Link to="/models" className="hover:text-white transition-colors duration-200">模型广场</Link></li>
               <li><Link to="/compute" className="hover:text-white transition-colors duration-200">算力资源</Link></li>
               <li><Link to="/datasets" className="hover:text-white transition-colors duration-200">数据资源</Link></li>
@@ -155,8 +153,8 @@ export const Footer = () => {
           </div>
 
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-white font-semibold mb-5 text-sm tracking-wide border-l-2 border-blue-600 pl-3">支持与政策</h3>
-            <ul className="space-y-3 text-sm">
+            <h3 className="text-white font-semibold mb-3 text-xs tracking-wide border-l-2 border-blue-600 pl-2.5">支持与政策</h3>
+            <ul className="space-y-2 text-xs">
               <li><Link to="/policy" className="hover:text-white transition-colors duration-200">政策中心</Link></li>
               <li><Link to="/training" className="hover:text-white transition-colors duration-200">培训认证</Link></li>
               <li><Link to="/community" className="hover:text-white transition-colors duration-200">活动社群</Link></li>
@@ -166,27 +164,27 @@ export const Footer = () => {
           </div>
 
           <div className="col-span-1 md:col-span-3">
-            <h3 className="text-white font-semibold mb-5 text-sm tracking-wide border-l-2 border-blue-600 pl-3">联系我们</h3>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-slate-500 mt-0.5" />
+            <h3 className="text-white font-semibold mb-3 text-xs tracking-wide border-l-2 border-blue-600 pl-2.5">联系我们</h3>
+            <ul className="space-y-2.5 text-xs">
+              <li className="flex items-start gap-2.5">
+                <MapPin className="w-3.5 h-3.5 text-slate-500 mt-0.5" />
                 <span className="text-slate-400">中关村AI北纬社区</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-slate-500" />
+              <li className="flex items-center gap-2.5">
+                <Mail className="w-3.5 h-3.5 text-slate-500" />
                 <span className="text-slate-400">opc.krstar.com.cn</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-slate-500" />
+              <li className="flex items-center gap-2.5">
+                <Phone className="w-3.5 h-3.5 text-slate-500" />
                 <span className="text-slate-400">010-88888888</span>
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <div className="pt-5 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] text-slate-500">
           <p>© 2026 中关村AI北纬社区OPC技术服务平台 版权所有</p>
-          <div className="flex gap-6">
+          <div className="flex gap-5">
             <a href="#" className="hover:text-slate-300 transition-colors duration-200">隐私政策</a>
             <a href="#" className="hover:text-slate-300 transition-colors duration-200">服务条款</a>
             <a href="#" className="hover:text-slate-300 transition-colors duration-200">京ICP备12345678号</a>

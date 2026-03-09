@@ -10,29 +10,29 @@ import { cn } from '@/lib/utils';
 
 // --- Hero Section ---
 const TrainingHero = () => (
-  <div className="relative bg-slate-50 border-b border-slate-200 pt-12 pb-14 overflow-hidden ui-reveal">
-    <div className="absolute inset-0 bg-grid-pattern opacity-[0.16]" />
-    
+  <div className="relative bg-white border-b border-slate-200 py-6 ui-reveal">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div className="max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-4">
-          <GraduationCap className="w-3.5 h-3.5" />
-          人工智能人才培养基地
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+        <div className="max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-3">
+            <GraduationCap className="w-3.5 h-3.5" />
+            人工智能人才培养基地
+          </div>
+          
+          <h1 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
+            人才与培训中心
+          </h1>
+          
+          <p className="text-sm text-slate-600 leading-relaxed max-w-xl">
+            构建多层次、高质量的人工智能人才培养体系，提供从基础理论到工程实践的全方位培训课程，助力企业打造数字化核心竞争力。
+          </p>
         </div>
         
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight leading-[1.15]">
-          人才与培训中心
-        </h1>
-        
-        <p className="text-base text-slate-600 mb-6 leading-relaxed max-w-2xl">
-          构建多层次、高质量的人工智能人才培养体系，提供从基础理论到工程实践的全方位培训课程，助力企业打造数字化核心竞争力。
-        </p>
-        
-        <div className="flex flex-wrap gap-3">
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm px-8">
+        <div className="flex gap-3">
+          <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm px-5 text-xs h-9">
             浏览课程目录
           </Button>
-          <Button variant="secondary" size="lg" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
+          <Button variant="secondary" size="sm" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50 px-5 text-xs h-9">
             查询证书
           </Button>
         </div>
@@ -46,10 +46,10 @@ const TrainingContent = () => {
   const [activeCategory, setActiveCategory] = useState('developer');
 
   const categories = [
-    { id: 'developer', name: '技术开发', icon: MonitorPlay },
-    { id: 'management', name: '产业管理', icon: Users },
-    { id: 'certification', name: '职业认证', icon: Award },
-    { id: 'calendar', name: '培训日历', icon: Calendar },
+    { id: 'developer', name: '技术开发', icon: MonitorPlay, count: 3 },
+    { id: 'management', name: '产业管理', icon: Users, count: 2 },
+    { id: 'certification', name: '职业认证', icon: Award, count: 1 },
+    { id: 'calendar', name: '培训日历', icon: Calendar, count: 0 },
   ];
 
   const courses = {
@@ -116,44 +116,47 @@ const TrainingContent = () => {
   };
 
   return (
-    <div className="bg-white py-8 min-h-screen">
+    <div className="bg-slate-50/50 py-6 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-7">
+        <div className="grid lg:grid-cols-12 gap-6">
           
           {/* Sidebar */}
           <div className="lg:col-span-3">
-            <div className="sticky top-20 space-y-6">
-              <div>
-                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 px-2">培训体系</h3>
-                <div className="space-y-1">
-                  {categories.map((cat) => (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveCategory(cat.id)}
-                      className={cn(
-                        "w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
-                        activeCategory === cat.id
-                          ? "bg-blue-50 text-blue-700 shadow-sm border border-blue-100"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                      )}
-                    >
+            <div className="sticky top-20 space-y-5">
+              <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-1.5">
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={cn(
+                      "w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-sm transition-all duration-200 mb-0.5 last:mb-0",
+                      activeCategory === cat.id
+                        ? "bg-blue-50 text-blue-700 font-medium"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                    )}
+                  >
+                    <div className="flex items-center gap-2.5">
                       <cat.icon className={cn("w-4 h-4", activeCategory === cat.id ? "text-blue-600" : "text-slate-400")} />
                       {cat.name}
-                      {activeCategory === cat.id && <ChevronRight className="w-4 h-4 ml-auto text-blue-400" />}
-                    </button>
-                  ))}
-                </div>
+                    </div>
+                    {cat.count > 0 && (
+                      <span className={cn("text-xs py-0.5 px-1.5 rounded-full", activeCategory === cat.id ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-slate-500")}>
+                        {cat.count}
+                      </span>
+                    )}
+                  </button>
+                ))}
               </div>
 
-              <div className="bg-slate-50 rounded-xl p-4.5 border border-slate-200">
-                <h4 className="font-bold text-slate-900 mb-2 text-sm flex items-center gap-2">
-                  <Users className="w-4 h-4 text-emerald-500" />
+              <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-lg p-4 text-white shadow-md">
+                <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
+                  <Users className="w-4 h-4 text-emerald-200" />
                   企业定制培训
                 </h4>
-                <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+                <p className="text-xs text-emerald-100 mb-3 leading-relaxed opacity-90">
                   根据企业业务需求，量身定制内训课程，提升团队技术实力。
                 </p>
-                <Button size="sm" className="w-full bg-white text-blue-600 border border-blue-200 hover:bg-blue-50 text-xs shadow-sm">
+                <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0 text-xs backdrop-blur-sm">
                   联系培训顾问
                 </Button>
               </div>
@@ -162,98 +165,97 @@ const TrainingContent = () => {
 
           {/* Main List */}
           <div className="lg:col-span-9">
-            <div className="flex justify-between items-end mb-5 border-b border-slate-100 pb-3.5">
-              <div>
-                <h2 className="text-xl font-bold text-slate-900">
-                  {categories.find(c => c.id === activeCategory)?.name}
-                </h2>
-                <p className="text-sm text-slate-500 mt-1">
-                  {activeCategory === 'calendar' ? '查看近期培训计划' : `精选 ${courses[activeCategory as keyof typeof courses]?.length || 0} 门优质课程`}
-                </p>
-              </div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                {categories.find(c => c.id === activeCategory)?.name}
+                {categories.find(c => c.id === activeCategory)?.count ? (
+                  <span className="text-xs font-normal text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded-full">
+                    {categories.find(c => c.id === activeCategory)?.count}
+                  </span>
+                ) : null}
+              </h2>
             </div>
 
-            <div className="space-y-4.5">
+            <div className="space-y-3">
               {/* @ts-ignore */}
               {courses[activeCategory as keyof typeof courses]?.map((course, idx) => (
-                <div key={idx} className="ui-list-item group bg-white rounded-xl border border-slate-200 p-5 hover:shadow-[0_14px_30px_-24px_rgba(37,99,235,0.4)] hover:border-blue-200 transition-all duration-200 hover:-translate-y-0.5">
-                  <div className="flex flex-col md:flex-row gap-5">
-                    {/* Course Info */}
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <Badge variant="secondary" className={cn(
-                          "font-normal border",
-                          course.level === "初级" ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
-                          course.level === "中级" ? "bg-blue-50 text-blue-700 border-blue-100" :
-                          course.level === "高级" ? "bg-purple-50 text-purple-700 border-purple-100" :
-                          "bg-slate-100 text-slate-700 border-slate-200"
-                        )}>
-                          {course.level}
-                        </Badge>
-                        <span className="text-xs text-slate-500 flex items-center gap-1">
-                          <Video className="w-3.5 h-3.5" /> {course.type}
-                        </span>
-                        <span className="text-xs text-slate-500 flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5" /> {course.duration}
-                        </span>
-                      </div>
-                      
-                      <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
-                        {course.title}
-                      </h3>
-                      
-                      <p className="text-sm text-slate-500 leading-relaxed mb-4">
-                        {course.desc}
-                      </p>
-                      
+                <article key={idx} className="card-enterprise group flex flex-col md:flex-row bg-white rounded-lg border border-slate-200 p-4 hover:border-blue-300 hover:shadow-md transition-all duration-200">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <Badge variant="secondary" className={cn(
+                        "font-medium border px-1.5 py-0 text-[10px] h-5",
+                        course.level === "初级" ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
+                        course.level === "中级" ? "bg-blue-50 text-blue-700 border-blue-100" :
+                        course.level === "高级" ? "bg-purple-50 text-purple-700 border-purple-100" :
+                        "bg-slate-100 text-slate-700 border-slate-200"
+                      )}>
+                        {course.level}
+                      </Badge>
+                      <span className="text-xs text-slate-500 flex items-center gap-1 bg-slate-50 px-1.5 py-0.5 rounded border border-slate-100">
+                        <Video className="w-3 h-3" /> {course.type}
+                      </span>
                       {/* @ts-ignore */}
-                      {course.tags && (
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {/* @ts-ignore */}
-                          {course.tags.map((tag, i) => (
-                            <span key={i} className="text-[10px] px-2 py-1 rounded bg-slate-50 text-slate-500 border border-slate-100">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* @ts-ignore */}
-                      {course.features && (
-                        <div className="flex gap-4 mb-4">
-                          {/* @ts-ignore */}
-                          {course.features.map((feat, i) => (
-                            <span key={i} className="flex items-center gap-1 text-xs text-slate-600">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> {feat}
-                            </span>
-                          ))}
-                        </div>
+                      {course.duration && (
+                        <span className="text-xs text-slate-500 flex items-center gap-1 bg-slate-50 px-1.5 py-0.5 rounded border border-slate-100">
+                          <Clock className="w-3 h-3" /> {course.duration}
+                        </span>
                       )}
                     </div>
-
-                    {/* Action Side */}
-                    <div className="md:w-48 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-6 flex-shrink-0">
-                      <div>
-                        <div className="text-xs text-slate-400 mb-1">下期开课</div>
+                    
+                    <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {course.title}
+                    </h3>
+                    
+                    <p className="text-sm text-slate-500 leading-relaxed mb-4 line-clamp-2 max-w-3xl">
+                      {course.desc}
+                    </p>
+                    
+                    {/* @ts-ignore */}
+                    {course.tags && (
+                      <div className="flex flex-wrap gap-1.5 mb-4">
                         {/* @ts-ignore */}
-                        <div className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-blue-500" />
-                          {/* @ts-ignore */}
-                          {course.nextSession || course.nextExam}
-                        </div>
+                        {course.tags.map((tag, i) => (
+                          <span key={i} className="text-[10px] px-1.5 py-0.5 rounded bg-slate-50 text-slate-500 border border-slate-100">
+                            {tag}
+                          </span>
+                        ))}
                       </div>
-                      
-                      <div className="flex flex-col gap-2 mt-4 md:mt-0">
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm h-9 text-xs">
-                          立即报名
-                        </Button>
-                        <Button variant="outline" className="w-full border-slate-200 text-slate-600 hover:bg-slate-50 h-9 text-xs">
-                          <FileText className="w-3.5 h-3.5 mr-1.5" /> 查看大纲
-                        </Button>
+                    )}
+
+                    {/* @ts-ignore */}
+                    {course.features && (
+                      <div className="flex gap-4 mb-3">
+                        {/* @ts-ignore */}
+                        {course.features.map((feat, i) => (
+                          <span key={i} className="flex items-center gap-1 text-xs text-slate-600">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> {feat}
+                          </span>
+                        ))}
                       </div>
+                    )}
+                  </div>
+
+                  <div className="mt-3 md:mt-0 md:ml-4 md:pl-4 md:border-l border-slate-100 flex flex-col justify-between min-w-[180px]">
+                    <div>
+                      <div className="text-xs text-slate-400 mb-1">下期开课</div>
+                      {/* @ts-ignore */}
+                      <div className="text-sm font-bold text-slate-900 flex items-center gap-2 bg-blue-50/50 px-2 py-1.5 rounded border border-blue-100/50 w-fit md:w-full">
+                        <Calendar className="w-4 h-4 text-blue-500" />
+                        {/* @ts-ignore */}
+                        {course.nextSession || course.nextExam}
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-2 mt-4">
+                      <Button variant="outline" className="flex-1 border-slate-200 text-slate-600 hover:bg-slate-50 h-8 text-xs px-2">
+                        大纲
+                      </Button>
+                      <Button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white shadow-sm h-8 text-xs px-2">
+                        报名
+                      </Button>
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
               
               {activeCategory === 'calendar' && (

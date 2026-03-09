@@ -61,7 +61,7 @@ export default function AgentIDEPage() {
       <div className="flex flex-1 overflow-hidden">
         {/* 3. Left Fixed Sidebar */}
         <aside className="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 z-10">
-          <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6">
+          <div className="flex-1 overflow-y-auto py-3 px-2 space-y-6">
             {/* Section: Workflow */}
             <div>
               <div className="flex items-center justify-between mb-2 px-2">
@@ -129,19 +129,19 @@ export default function AgentIDEPage() {
         </aside>
 
         {/* 4. Large Center Workspace */}
-        <main className="flex-1 bg-slate-50/50 p-8 lg:p-12 flex flex-col items-center justify-center relative overflow-hidden">
+        <main className="flex-1 bg-slate-50/50 p-6 lg:p-10 flex flex-col items-center justify-center relative overflow-hidden">
            {/* Background Grid */}
            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:24px_24px] opacity-40 pointer-events-none" />
            
            <div className="relative z-10 max-w-4xl w-full">
-             <div className="text-center mb-12">
-               <h1 className="text-3xl font-bold text-slate-900 mb-3">Hi，欢迎来到软积木应用 IDE</h1>
+             <div className="text-center mb-10">
+               <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">Hi，欢迎来到软积木应用 IDE</h1>
                <p className="text-slate-500 text-sm">从这里开始，构建您的第一个 AI 智能体应用</p>
              </div>
 
-             <div className="grid md:grid-cols-3 gap-6 mb-12">
+             <div className="grid md:grid-cols-3 gap-5 mb-10">
                {/* Card 1 */}
-               <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-pointer group">
+               <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-pointer group">
                  <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform">
                    <Workflow className="w-6 h-6" />
                  </div>
@@ -150,7 +150,7 @@ export default function AgentIDEPage() {
                </div>
 
                {/* Card 2 */}
-               <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md hover:border-purple-300 transition-all cursor-pointer group">
+               <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-purple-300 transition-all cursor-pointer group">
                  <div className="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 mb-4 group-hover:scale-110 transition-transform">
                    <LayoutTemplate className="w-6 h-6" />
                  </div>
@@ -159,7 +159,7 @@ export default function AgentIDEPage() {
                </div>
 
                {/* Card 3 */}
-               <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all cursor-pointer group">
+               <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all cursor-pointer group">
                  <div className="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600 mb-4 group-hover:scale-110 transition-transform">
                    <Database className="w-6 h-6" />
                  </div>

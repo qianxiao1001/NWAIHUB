@@ -472,29 +472,29 @@ const AGENT_VISUAL_MAP: Record<string, { icon: React.ComponentType<{ className?:
 };
 
 const MarketHero = () => (
-  <section className="relative bg-slate-50 border-b border-slate-200 pt-10 pb-8 overflow-hidden ui-reveal">
+  <section className="relative bg-slate-50 border-b border-slate-200 py-5 overflow-hidden ui-reveal">
     <div className="absolute inset-0 bg-grid-pattern opacity-[0.18]" />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-5xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold">
-          <Sparkles className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold">
+          <Sparkles className="w-3 h-3" />
           智能体市场频道
         </div>
-        <h1 className="mt-4 text-[34px] md:text-[42px] font-bold text-slate-900 tracking-tight leading-[1.15]">智能体市场</h1>
-        <p className="mt-4 text-slate-600 leading-7 max-w-3xl">
+        <h1 className="mt-2 text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-[1.15]">智能体市场</h1>
+        <p className="mt-2 text-xs text-slate-600 leading-5 max-w-3xl">
           面向企业与园区提供高可用智能体应用广场，支持快速浏览、筛选、评估与即刻调用。
         </p>
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Button className="bg-blue-700 hover:bg-blue-800 text-white px-7">发布智能体</Button>
-          <Button variant="secondary" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50 px-7">
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 h-8 text-xs shadow-sm">发布智能体</Button>
+          <Button variant="secondary" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50 px-4 h-8 text-xs">
             浏览热门
           </Button>
         </div>
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-2.5">
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-1.5">
           {MARKET_STATS.map((stat) => (
-            <div key={stat.label} className="rounded-xl border border-slate-200 bg-white/85 backdrop-blur px-3.5 py-2.5">
-              <p className="text-base font-semibold text-slate-900">{stat.value}</p>
-              <p className="text-xs text-slate-500 mt-1">{stat.label}</p>
+            <div key={stat.label} className="rounded-lg border border-slate-200 bg-white/85 backdrop-blur px-2 py-1 shadow-sm">
+              <p className="text-sm font-bold text-slate-900">{stat.value}</p>
+              <p className="text-[10px] text-slate-500 mt-0.5">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -535,74 +535,69 @@ const AgentMarket = () => {
   }, [activeCategory, activePrimary, activeSort, activeTag, searchText]);
 
   return (
-    <section className="bg-white py-8 ui-reveal">
+    <section className="bg-white py-4 ui-reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <aside className="lg:col-span-3 xl:col-span-3">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-4.5 space-y-5 lg:sticky lg:top-20">
-              <div>
-                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-3">一级导航</h3>
-                <div className="space-y-1">
-                  {PRIMARY_NAV.map((item) => (
-                    <button
-                      key={item}
-                      onClick={() => setActivePrimary(item)}
-                      className={cn(
-                        'w-full flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-all',
-                        activePrimary === item
-                          ? 'bg-white border border-blue-100 text-blue-700 shadow-sm'
-                          : 'text-slate-600 hover:text-slate-900 hover:bg-white'
-                      )}
-                    >
-                      {item}
-                      {activePrimary === item && <ChevronRight className="w-4 h-4 ml-auto text-blue-400" />}
-                    </button>
-                  ))}
-                </div>
+          <aside className="lg:col-span-3 xl:col-span-2">
+            <div className="space-y-3 lg:sticky lg:top-20">
+              {/* Navigation Groups */}
+              <div className="space-y-0.5">
+                <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-1">一级导航</h3>
+                {PRIMARY_NAV.map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => setActivePrimary(item)}
+                    className={cn(
+                      'w-full flex items-center justify-between px-2.5 py-1 rounded-md text-xs font-medium transition-all duration-200',
+                      activePrimary === item
+                        ? 'bg-blue-50 text-blue-700'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    )}
+                  >
+                    {item}
+                    {activePrimary === item && <ChevronRight className="w-3 h-3 text-blue-500" />}
+                  </button>
+                ))}
               </div>
 
-              <div>
-                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-3">分类筛选</h3>
-                <div className="space-y-1">
-                  {CATEGORY_ITEMS.map((item) => (
-                    <button
-                      key={item.name}
-                      onClick={() => setActiveCategory(item.name)}
-                      className={cn(
-                        'w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all',
-                        activeCategory === item.name
-                          ? 'bg-white border border-slate-200 text-slate-900 shadow-sm'
-                          : 'text-slate-600 hover:bg-white hover:text-slate-900'
-                      )}
-                    >
-                      <item.icon className={cn('w-4 h-4', activeCategory === item.name ? 'text-blue-600' : 'text-slate-400')} />
-                      <span>{item.name}</span>
-                    </button>
-                  ))}
-                </div>
+              <div className="space-y-0.5">
+                <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-1">分类筛选</h3>
+                {CATEGORY_ITEMS.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => setActiveCategory(item.name)}
+                    className={cn(
+                      'w-full flex items-center gap-2 px-2.5 py-1 rounded-md text-xs transition-all duration-200',
+                      activeCategory === item.name
+                        ? 'bg-slate-100 text-slate-900 font-medium'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    )}
+                  >
+                    <item.icon className={cn('w-3.5 h-3.5', activeCategory === item.name ? 'text-slate-900' : 'text-slate-400')} />
+                    <span>{item.name}</span>
+                  </button>
+                ))}
               </div>
 
-              <div>
-                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-2.5">特色专区</h3>
-                <div className="space-y-1">
-                  {FEATURE_ZONES.map((item) => (
-                    <button
-                      key={item}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-white hover:text-slate-900 transition-all"
-                    >
-                      <Flame className="w-3.5 h-3.5 text-amber-500" />
-                      {item}
-                    </button>
-                  ))}
-                </div>
+              <div className="space-y-0.5">
+                <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-1">特色专区</h3>
+                {FEATURE_ZONES.map((item) => (
+                  <button
+                    key={item}
+                    className="w-full flex items-center gap-2 px-2.5 py-1 rounded-md text-xs text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all"
+                  >
+                    <Flame className="w-3 h-3 text-amber-500" />
+                    {item}
+                  </button>
+                ))}
               </div>
 
-              <div className="pt-3 border-t border-slate-200">
-                <div className="space-y-1.5">
+              <div className="pt-2 border-t border-slate-100">
+                <div className="space-y-0.5">
                   {TOOL_LINKS.map((item) => (
                     <button
                       key={item}
-                      className="w-full text-left rounded-lg border border-transparent px-3 py-2 text-sm text-slate-600 hover:text-blue-700 hover:bg-white hover:border-blue-100 transition-all"
+                      className="w-full text-left rounded-md px-2.5 py-1 text-[11px] text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all"
                     >
                       {item}
                     </button>
@@ -612,28 +607,29 @@ const AgentMarket = () => {
             </div>
           </aside>
 
-          <div className="lg:col-span-9 xl:col-span-9">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50/60 p-3.5 sm:p-4">
-              <div className="flex flex-col gap-2.5 lg:flex-row lg:items-center">
+          <div className="lg:col-span-9 xl:col-span-10">
+            {/* Search & Filter Bar */}
+            <div className="mb-2.5 space-y-2.5">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <div className="relative flex-1">
-                  <Search className="w-4.5 h-4.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    placeholder="搜索智能体名称、场景、能力、关键词…"
-                    className="w-full h-10 rounded-lg border border-slate-300 bg-white pl-10 pr-4 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
+                    placeholder="搜索智能体..."
+                    className="w-full h-8 rounded-md border border-slate-300 bg-white pl-8 pr-4 text-xs text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 shadow-sm"
                   />
                 </div>
-                <div className="flex flex-wrap items-center gap-1.5">
+                <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
                   {SORT_ITEMS.map((item) => (
                     <button
                       key={item}
                       onClick={() => setActiveSort(item)}
                       className={cn(
-                        'px-3 py-1.5 rounded-md text-xs font-medium transition-all',
+                        'px-2.5 py-1 rounded-md text-[11px] font-medium whitespace-nowrap transition-all border',
                         activeSort === item
-                          ? 'bg-white border border-slate-200 text-slate-900 shadow-sm'
-                          : 'text-slate-500 hover:text-slate-700'
+                          ? 'bg-slate-800 border-slate-800 text-white shadow-sm'
+                          : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900'
                       )}
                     >
                       {item}
@@ -642,106 +638,100 @@ const AgentMarket = () => {
                 </div>
               </div>
 
-              <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2.5">
-                <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap gap-1">
                   {FILTER_TAGS.map((tag) => (
                     <button
                       key={tag}
                       onClick={() => setActiveTag(tag)}
                       className={cn(
-                        'px-3 py-1.5 rounded-full text-xs font-medium border transition-all',
+                        'px-2 py-0.5 rounded-md text-[10px] font-medium border transition-all',
                         activeTag === tag
-                          ? 'bg-blue-600 text-white border-blue-600'
-                          : 'bg-white text-slate-600 border-slate-200 hover:border-blue-200 hover:text-blue-700'
+                          ? 'bg-blue-50 text-blue-700 border-blue-200'
+                          : 'bg-transparent text-slate-500 border-transparent hover:bg-slate-50 hover:text-slate-700'
                       )}
                     >
                       {tag}
                     </button>
                   ))}
                 </div>
-                <div className="inline-flex items-center rounded-lg border border-slate-200 bg-white p-1">
-                  <button className="h-7 px-2.5 rounded-md bg-slate-900 text-white text-xs inline-flex items-center gap-1.5">
-                    <Grid3X3 className="w-3.5 h-3.5" />
+                <div className="hidden sm:flex items-center rounded-md border border-slate-200 bg-white p-0.5">
+                  <button className="h-5 px-1.5 rounded-[3px] bg-slate-100 text-slate-900 text-[10px] font-medium inline-flex items-center gap-1">
+                    <Grid3X3 className="w-3 h-3" />
                     卡片
                   </button>
-                  <button className="h-7 px-2.5 rounded-md text-slate-500 text-xs inline-flex items-center gap-1.5 hover:text-slate-700">
-                    <List className="w-3.5 h-3.5" />
+                  <button className="h-5 px-1.5 rounded-[3px] text-slate-500 text-[10px] font-medium inline-flex items-center gap-1 hover:text-slate-700">
+                    <List className="w-3 h-3" />
                     列表
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="mt-3.5 flex items-center justify-between gap-2 text-xs text-slate-500">
-              <span>当前展示 {displayedAgents.length} 个智能体</span>
-              <span className="inline-flex items-center gap-1"><Clock3 className="w-3.5 h-3.5 text-slate-400" />持续更新</span>
+            <div className="flex items-center justify-between gap-2 text-[10px] text-slate-400 mb-2">
+              <span>共 {displayedAgents.length} 个智能体</span>
             </div>
 
-            <div className="mt-2.5 overflow-x-auto">
-              <div className="flex gap-2.5 min-w-max pb-1">
+            {/* Featured Strips - Horizontal Scroll */}
+            <div className="mb-4 overflow-x-auto scrollbar-hide">
+              <div className="flex gap-2 min-w-max pb-1">
                 {FEATURED_STRIPS.map((item) => (
-                  <div key={item.title} className="w-[188px] rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-2">
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs font-semibold text-slate-800">{item.title}</p>
-                      <Badge variant="secondary" className={cn('text-[10px] border', BADGE_STYLES[item.badge])}>
+                  <div key={item.title} className="w-[150px] rounded-lg border border-slate-200 bg-gradient-to-br from-slate-50 to-white px-2.5 py-2 shadow-sm">
+                    <div className="flex items-center justify-between mb-0.5">
+                      <p className="text-[11px] font-bold text-slate-800">{item.title}</p>
+                      <span className={cn('text-[9px] px-1 py-0 rounded border font-medium', BADGE_STYLES[item.badge])}>
                         {item.badge}
-                      </Badge>
+                      </span>
                     </div>
-                    <p className="mt-1 text-[11px] text-slate-500">{item.desc}</p>
+                    <p className="text-[9px] text-slate-500 truncate">{item.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5">
               {displayedAgents.map((agent) => (
-                <article key={agent.title} className="group rounded-2xl border border-slate-200 bg-white p-3.5 shadow-[0_8px_24px_-20px_rgba(15,23,42,0.34)] hover:border-blue-200 hover:shadow-[0_14px_28px_-20px_rgba(15,23,42,0.35)] transition-all duration-300 flex flex-col">
-                  <div className="flex items-start justify-between">
-                    <div className={cn('w-9 h-9 rounded-lg border flex items-center justify-center', AGENT_VISUAL_MAP[agent.category]?.box || 'bg-slate-50 border-slate-200')}>
+                <article key={agent.title} className="card-enterprise group flex flex-col p-2.5 bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className={cn('w-7 h-7 rounded-md border flex items-center justify-center', AGENT_VISUAL_MAP[agent.category]?.box || 'bg-slate-50 border-slate-200')}>
                       {React.createElement(AGENT_VISUAL_MAP[agent.category]?.icon || Bot, {
-                        className: cn('w-4.5 h-4.5', AGENT_VISUAL_MAP[agent.category]?.text || 'text-slate-700'),
+                        className: cn('w-3.5 h-3.5', AGENT_VISUAL_MAP[agent.category]?.text || 'text-slate-700'),
                       })}
                     </div>
-                    <Badge variant="secondary" className={cn('text-[10px] border', BADGE_STYLES[agent.badge] || 'bg-slate-100 text-slate-700 border-slate-200')}>
-                      {agent.badge}
-                    </Badge>
+                    {agent.badge && (
+                      <span className={cn('text-[9px] px-1 py-0 rounded border font-medium', BADGE_STYLES[agent.badge] || 'bg-slate-100 text-slate-600 border-slate-200')}>
+                        {agent.badge}
+                      </span>
+                    )}
                   </div>
 
-                  <h3 className="mt-2.5 text-[14px] leading-5 font-semibold text-slate-900 group-hover:text-blue-700 transition-colors">
+                  <h3 className="text-[13px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1 truncate">
                     {agent.title}
                   </h3>
-                  <p className="mt-1.5 text-xs text-slate-600 leading-5 min-h-[40px]">{agent.desc}</p>
+                  <p className="text-[11px] text-slate-500 leading-relaxed line-clamp-2 h-[30px] mb-2">{agent.desc}</p>
 
-                  <div className="mt-2.5 flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1 mb-2">
                     {agent.tags.slice(0, 3).map((tag) => (
-                      <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200">
+                      <span key={tag} className="text-[9px] px-1 py-0.5 rounded bg-slate-50 text-slate-500 border border-slate-100">
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="mt-2.5 pt-2.5 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />{agent.usageLabel}</span>
-                      <span className="inline-flex items-center gap-1"><Heart className="w-3.5 h-3.5 text-rose-400" />{agent.favorites.toLocaleString()}</span>
+                  <div className="mt-auto pt-2 border-t border-slate-100 space-y-2">
+                    <div className="flex items-center justify-between text-[10px] text-slate-400">
+                      <span className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-emerald-500" />{agent.usageLabel}</span>
+                      <span className="flex items-center gap-1"><Star className="w-3 h-3 text-amber-400" />{agent.rating}</span>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1"><Star className="w-3.5 h-3.5 text-amber-400" />{agent.likes.toLocaleString()}</span>
-                      <span className="inline-flex items-center gap-1"><Clock3 className="w-3.5 h-3.5 text-slate-400" />{agent.updated}</span>
+                    
+                    <div className="grid grid-cols-2 gap-2 mt-2">
+                      <Button variant="outline" size="sm" className="h-6 text-[11px] border-slate-200 hover:bg-slate-50 hover:text-blue-600">
+                        详情
+                      </Button>
+                      <Button size="sm" className="h-6 text-[11px] bg-blue-600 hover:bg-blue-700 text-white shadow-sm">
+                        使用
+                      </Button>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1 truncate"><BookOpen className="w-3.5 h-3.5 text-slate-400" />{agent.author}</span>
-                      <span className="text-slate-600 font-medium">评分 {agent.rating.toFixed(1)}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-2.5 grid grid-cols-2 gap-1.5">
-                    <Button variant="secondary" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50 h-7 text-xs">
-                      查看详情
-                    </Button>
-                    <Button className="bg-blue-700 hover:bg-blue-800 text-white h-7 text-xs">
-                      立即使用
-                    </Button>
                   </div>
                 </article>
               ))}
