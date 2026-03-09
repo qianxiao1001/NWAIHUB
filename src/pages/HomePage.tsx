@@ -9,7 +9,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
-const BRAND_SUPPORT_ITEMS = ['联合发起单位', '中关村AI北纬社区'];
+
 const TRUST_POINTS = ['官方认证平台', '全栈资源对接', '专家技术支持'];
 const CAPABILITY_CARDS = [
   { title: '算力资源', value: '5000+ GPU', status: '统一调度', icon: Cpu },
@@ -20,18 +20,7 @@ const CAPABILITY_CARDS = [
 const Hero = () => (
   <div className="relative bg-slate-50 overflow-hidden border-b border-slate-200">
     <div className="absolute inset-0 bg-grid-pattern opacity-[0.14]" />
-    <div className="relative z-10 border-b border-slate-200/90 bg-white/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-7 flex items-center text-[10px] text-slate-400">
-        <div className="w-full flex items-center gap-2 overflow-x-auto whitespace-nowrap">
-          {BRAND_SUPPORT_ITEMS.map((item, index) => (
-            <React.Fragment key={item}>
-              {index > 0 && <span className="text-slate-300">·</span>}
-              <span className={cn(index === 0 ? 'font-medium text-slate-500' : 'font-normal')}>{item}</span>
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-    </div>
+
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-9 pb-10 lg:pt-10 lg:pb-11">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[500px]">
         <div className="lg:col-span-5 max-w-[600px]">
