@@ -9,12 +9,15 @@ import {
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 // --- Hero Section: Model Matrix ---
 const HeroSection = () => (
   <div className="relative bg-slate-50 border-b border-slate-200 pt-12 pb-14 overflow-hidden ui-reveal">
+    {/* Background Image */}
     <div
       className="absolute inset-0 bg-center bg-cover opacity-[0.24]"
-      style={{ backgroundImage: "url('/Logos/training-talent-hero-cover.svg')" }}
+      style={{ backgroundImage: `url('${BASE_URL}Logos/training-talent-hero-cover.svg')` }}
     />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="flex flex-col lg:flex-row gap-8 items-center">
