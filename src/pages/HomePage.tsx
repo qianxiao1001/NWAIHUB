@@ -61,15 +61,7 @@ const Hero = () => (
           className="lg:col-span-7 w-full"
         >
           <div className="w-full max-w-[650px] ml-auto rounded-2xl border border-slate-200/80 bg-white p-4 lg:p-5 shadow-[0_20px_44px_-34px_rgba(15,23,42,0.26)]">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl font-bold text-slate-900 tracking-tight">平台能力总览面板</h3>
-                <p className="text-sm text-slate-600 mt-1">统一运营 · 统一调度 · 统一交付</p>
-              </div>
-              <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-full px-3 py-1 font-semibold">
-                系统稳定运行
-              </span>
-            </div>
+
             <div className="mt-4 p-4 rounded-xl border border-slate-100/90 bg-slate-50/75">
               <div className="grid grid-cols-[1fr_auto_1fr] gap-x-2.5 gap-y-2.5 items-center">
                 {CAPABILITY_CARDS.map((item, index) => (
@@ -192,10 +184,7 @@ const OperationsCockpitPreview = () => (
       <div className="rounded-[28px] border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-5 sm:p-7 lg:p-8 shadow-[0_28px_64px_-46px_rgba(15,23,42,0.35)]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-stretch">
           <div className="lg:col-span-5 flex flex-col">
-            <div className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold">
-              <BarChart3 className="w-3.5 h-3.5" />
-              AI operations control center preview
-            </div>
+
             <h2 className="mt-4 text-[30px] leading-[1.18] font-bold text-slate-900 tracking-tight">
               园区 AI 运营总控中心
             </h2>

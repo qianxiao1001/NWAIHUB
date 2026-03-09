@@ -174,7 +174,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-slate-500" />
-                <span className="text-slate-400">contact@opc-ai.com</span>
+                <span className="text-slate-400">opc.krstar.com.cn</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-slate-500" />
