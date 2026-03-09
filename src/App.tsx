@@ -9,6 +9,7 @@ import TrainingPage from '@/pages/TrainingPage';
 import ActivityCommunityPage from '@/pages/ActivityCommunityPage';
 import AppsPage from '@/pages/AppsPage';
 import AgentIDEPage from '@/pages/AgentIDEPage';
+import DashboardPage from '@/pages/DashboardPage';
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/community" element={<ActivityCommunityPage />} />
         <Route path="/apps" element={<AppsPage />} />
         <Route path="/agent-ide" element={<AgentIDEPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
     </Router>
   );

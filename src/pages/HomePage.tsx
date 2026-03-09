@@ -6,7 +6,7 @@ import {
   Layers, BarChart3, CheckCircle2, Calendar, Building2, Network
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 
@@ -172,7 +172,10 @@ const SupportPlanSection = () => (
   </Section>
 );
 
-const OperationsCockpitPreview = () => (
+const OperationsCockpitPreview = () => {
+  const navigate = useNavigate();
+
+  return (
   <Section className="bg-slate-50 py-16 border-t border-slate-200">
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -213,7 +216,7 @@ const OperationsCockpitPreview = () => (
               <Button
                 className="bg-blue-700 hover:bg-blue-800 text-white px-6"
                 onClick={() => {
-                  window.location.href = 'http://localhost:3001/opc-control-center-demo.html';
+                  navigate('/dashboard');
                 }}
               >
                 查看总控大屏
@@ -375,7 +378,8 @@ const OperationsCockpitPreview = () => (
       </div>
     </motion.div>
   </Section>
-);
+  );
+};
 
 export default function HomePage() {
   return (
