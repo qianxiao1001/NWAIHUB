@@ -480,13 +480,13 @@ const MarketHero = () => (
           <Sparkles className="w-3 h-3" />
           智能体市场频道
         </div>
-        <h1 className="mt-2 text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-[1.15]">智能体市场</h1>
-        <p className="mt-2 text-xs text-slate-600 leading-5 max-w-3xl">
+        <h1 className="mt-2 mobile-title-hero lg:text-2xl lg:md:text-3xl font-bold text-slate-900 tracking-tight leading-[1.15]">智能体市场</h1>
+        <p className="mt-2 mobile-text-body lg:text-xs text-slate-600 leading-5 lg:max-w-3xl mobile-text-truncate-3">
           面向企业与园区提供高可用智能体应用广场，支持快速浏览、筛选、评估与即刻调用。
         </p>
-        <div className="mt-3 flex flex-wrap items-center gap-2">
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 h-8 text-xs shadow-sm">发布智能体</Button>
-          <Button variant="secondary" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50 px-4 h-8 text-xs">
+        <div className="mt-3 flex flex-col sm:flex-row gap-2">
+          <Button className="mobile-button bg-blue-600 hover:bg-blue-700 text-white shadow-sm">发布智能体</Button>
+          <Button variant="secondary" className="mobile-button bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
             浏览热门
           </Button>
         </div>
@@ -509,6 +509,7 @@ const AgentMarket = () => {
   const [activeTag, setActiveTag] = useState<(typeof FILTER_TAGS)[number]>('全部');
   const [activeSort, setActiveSort] = useState<(typeof SORT_ITEMS)[number]>('推荐排序');
   const [searchText, setSearchText] = useState('');
+  const [sidebarDrawerOpen, setSidebarDrawerOpen] = useState(false);
 
   const displayedAgents = useMemo(() => {
     const lowerKeyword = searchText.trim().toLowerCase();
@@ -537,8 +538,133 @@ const AgentMarket = () => {
   return (
     <section className="bg-white py-4 ui-reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <aside className="lg:col-span-3 xl:col-span-2">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-5">
+          
+          {/* Mobile Navigation Controls */}
+          <div className="lg:hidden mb-4 flex gap-2">
+            <button 
+              onClick={() => setSidebarDrawerOpen(true)}
+              className="flex items-center gap-2 px-3 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm hover:bg-slate-200 transition-colors mobile-touch-feedback"
+            >
+              <FolderOpen className="w-4 h-4" />
+              分类
+            </button>
+            <select 
+              value={activePrimary} 
+              onChange={(e) => setActivePrimary(e.target.value as any)}
+              className="flex-1 px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+            >
+              {PRIMARY_NAV.map(item => (
+                <option key={item} value={item}>{item}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Sidebar Drawer Overlay */}
+          {sidebarDrawerOpen && (
+            <div 
+              className="fixed inset-0 bg-black/50 z-40 lg:hidden mobile-fade-in"
+              onClick={() => setSidebarDrawerOpen(false)}
+            />
+          )}
+
+          {/* Sidebar Drawer */}
+          <div className={cn(
+            "fixed top-0 left-0 h-full w-[300px] bg-white shadow-xl z-50 lg:hidden transform transition-transform duration-300",
+            sidebarDrawerOpen ? "translate-x-0" : "-translate-x-full"
+          )}>
+            <div className="h-full flex flex-col">
+              <div className="flex items-center justify-between p-4 border-b border-slate-200">
+                <h3 className="font-semibold text-slate-900">分类导航</h3>
+                <button 
+                  onClick={() => setSidebarDrawerOpen(false)}
+                  className="p-1 text-slate-600 hover:bg-slate-50 rounded"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+              
+              <div className="flex-1 p-4 space-y-6 overflow-y-auto">
+                {/* Navigation Groups */}
+                <div>
+                  <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-2">一级导航</h4>
+                  <div className="space-y-1">
+                    {PRIMARY_NAV.map((item) => (
+                      <button
+                        key={item}
+                        onClick={() => {
+                          setActivePrimary(item);
+                          setSidebarDrawerOpen(false);
+                        }}
+                        className={cn(
+                          'w-full flex items-center justify-between px-2.5 py-2 rounded-md text-sm font-medium transition-all duration-200',
+                          activePrimary === item
+                            ? 'bg-blue-50 text-blue-700'
+                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                        )}
+                      >
+                        {item}
+                        {activePrimary === item && <ChevronRight className="w-3 h-3 text-blue-500" />}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-2">分类筛选</h4>
+                  <div className="space-y-1">
+                    {CATEGORY_ITEMS.map((item) => (
+                      <button
+                        key={item.name}
+                        onClick={() => {
+                          setActiveCategory(item.name);
+                          setSidebarDrawerOpen(false);
+                        }}
+                        className={cn(
+                          'w-full flex items-center gap-2 px-2.5 py-2 rounded-md text-sm transition-all duration-200',
+                          activeCategory === item.name
+                            ? 'bg-slate-100 text-slate-900 font-medium'
+                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                        )}
+                      >
+                        <item.icon className={cn('w-3.5 h-3.5', activeCategory === item.name ? 'text-slate-900' : 'text-slate-400')} />
+                        <span>{item.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-2">特色专区</h4>
+                  <div className="space-y-1">
+                    {FEATURE_ZONES.map((item) => (
+                      <button
+                        key={item}
+                        className="w-full flex items-center gap-2 px-2.5 py-2 rounded-md text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all"
+                      >
+                        <Flame className="w-3 h-3 text-amber-500" />
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="p-4 border-t border-slate-200 space-y-2">
+                {TOOL_LINKS.map((item) => (
+                  <button
+                    key={item}
+                    className="w-full text-left rounded-md px-2.5 py-2 text-sm text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition-all"
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Sidebar */}
+          <aside className="hidden lg:block lg:col-span-3 xl:col-span-2">
             <div className="space-y-3 lg:sticky lg:top-20">
               {/* Navigation Groups */}
               <div className="space-y-0.5">

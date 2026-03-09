@@ -19,30 +19,31 @@ const CAPABILITY_CARDS = [
 const Hero = () => (
   <div className="relative bg-slate-50 overflow-hidden border-b border-slate-200 ui-reveal">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[420px]">
-        <div className="lg:col-span-5 max-w-[600px]">
+      <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-8 lg:gap-12 lg:items-center min-h-[420px]">
+        {/* Hero Content - Full width on mobile */}
+        <div className="lg:col-span-5 lg:max-w-[600px] w-full">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50/80 border border-blue-100 text-blue-700 text-xs font-semibold backdrop-blur-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
             OPC技术服务平台
           </div>
-          <h1 className="mt-4 max-w-[580px] text-3xl sm:text-4xl lg:text-[42px] leading-[1.15] font-bold text-slate-900 tracking-tight">
-            <span className="block whitespace-nowrap">一站式人工智能OPC</span>
+          <h1 className="mt-4 max-w-[580px] mobile-title-hero lg:text-[42px] lg:leading-[1.15] font-bold text-slate-900 tracking-tight">
+            <span className="block">一站式人工智能OPC</span>
             <span className="block text-blue-700">技术服务平台</span>
           </h1>
-          <p className="mt-4 max-w-[560px] text-sm text-slate-600 leading-relaxed">
+          <p className="mt-4 max-w-[560px] mobile-text-body lg:text-sm text-slate-600 leading-relaxed mobile-text-truncate-3">
             聚合算力、数据、模型三大核心要素，为企业提供从基础设施到应用落地的全周期技术服务，助力人工智能产业高质量发展。
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Button size="lg" className="h-9 px-5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <Button size="lg" className="mobile-button-large lg:h-9 lg:px-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm hover:shadow-md transition-all">
               立即咨询
             </Button>
-            <Link to="/models">
-              <Button variant="secondary" size="lg" className="h-9 px-5 bg-white border-slate-200 text-slate-600 hover:text-blue-700 hover:border-blue-200 hover:bg-blue-50/50 text-sm font-semibold shadow-sm transition-all">
+            <Link to="/models" className="w-full sm:w-auto">
+              <Button variant="secondary" size="lg" className="mobile-button-large lg:h-9 lg:px-5 bg-white border-slate-200 text-slate-600 hover:text-blue-700 hover:border-blue-200 hover:bg-blue-50/50 font-semibold shadow-sm transition-all w-full">
                 浏览服务
               </Button>
             </Link>
           </div>
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-500">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 lg:flex lg:flex-wrap lg:items-center lg:gap-x-6 lg:gap-y-2 text-xs text-slate-500">
             {TRUST_POINTS.map((item) => (
               <div key={item} className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
@@ -51,19 +52,23 @@ const Hero = () => (
             ))}
           </div>
         </div>
-        <div className="lg:col-span-7 w-full">
-          <div className="w-full max-w-[650px] ml-auto rounded-xl border border-slate-200/60 bg-white/50 backdrop-blur-sm p-4 shadow-sm">
+        
+        {/* Platform Capabilities - Full width on mobile */}
+        <div className="lg:col-span-7 w-full mt-8 lg:mt-0">
+          <div className="w-full lg:max-w-[650px] lg:ml-auto rounded-xl border border-slate-200/60 bg-white/50 backdrop-blur-sm p-4 shadow-sm">
             <div className="mt-0 p-4 rounded-lg border border-slate-100/80 bg-slate-50/50">
-              <div className="grid grid-cols-[1fr_auto_1fr] gap-3 items-center">
+              {/* Mobile: 2x2 Grid | Desktop: Complex Layout */}
+              <div className="grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-3 lg:items-center">
                 {CAPABILITY_CARDS.map((item, index) => (
                   <div
                     key={item.title}
                     className={cn(
-                      'card-enterprise p-4 h-[110px] flex flex-col justify-between',
-                      index === 0 && 'col-start-1 row-start-1',
-                      index === 1 && 'col-start-3 row-start-1',
-                      index === 2 && 'col-start-1 row-start-2',
-                      index === 3 && 'col-start-3 row-start-2'
+                      'card-enterprise p-4 flex flex-col justify-between mobile-card-compact lg:h-[110px]',
+                      'min-h-[100px]', // Ensure minimum height on mobile
+                      index === 0 && 'lg:col-start-1 lg:row-start-1',
+                      index === 1 && 'lg:col-start-3 lg:row-start-1',
+                      index === 2 && 'lg:col-start-1 lg:row-start-2',
+                      index === 3 && 'lg:col-start-3 lg:row-start-2'
                     )}
                   >
                     <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center">
@@ -75,7 +80,8 @@ const Hero = () => (
                     </div>
                   </div>
                 ))}
-                <div className="col-start-2 row-start-1 row-span-2 rounded-lg border border-blue-100 bg-white p-4 h-[120px] w-[124px] flex items-center justify-center shadow-sm">
+                {/* OPC Hub - Hidden on mobile, visible on desktop */}
+                <div className="hidden lg:block lg:col-start-2 lg:row-start-1 lg:row-span-2 rounded-lg border border-blue-100 bg-white p-4 h-[120px] w-[124px] flex items-center justify-center shadow-sm">
                   <div className="text-center">
                     <div className="mx-auto w-10 h-10 rounded-lg bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center">
                       <Network className="w-5 h-5" />
@@ -94,21 +100,22 @@ const Hero = () => (
 );
 
 const SupportPlanSection = () => (
-  <Section className="bg-white border-t border-slate-200/60">
-    <div className="rounded-xl border border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-white p-6 sm:p-8">
+  <Section className="bg-white border-t border-slate-200/60 mobile-section">
+    <div className="rounded-xl border border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-white p-6 mobile-card-standard">
       <div className="text-center max-w-3xl mx-auto">
         <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold">
           <Shield className="w-3.5 h-3.5" />
           OPC 算力配套支持计划
         </span>
-        <h2 className="mt-4 text-[28px] leading-tight font-bold text-slate-900 tracking-tight">
+        <h2 className="mt-4 mobile-title-hero lg:text-[28px] lg:leading-tight font-bold text-slate-900 tracking-tight">
           享受核心权益，全方位保驾护航
         </h2>
-        <p className="mt-3 text-slate-600 leading-relaxed text-[15px]">
+        <p className="mt-3 mobile-text-body lg:text-[15px] text-slate-600 leading-relaxed">
           面向园区企业提供算力、模型、运营与专家服务的一体化保障，帮助项目更快落地、更稳增长。
         </p>
       </div>
 
+      {/* Mobile: Single column | Desktop: 2 columns */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
           {
@@ -134,19 +141,19 @@ const SupportPlanSection = () => (
         ].map((item) => (
           <div
             key={item.title}
-            className="card-enterprise p-5 sm:p-6 flex flex-col items-start hover:-translate-y-1"
+            className="card-enterprise p-5 mobile-card-standard flex flex-col items-start hover:-translate-y-1 mobile-touch-feedback"
           >
             <div className="w-10 h-10 rounded-lg bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center mb-4">
               <item.icon className="w-5 h-5" />
             </div>
-            <h3 className="text-[17px] font-bold text-slate-900">{item.title}</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{item.desc}</p>
+            <h3 className="mobile-title-section lg:text-[17px] font-bold text-slate-900">{item.title}</h3>
+            <p className="mt-2 mobile-text-body text-sm leading-6 text-slate-600">{item.desc}</p>
           </div>
         ))}
       </div>
 
       <div className="mt-8 flex justify-center">
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 h-10 shadow-sm hover:shadow-md">
+        <Button className="mobile-button-large lg:px-8 lg:h-10 bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow-md">
           申请支持计划
           <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
@@ -161,15 +168,18 @@ const OperationsCockpitPreview = () => {
   return (
   <Section className="bg-slate-50 border-t border-slate-200/60">
     <div className="rounded-xl border border-slate-200/80 bg-white p-5 sm:p-6 shadow-sm">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+      {/* Mobile: Top text, Bottom preview | Desktop: Left text, Right preview */}
+      <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-8 lg:items-stretch">
+        {/* Text Content - Full width on mobile */}
         <div className="lg:col-span-5 flex flex-col justify-center">
-
-          <h2 className="mt-2 text-2xl leading-tight font-bold text-slate-900 tracking-tight">
+          <h2 className="mt-2 mobile-title-section lg:text-2xl lg:leading-tight font-bold text-slate-900 tracking-tight">
             园区 AI 运营总控中心
           </h2>
-          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+          <p className="mt-3 mobile-text-body lg:text-sm text-slate-600 leading-relaxed mobile-text-truncate-3">
             通过统一总控驾驶舱，实时掌握算力资源、模型调用、企业运行、智能体活跃度与产业态势，构建园区级智能运营管理中枢。
           </p>
+          
+          {/* Features List - Compact on mobile */}
           <div className="mt-6 space-y-3">
             {[
               { title: '实时算力监控', desc: '关注集群负载、队列状态与任务分发效率', icon: Cpu },
@@ -177,7 +187,7 @@ const OperationsCockpitPreview = () => {
               { title: '智能体运行概览', desc: '跟踪智能体在线率、成功率与服务健康度', icon: Brain },
               { title: '园区数据统一调度', desc: '统一汇聚企业侧数据并支撑跨系统联动', icon: Database },
             ].map((item) => (
-              <div key={item.title} className="card-enterprise px-3.5 py-3 flex items-start gap-3 hover:-translate-y-0.5">
+              <div key={item.title} className="card-enterprise px-3.5 py-3 flex items-start gap-3 hover:-translate-y-0.5 mobile-touch-feedback">
                 <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center shrink-0">
                   <item.icon className="w-4 h-4" />
                 </div>
@@ -188,22 +198,25 @@ const OperationsCockpitPreview = () => {
               </div>
             ))}
           </div>
-          <div className="mt-6 flex flex-wrap gap-3">
+          
+          {/* Action Buttons - Full width on mobile */}
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-5 h-8 text-xs shadow-sm"
+              className="mobile-button bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
               onClick={() => {
                 navigate('/dashboard');
               }}
             >
               查看总控大屏
             </Button>
-            <Button variant="secondary" className="bg-white border-slate-200 text-slate-600 hover:text-blue-700 hover:border-blue-200 px-5 h-8 text-xs shadow-sm">
+            <Button variant="secondary" className="mobile-button bg-white border-slate-200 text-slate-600 hover:text-blue-700 hover:border-blue-200 shadow-sm">
               预约演示
             </Button>
           </div>
         </div>
 
-        <div className="lg:col-span-7">
+        {/* Preview Panel - Full width on mobile */}
+        <div className="lg:col-span-7 mt-8 lg:mt-0">
           <div className="h-full min-h-[360px] rounded-xl border border-slate-200 bg-slate-50 p-4 shadow-inner relative overflow-hidden group">
             {/* Cleaner, static dashboard preview */}
             <div className="absolute inset-0 bg-white/50" />
@@ -237,20 +250,86 @@ const OperationsCockpitPreview = () => {
                   ))}
                </div>
 
-               {/* Main Chart Area (Abstract) */}
-               <div className="flex-1 bg-white border border-slate-200 rounded-lg p-4 shadow-sm relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-end justify-between px-6 pb-6 pt-10 gap-2 opacity-80">
-                     {[40, 65, 45, 80, 55, 70, 60, 90, 75, 85, 60, 70, 50, 65, 80].map((h, i) => (
-                        <div key={i} className="flex-1 bg-blue-50 rounded-t-sm relative group/bar hover:bg-blue-100 transition-colors">
-                           <div 
-                              className="absolute bottom-0 left-0 right-0 bg-blue-500/80 rounded-t-sm transition-all duration-500"
-                              style={{ height: `${h}%` }}
-                           />
-                        </div>
-                     ))}
+               {/* 24小时Token消耗量趋势 */}
+               <div className="flex-1 bg-white border border-slate-200 rounded-lg p-4 shadow-sm overflow-hidden">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                     <div className="text-xs font-semibold text-slate-700 leading-5">
+                        过去24小时Token消耗量趋势
+                     </div>
+                     <div className="text-[11px] text-slate-500 grid grid-cols-2 gap-x-4 gap-y-1 sm:block sm:space-y-1 sm:text-right">
+                        <div>24H总消耗：1274万 Tokens</div>
+                        <div>峰值时段：15:00</div>
+                        <div>峰值小时消耗：101万 Tokens</div>
+                        <div>活跃企业：50家</div>
+                     </div>
                   </div>
-                  <div className="absolute top-3 left-4 text-xs font-semibold text-slate-600">
-                     资源调用趋势 (24H)
+
+                  <div className="mt-3 h-[156px] sm:h-[168px] px-1 pb-1">
+                     <svg className="w-full h-full" viewBox="0 0 288 120" preserveAspectRatio="none">
+                        {/* Background Grid */}
+                        <defs>
+                           <linearGradient id="tokenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
+                              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.05" />
+                           </linearGradient>
+                        </defs>
+                        
+                        {/* Y-axis grid lines */}
+                        {[0, 25, 50, 75, 100].map(y => (
+                           <line key={y} x1="0" y1={120 - y * 1.1} x2="288" y2={120 - y * 1.1} stroke="#e2e8f0" strokeWidth="0.5" opacity="0.5" />
+                        ))}
+                        
+                        {/* Area Fill */}
+                        <path
+                           d="M 0,108 L 12,103 L 24,107 L 36,109 L 48,110 L 60,108 L 72,102 L 84,95 L 96,82 L 108,66 L 120,50 L 132,44 L 144,62 L 156,56 L 168,42 L 180,37 L 192,43 L 204,50 L 216,57 L 228,64 L 240,71 L 252,77 L 264,89 L 276,103 L 288,108 L 288,120 L 0,120 Z"
+                           fill="url(#tokenGradient)"
+                        />
+                        
+                        {/* Line Path */}
+                        <path
+                           d="M 0,108 L 12,103 L 24,107 L 36,109 L 48,110 L 60,108 L 72,102 L 84,95 L 96,82 L 108,66 L 120,50 L 132,44 L 144,62 L 156,56 L 168,42 L 180,37 L 192,43 L 204,50 L 216,57 L 228,64 L 240,71 L 252,77 L 264,89 L 276,103 L 288,108"
+                           stroke="#3b82f6"
+                           strokeWidth="2"
+                           fill="none"
+                           strokeLinecap="round"
+                           strokeLinejoin="round"
+                        />
+                        
+                        {/* Data Points */}
+                        {[
+                           {x: 0, y: 108, value: 18}, {x: 12, y: 103, value: 14}, {x: 24, y: 107, value: 10},
+                           {x: 36, y: 109, value: 8}, {x: 48, y: 110, value: 7}, {x: 60, y: 108, value: 9},
+                           {x: 72, y: 102, value: 15}, {x: 84, y: 95, value: 28}, {x: 96, y: 82, value: 46},
+                           {x: 108, y: 66, value: 72}, {x: 120, y: 50, value: 88}, {x: 132, y: 44, value: 94},
+                           {x: 144, y: 62, value: 76}, {x: 156, y: 56, value: 82}, {x: 168, y: 42, value: 96},
+                           {x: 180, y: 37, value: 101}, {x: 192, y: 43, value: 93}, {x: 204, y: 50, value: 86},
+                           {x: 216, y: 57, value: 79}, {x: 228, y: 64, value: 68}, {x: 240, y: 71, value: 61},
+                           {x: 252, y: 77, value: 55}, {x: 264, y: 89, value: 41}, {x: 276, y: 103, value: 27}
+                        ].map((point, i) => (
+                           <circle key={i} cx={point.x} cy={point.y} r="2" fill="#3b82f6" opacity="0.8" />
+                        ))}
+                        
+                        {/* X-axis labels (hours) */}
+                        <text x="0" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">00</text>
+                        <text x="36" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">06</text>
+                        <text x="72" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">12</text>
+                        <text x="108" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">18</text>
+                        <text x="144" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">00</text>
+                        <text x="180" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">06</text>
+                        <text x="216" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">12</text>
+                        <text x="252" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">18</text>
+                        <text x="288" y="115" textAnchor="middle" className="text-[9px] fill-slate-500">24</text>
+                        
+                        {/* Y-axis labels (values) */}
+                        <text x="280" y="119" textAnchor="end" className="text-[9px] fill-slate-500">0</text>
+                        <text x="280" y="94" textAnchor="end" className="text-[9px] fill-slate-500">25</text>
+                        <text x="280" y="69" textAnchor="end" className="text-[9px] fill-slate-500">50</text>
+                        <text x="280" y="44" textAnchor="end" className="text-[9px] fill-slate-500">75</text>
+                        <text x="280" y="19" textAnchor="end" className="text-[9px] fill-slate-500">100</text>
+                        
+                        {/* Unit label */}
+                        <text x="270" y="10" textAnchor="end" className="text-[9px] fill-slate-600 font-medium">万Tokens</text>
+                     </svg>
                   </div>
                </div>
             </div>

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
@@ -19,7 +19,11 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 font-sans antialiased;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   /* More subtle, enterprise background */
   background-image: 
     radial-gradient(circle at 15% -20%, rgba(59, 130, 246, 0.02), transparent 40%),
@@ -48,16 +52,25 @@ body {
 
 /* Unified Enterprise Card */
 .card-enterprise {
-  @apply bg-white border border-slate-200/80 rounded-lg shadow-sm transition-all duration-300;
+  background-color: #ffffff;
+  border: 1px solid rgb(226 232 240 / 0.8);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition: all 0.3s;
 }
 
 .card-enterprise:hover {
-  @apply border-blue-200 shadow-md -translate-y-[2px];
+  border-color: #bfdbfe;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
 }
 
 /* Glass Panel - Cleaner */
 .glass-panel {
-  @apply bg-white/95 border border-slate-200 shadow-sm backdrop-blur-sm;
+  background-color: rgb(255 255 255 / 0.95);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  backdrop-filter: blur(4px);
 }
 
 /* Animations */
@@ -112,10 +125,229 @@ body {
 }
 
 .ui-list-item:hover {
-  @apply bg-slate-50;
+  background-color: #f8fafc;
 }
 
 .ui-list-item:hover::before {
   opacity: 1;
   transform: scaleY(1);
+}
+
+/* Mobile Design System */
+@media (max-width: 768px) {
+  /* Mobile Container Rules */
+  .mobile-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  /* Mobile Typography */
+  .mobile-title-hero {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 700;
+  }
+  
+  .mobile-title-section {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+  }
+  
+  .mobile-text-body {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  
+  .mobile-text-caption {
+    font-size: 13px;
+    line-height: 20px;
+  }
+  
+  /* Mobile Card Rules */
+  .mobile-card {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(226 232 240 / 0.8);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+  
+  .mobile-card-compact {
+    padding: 0.75rem;
+  }
+  
+  .mobile-card-standard {
+    padding: 1rem;
+  }
+  
+  /* Mobile Button Rules */
+  .mobile-button {
+    height: 44px;
+    min-height: 44px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .mobile-button-large {
+    height: 48px;
+    min-height: 48px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  /* Mobile Grid Rules */
+  .mobile-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .mobile-grid-1 {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  
+  /* Mobile Horizontal Scroll */
+  .mobile-scroll-x {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .mobile-scroll-x::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .mobile-scroll-content {
+    display: flex;
+    gap: 0.75rem;
+    min-width: max-content;
+  }
+  
+  /* Mobile Touch Feedback */
+  .mobile-touch-feedback {
+    transition: transform 0.15s;
+  }
+  
+  .mobile-touch-feedback:active {
+    transform: scale(0.98);
+  }
+  
+  /* Mobile Navigation */
+  .mobile-nav-header {
+    height: 50px;
+    background-color: rgb(255 255 255 / 0.95);
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .mobile-nav-drawer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 280px;
+    background-color: #ffffff;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    transform: translateX(0);
+    transition: transform 0.3s;
+    z-index: 50;
+  }
+  
+  .mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 0.5);
+    z-index: 40;
+    transition: opacity 0.3s;
+  }
+  
+  /* Mobile Utility Classes */
+  .mobile-safe-area {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .mobile-no-horizontal-scroll {
+    overflow-x: hidden;
+  }
+  
+  .mobile-text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .mobile-text-truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Ultra-small devices */
+@media (max-width: 375px) {
+  .mobile-title-hero {
+    font-size: 26px;
+    line-height: 34px;
+  }
+  
+  .mobile-text-body {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  
+  .mobile-card-compact {
+    padding: 0.625rem;
+  }
+}
+
+/* Mobile Animations */
+@media (max-width: 768px) {
+  .mobile-fade-in {
+    animation: mobileFadeIn 0.3s ease-out;
+  }
+  
+  .mobile-slide-up {
+    animation: mobileSlideUp 0.3s ease-out;
+  }
+  
+  @keyframes mobileFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes mobileSlideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Reduced motion for mobile */
+  .ui-reveal {
+    transform: translateY(8px); /* Even less movement on mobile */
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  
+  .ui-reveal.is-visible {
+    transform: translateY(0);
+  }
 }

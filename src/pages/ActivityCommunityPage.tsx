@@ -12,15 +12,15 @@ const CommunityHero = () => (
           <Users className="w-3.5 h-3.5" />
           产业活动与社群协同
         </div>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 tracking-tight leading-[1.15]">
+        <h1 className="mobile-title-hero lg:text-3xl lg:md:text-4xl font-bold text-slate-900 mb-3 tracking-tight leading-[1.15]">
           活动社群中心
         </h1>
-        <p className="text-base text-slate-600 mb-5 leading-relaxed max-w-2xl">
+        <p className="mobile-text-body lg:text-base text-slate-600 mb-5 leading-relaxed lg:max-w-2xl mobile-text-truncate-3">
           聚合路演、沙龙、训练营与供需对接活动，连接企业、技术团队与生态伙伴，持续推动项目落地与产业协作。
         </p>
-        <div className="flex flex-wrap gap-3">
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-sm px-8">查看活动日历</Button>
-          <Button variant="secondary" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button className="mobile-button bg-blue-600 hover:bg-blue-700 text-white shadow-sm">查看活动日历</Button>
+          <Button variant="secondary" className="mobile-button bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
             加入社群
           </Button>
         </div>
@@ -65,35 +65,39 @@ const COMMUNITY_SERVICES = [
 const CommunityContent = () => (
   <div className="bg-white py-6 min-h-screen">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-8 space-y-3">
+      {/* Mobile: Single column | Desktop: Two columns */}
+      <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6">
+        {/* Activity List - Full width on mobile */}
+        <div className="lg:col-span-8 space-y-4 lg:space-y-3">
           {ACTIVITY_ITEMS.map((item) => (
-            <article key={item.title} className="ui-list-item card-enterprise p-4 hover:border-blue-300 transition-all duration-200 hover:-translate-y-0.5">
-              <div className="flex items-center justify-between gap-3 mb-2">
+            <article key={item.title} className="ui-list-item card-enterprise p-4 hover:border-blue-300 transition-all duration-200 hover:-translate-y-0.5 mobile-touch-feedback">
+              <div className="flex items-center justify-between gap-3 mb-3 lg:mb-2">
                 <div className="flex items-center gap-2">
                   <Badge variant="secondary" className="bg-blue-50 text-blue-700 border border-blue-100">{item.type}</Badge>
                   <span className="text-xs text-slate-500">{item.status}</span>
                 </div>
                 <Button variant="outline" size="sm" className="h-7 text-xs px-2.5">活动详情</Button>
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
-              <p className="text-sm text-slate-500 leading-relaxed mb-3">{item.desc}</p>
-              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
+              <h3 className="mobile-title-section lg:text-lg font-bold text-slate-900 mb-3 lg:mb-2">{item.title}</h3>
+              <p className="mobile-text-body lg:text-sm text-slate-500 leading-relaxed mb-4 lg:mb-3">{item.desc}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:flex lg:flex-wrap lg:items-center lg:gap-4 text-xs text-slate-500">
                 <span className="inline-flex items-center gap-1.5"><Clock3 className="w-3.5 h-3.5 text-blue-500" />{item.time}</span>
                 <span className="inline-flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-blue-500" />{item.place}</span>
               </div>
             </article>
           ))}
         </div>
-        <aside className="lg:col-span-4">
-          <div className="sticky top-20 space-y-4">
+        
+        {/* Sidebar - Full width on mobile */}
+        <aside className="lg:col-span-4 mt-8 lg:mt-0">
+          <div className="space-y-4 lg:sticky lg:top-20">
             {COMMUNITY_SERVICES.map((service) => (
               <div key={service.title} className="bg-slate-50 rounded-lg border border-slate-200 p-4">
                 <div className="w-8 h-8 rounded-lg bg-white border border-blue-100 text-blue-600 flex items-center justify-center mb-3">
                   <service.icon className="w-4 h-4" />
                 </div>
-                <h4 className="text-sm font-semibold text-slate-900 mb-1">{service.title}</h4>
-                <p className="text-xs text-slate-500 leading-relaxed">{service.desc}</p>
+                <h4 className="mobile-title-section lg:text-sm font-semibold text-slate-900 mb-1">{service.title}</h4>
+                <p className="mobile-text-body lg:text-xs text-slate-500 leading-relaxed">{service.desc}</p>
               </div>
             ))}
             <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
@@ -101,7 +105,7 @@ const CommunityContent = () => (
                 <Calendar className="w-3.5 h-3.5" />
                 本月重点活动
               </div>
-              <p className="text-sm text-slate-600 leading-relaxed mb-3">
+              <p className="mobile-text-body lg:text-sm text-slate-600 leading-relaxed mb-3">
                 重点围绕企业智能化升级与应用实战，持续组织产业对接活动。
               </p>
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs h-9">
