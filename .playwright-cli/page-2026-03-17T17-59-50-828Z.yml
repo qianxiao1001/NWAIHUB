@@ -1,0 +1,233 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - img "中关村AI北纬社区 Logo" [ref=e8]
+      - navigation [ref=e9]:
+        - link "首页" [ref=e10] [cursor=pointer]:
+          - /url: /NWAIHUB
+          - text: 首页
+        - link "模型广场" [ref=e12] [cursor=pointer]:
+          - /url: /NWAIHUB/models
+        - link "算力资源" [ref=e13] [cursor=pointer]:
+          - /url: /NWAIHUB/compute
+        - link "数据资源" [ref=e14] [cursor=pointer]:
+          - /url: /NWAIHUB/datasets
+        - link "智能体市场" [ref=e15] [cursor=pointer]:
+          - /url: /NWAIHUB/apps
+        - link "政策支持" [ref=e16] [cursor=pointer]:
+          - /url: /NWAIHUB/policy
+        - link "培训认证" [ref=e17] [cursor=pointer]:
+          - /url: /NWAIHUB/training
+        - link "活动社群" [ref=e18] [cursor=pointer]:
+          - /url: /NWAIHUB/community
+      - button "登录与认证" [ref=e20] [cursor=pointer]
+  - main [ref=e21]:
+    - main [ref=e22]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: 中关村AI北纬社区 · OPC技术服务平台
+        - heading "OPC技术服务平台" [level=1] [ref=e27]
+        - paragraph [ref=e28]: 面向政研与企业的AI服务门户，整合全周期能力
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - img [ref=e31]
+            - generic [ref=e34]: 算力源供给
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - generic [ref=e39]: 模型服务接入
+          - generic [ref=e40]:
+            - img [ref=e41]
+            - generic [ref=e45]: 数据资产智能应用
+          - generic [ref=e46]:
+            - img [ref=e47]
+            - generic [ref=e52]: 全周期接入·部署·运营支持
+        - generic [ref=e53]:
+          - link "立即咨询 / 申请接入" [ref=e54] [cursor=pointer]:
+            - /url: /NWAIHUB/policy
+            - button "立即咨询 / 申请接入" [ref=e55]:
+              - text: 立即咨询 / 申请接入
+              - img [ref=e56]
+          - link "浏览服务 / 资源能力" [ref=e58] [cursor=pointer]:
+            - /url: /NWAIHUB/models
+            - button "浏览服务 / 资源能力" [ref=e59]:
+              - text: 浏览服务 / 资源能力
+              - img [ref=e60]
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - img [ref=e64]
+            - text: 官方认证平台
+          - generic [ref=e67]:
+            - img [ref=e68]
+            - text: 政企服务对接
+          - generic [ref=e72]:
+            - img [ref=e73]
+            - text: 专家咨询服务
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - article [ref=e78]:
+            - generic [ref=e79]:
+              - img [ref=e81]
+              - generic [ref=e87]:
+                - heading "算力资源优先保障" [level=3] [ref=e88]
+                - paragraph [ref=e89]: 提供秒级算力申请绿色通道优先课题，保障关键项目稳定运行。
+          - article [ref=e90]:
+            - generic [ref=e91]:
+              - img [ref=e93]
+              - generic [ref=e95]:
+                - heading "模型接入与适配支持" [level=3] [ref=e96]
+                - paragraph [ref=e97]: 支持主流模型接入、评测与多租户架构支持，避免上线割裂。
+          - article [ref=e98]:
+            - generic [ref=e99]:
+              - img [ref=e101]
+              - generic [ref=e105]:
+                - heading "专家顾问与运营跟跑" [level=3] [ref=e106]
+                - paragraph [ref=e107]: 配置技术与运营双服务，持续跟踪企业性能优化与建设进度。
+          - article [ref=e108]:
+            - generic [ref=e109]:
+              - img [ref=e111]
+              - generic [ref=e114]:
+                - heading "专享活动与政策协同" [level=3] [ref=e115]
+                - paragraph [ref=e116]: 提供路演、对接与政策申报前置支持，提升发展效率。
+        - link "申请支持计划" [ref=e118] [cursor=pointer]:
+          - /url: /NWAIHUB/policy
+          - button "申请支持计划" [ref=e119]:
+            - text: 申请支持计划
+            - img [ref=e120]
+      - generic [ref=e124]:
+        - generic [ref=e125]: 实时算力监控
+        - heading "园区 AI 运营总控中心" [level=2] [ref=e126]
+        - paragraph [ref=e127]: 以首页作为观测枢纽完成算力交互与模型运行指标态势，让管理者快速查看资源算力、模型、数据与服务健康状态。
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - generic [ref=e131]:
+              - img [ref=e132]
+              - text: 实时算力监控
+            - generic [ref=e136]:
+              - img [ref=e137]
+              - text: 模型调用态势
+            - generic [ref=e141]:
+              - img [ref=e142]
+              - text: 终端流转追踪
+            - generic [ref=e146]:
+              - img [ref=e147]
+              - text: 智能体运行健康
+            - generic [ref=e150]:
+              - link "进入总控大厅" [ref=e151] [cursor=pointer]:
+                - /url: /NWAIHUB/dashboard
+                - button "进入总控大厅" [ref=e152]:
+                  - text: 进入总控大厅
+                  - img [ref=e153]
+              - link "预约演示" [ref=e155] [cursor=pointer]:
+                - /url: /NWAIHUB/community
+                - button "预约演示" [ref=e156]
+          - generic [ref=e157]:
+            - generic [ref=e158]:
+              - generic [ref=e159]:
+                - paragraph [ref=e160]: 园区协同观测概览
+                - heading "中关村AI北纬社区 · 统一运营监测" [level=3] [ref=e161]
+              - generic [ref=e162]: 系统在线
+            - generic [ref=e164]:
+              - generic [ref=e165]:
+                - paragraph [ref=e166]: 近7日告警
+                - paragraph [ref=e167]: "502"
+                - paragraph [ref=e168]: 较上周 -12%
+              - generic [ref=e169]:
+                - paragraph [ref=e170]: 在线服务调用
+                - paragraph [ref=e171]: 48,612
+                - paragraph [ref=e172]: 今日累计
+              - generic [ref=e173]:
+                - paragraph [ref=e174]: 低风险问题
+                - paragraph [ref=e175]: "294"
+                - paragraph [ref=e176]: 自动修复中
+              - generic [ref=e177]:
+                - paragraph [ref=e178]: 新增企业
+                - paragraph [ref=e179]: "126"
+                - paragraph [ref=e180]: 本周新增
+            - generic [ref=e181]:
+              - generic [ref=e182]:
+                - paragraph [ref=e183]: 近24小时 Token 调用趋势
+                - generic [ref=e184]:
+                  - img [ref=e185]
+                  - text: "24H 总量: 127,476 Tokens"
+              - img [ref=e190]
+    - generic [ref=e194]:
+      - link "模型广场" [ref=e195] [cursor=pointer]:
+        - /url: /NWAIHUB/models
+        - img [ref=e196]
+        - text: 模型广场
+      - link "算力资源" [ref=e199] [cursor=pointer]:
+        - /url: /NWAIHUB/compute
+        - img [ref=e200]
+        - text: 算力资源
+      - link "数据资源" [ref=e203] [cursor=pointer]:
+        - /url: /NWAIHUB/datasets
+        - img [ref=e204]
+        - text: 数据资源
+      - link "培训认证" [ref=e208] [cursor=pointer]:
+        - /url: /NWAIHUB/training
+        - img [ref=e209]
+        - text: 培训认证
+  - contentinfo [ref=e213]:
+    - generic [ref=e214]:
+      - generic [ref=e215]:
+        - generic [ref=e216]:
+          - img "中关村AI北纬社区 Logo（白）" [ref=e218]
+          - paragraph [ref=e219]: 围绕AI创业与产业生态建设的综合服务平台，提供模型、算力、数据、政策等全方位支持，助力中国AI产业蓬勃发展。
+          - generic [ref=e220]:
+            - paragraph [ref=e221]: 平台战略合作伙伴
+            - generic [ref=e222]:
+              - img "中国信通院 Logo" [ref=e223]
+              - img "软积木 Logo" [ref=e224]
+        - generic [ref=e225]:
+          - heading "平台服务" [level=3] [ref=e226]
+          - list [ref=e227]:
+            - listitem [ref=e228]:
+              - link "模型广场" [ref=e229] [cursor=pointer]:
+                - /url: /NWAIHUB/models
+            - listitem [ref=e230]:
+              - link "算力资源" [ref=e231] [cursor=pointer]:
+                - /url: /NWAIHUB/compute
+            - listitem [ref=e232]:
+              - link "数据资源" [ref=e233] [cursor=pointer]:
+                - /url: /NWAIHUB/datasets
+            - listitem [ref=e234]:
+              - link "智能体市场" [ref=e235] [cursor=pointer]:
+                - /url: /NWAIHUB/apps
+        - generic [ref=e236]:
+          - heading "支持与政策" [level=3] [ref=e237]
+          - list [ref=e238]:
+            - listitem [ref=e239]:
+              - link "政策支持" [ref=e240] [cursor=pointer]:
+                - /url: /NWAIHUB/policy
+            - listitem [ref=e241]:
+              - link "培训认证" [ref=e242] [cursor=pointer]:
+                - /url: /NWAIHUB/training
+            - listitem [ref=e243]:
+              - link "活动社群" [ref=e244] [cursor=pointer]:
+                - /url: /NWAIHUB/community
+            - listitem [ref=e245]:
+              - link "企业入驻" [ref=e246] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e247]:
+              - link "文档中心" [ref=e248] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e249]:
+          - heading "联系我们" [level=3] [ref=e250]
+          - list [ref=e251]:
+            - listitem [ref=e252]:
+              - img [ref=e253]
+              - generic [ref=e256]: 中关村AI北纬社区
+            - listitem [ref=e257]:
+              - img [ref=e258]
+              - generic [ref=e261]: opc.krstar.com.cn
+            - listitem [ref=e262]:
+              - img [ref=e263]
+              - generic [ref=e265]: 010-88888888
+      - generic [ref=e266]:
+        - paragraph [ref=e267]: © 2026 中关村AI北纬社区OPC技术服务平台 版权所有
+        - generic [ref=e268]:
+          - link "隐私政策" [ref=e269] [cursor=pointer]:
+            - /url: "#"
+          - link "服务条款" [ref=e270] [cursor=pointer]:
+            - /url: "#"
+          - link "京ICP备12345678号" [ref=e271] [cursor=pointer]:
+            - /url: "#"

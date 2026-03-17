@@ -3,7 +3,7 @@ import { Layout } from '@/components/layout';
 import { Section, SectionHeader, Button, Card, Badge } from '@/components/ui/common';
 import { 
   Sparkles, Zap, Image, Video, MessageSquare, Code, ArrowRight, 
-  Cpu, Layers, PlayCircle, CheckCircle2, Star, Box, Server,
+  Cpu, Layers, PlayCircle, CheckCircle2, Star, Box, Boxes, Calendar, Server,
   Search, Filter, ChevronDown, Brain, Globe
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -80,255 +80,143 @@ const HeroSection = () => (
   </div>
 );
 
+const SIDEBAR_CATEGORIES = [
+  {
+    title: '热门任务',
+    items: ['文本生成', '文本生成图片', '文本生成视频', '视觉多模态理解', '语音合成', '统一多模态']
+  },
+  {
+    title: '多模态',
+    items: ['视觉多模态理解', '文本生成图片', '图像描述', '视觉定位', '视觉问答', '视频问答', '图文检索']
+  },
+  {
+    title: '自然语言处理',
+    items: ['文本生成', '文本分类', '分词', '命名实体识别', '翻译', '文本摘要', '句子相似度', '预训练']
+  }
+];
+
+const MODEL_LIST_ITEMS = [
+  { name: 'MiniMax-M2.5', tag: '文本生成', provider: 'MiniMax', date: '2026-03-02', downloads: 1701, desc: '适用于企业助手、知识问答与流程自动化场景。' },
+  { name: 'Qwen3.5-27B', tag: '图文/文本', provider: 'Qwen', date: '2026-03-03', downloads: 988, desc: '高性能通用模型，支持复杂指令理解与推理。' },
+  { name: 'Sarvam-30B', tag: '文本生成', provider: 'Sarvam', date: '2026-01-17', downloads: 970, desc: '面向多语言企业场景，适配客服与文档处理流程。' },
+  { name: 'GLM-5', tag: '文本生成', provider: '智谱', date: '2026-03-03', downloads: 1394, desc: '兼顾推理与长上下文，适合企业知识服务。' },
+  { name: 'Kimi-K2.5', tag: '图文/文本', provider: 'Moonshot', date: '2026-02-09', downloads: 1610, desc: '支持多轮交互与工具调用，面向业务编排任务。' },
+  { name: 'MiniMax-M2.1', tag: '文本生成', provider: 'MiniMax', date: '2026-01-07', downloads: 1427, desc: '轻量高效，适用于办公自动化与低延迟问答。' },
+  { name: 'DeepSeek-OCR', tag: '图文/文本', provider: 'DeepSeek', date: '2025-10-23', downloads: 1303, desc: '高精度文档识别能力，适配票据与档案数字化。' },
+  { name: 'GLM-4.6V-Flash', tag: '图文/文本', provider: '智谱', date: '2025-12-11', downloads: 921, desc: '视觉理解与文本推理融合，适配复杂图文任务。' },
+];
+
 // --- Model Catalog ---
 const ModelCatalog = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [activeTab, setActiveTab] = useState<'精选模型' | '开源模型' | '企业模型' | '海外模型'>('精选模型');
-
-  const featuredModels = [
-    {
-      name: 'GLM-4.7',
-      subtitle: 'Thinking / 推理增强',
-      desc: '面向复杂业务推理与流程决策的旗舰模型。',
-      status: '推荐上新',
-      gradient: 'from-blue-600 via-indigo-600 to-cyan-500',
-    },
-    {
-      name: 'Qwen-VL',
-      subtitle: 'Video / 多模态',
-      desc: '覆盖图文理解与视频生成链路，适配多媒体业务。',
-      status: '企业首选',
-      gradient: 'from-violet-600 via-fuchsia-600 to-blue-500',
-    },
-    {
-      name: 'DeepSeek-V3',
-      subtitle: 'Image generation / 图像生成',
-      desc: '支持创意图像生成与产业视觉内容生产。',
-      status: '热门模型',
-      gradient: 'from-emerald-600 via-cyan-600 to-blue-600',
-    },
-  ];
-
-  const modelGroups = [
-    {
-      name: '深度思考',
-      desc: '采用先思考、再回答的输出模式，模型能力显著增强',
-      items: [
-        { name: 'GLM-4.7', provider: '智谱', info: '强推理链路，适配策略分析与复杂决策。', tag: '推理增强', scope: ['精选模型', '企业模型'] },
-        { name: 'DeepSeek-R1', provider: 'DeepSeek', info: '主打推理能力，适合数学与逻辑任务。', tag: '开源', scope: ['精选模型', '开源模型'] },
-        { name: 'Qwen-Max', provider: '阿里云', info: '企业级高性能通用模型，复杂任务表现稳定。', tag: '企业可用', scope: ['精选模型', '企业模型'] },
-        { name: 'Claude Sonnet 4.6', provider: 'Anthropic', info: '高质量文本理解与推理，适合知识工作流。', tag: '推荐模型', scope: ['精选模型', '海外模型'] },
-        { name: 'GPT-5.4', provider: 'OpenAI', info: '旗舰能力面向高复杂度分析与智能编排。', tag: '热门模型', scope: ['精选模型', '海外模型', '企业模型'] },
-      ],
-    },
-    {
-      name: '文本生成',
-      desc: '支持文本自然语言理解、信息抽取与多轮对话',
-      items: [
-        { name: 'GLM-4-Air', provider: '智谱', info: '低成本高可用，适合高并发文本场景。', tag: '低延迟', scope: ['精选模型', '企业模型'] },
-        { name: 'Qwen-Plus', provider: '阿里云', info: '平衡性能与成本，适配政企业务系统。', tag: '企业可用', scope: ['精选模型', '企业模型'] },
-        { name: 'Doubao-Pro', provider: '字节跳动', info: '企业应用常用模型，稳定支持在线服务。', tag: '推荐模型', scope: ['精选模型', '企业模型'] },
-        { name: 'ERNIE 4.x', provider: '百度', info: '中文语义理解强，适用于问答与摘要。', tag: '企业可用', scope: ['精选模型', '企业模型'] },
-        { name: 'Gemini 2.5 Flash', provider: 'Google', info: '快速响应型文本模型，适合实时交互。', tag: '低延迟', scope: ['精选模型', '海外模型'] },
-      ],
-    },
-    {
-      name: '视频生成',
-      desc: '基于文字与图片输入，生成高质量视频内容',
-      items: [
-        { name: 'Wanx 视频生成', provider: '阿里云', info: '支持文案转视频和多镜头片段生成。', tag: '推荐模型', scope: ['精选模型'] },
-        { name: 'Seedance', provider: '字节跳动', info: '面向营销与短视频场景的生成能力。', tag: '模型上新', scope: ['精选模型'] },
-        { name: 'Kling', provider: '快手', info: '高一致性视频生成，适合创意内容制作。', tag: '热门模型', scope: ['精选模型'] },
-        { name: 'Runway Gen 系列', provider: 'Runway', info: '海外视频模型入口位，覆盖创作全流程。', tag: '海外模型', scope: ['精选模型', '海外模型'] },
-      ],
-    },
-    {
-      name: '图片生成',
-      desc: '基于文字与图片条件，生成高质量图像',
-      items: [
-        { name: 'Seedream', provider: '字节跳动', info: '高质感图像生成，支持商业视觉生产。', tag: '推荐模型', scope: ['精选模型'] },
-        { name: 'Wanx 图像生成', provider: '阿里云', info: '覆盖海报、电商与品牌素材创作。', tag: '企业可用', scope: ['精选模型', '企业模型'] },
-        { name: 'Stable Diffusion', provider: 'Stability AI', info: '主流开源图像模型，支持私有微调。', tag: '开源', scope: ['精选模型', '开源模型', '海外模型'] },
-        { name: 'Midjourney 服务入口', provider: 'Midjourney', info: '高质量创意图像服务入口位。', tag: '热门模型', scope: ['精选模型', '海外模型'] },
-        { name: 'Doubao 图像模型', provider: '字节跳动', info: '面向营销设计场景的图片生成能力。', tag: '模型上新', scope: ['精选模型'] },
-      ],
-    },
-    {
-      name: '语音模型',
-      desc: '具备语音识别、合成与实时语音交互能力',
-      items: [
-        { name: 'ASR Pro', provider: '平台语音中台', info: '高准确语音识别，支持会议与客服场景。', tag: '企业可用', scope: ['精选模型', '企业模型'] },
-        { name: 'TTS Studio', provider: '平台语音中台', info: '多音色语音合成，支持情感表达控制。', tag: '推荐模型', scope: ['精选模型'] },
-        { name: 'Interpreter Live', provider: '平台语音中台', info: '同声传译能力，适配跨语种实时沟通。', tag: '模型上新', scope: ['精选模型'] },
-        { name: 'Realtime Voice Chat', provider: '平台语音中台', info: '低时延双工交互，适合语音助手接入。', tag: '低延迟', scope: ['精选模型', '企业模型'] },
-        { name: 'Voice Clone', provider: '平台语音中台', info: '声纹复刻与定制音色能力，支持品牌播报。', tag: '企业可用', scope: ['精选模型', '企业模型'] },
-      ],
-    },
-    {
-      name: '向量模型',
-      desc: '基于 embedding 实现语义分析、检索与召回',
-      items: [
-        { name: 'Embedding-Universal', provider: '平台向量中台', info: '通用向量编码，支持多语种语义检索。', tag: '企业可用', scope: ['精选模型', '企业模型'] },
-        { name: 'Embedding-Vision', provider: '平台向量中台', info: '图文联合向量表达，适配跨模态检索。', tag: '多模态', scope: ['精选模型'] },
-        { name: 'RAG Vector Pro', provider: '平台向量中台', info: '检索增强向量模型，优化知识库问答召回。', tag: '推荐模型', scope: ['精选模型', '企业模型'] },
-      ],
-    },
-    {
-      name: '多模态',
-      desc: '支持图文、音视频等多模态输入与联合理解',
-      items: [
-        { name: 'Qwen-VL', provider: '阿里云', info: '视觉理解与图文问答能力成熟，适配企业文档场景。', tag: '多模态', scope: ['精选模型', '企业模型'] },
-        { name: 'Gemini Multimodal', provider: 'Google', info: '支持跨模态推理与内容理解。', tag: '海外模型', scope: ['精选模型', '海外模型'] },
-        { name: 'GLM 多模态', provider: '智谱', info: '国产多模态能力，支持图文解析与智能问答。', tag: '推荐模型', scope: ['精选模型'] },
-        { name: 'Claude Multimodal', provider: 'Anthropic', info: '面向企业工作流的多模态理解能力。', tag: '企业可用', scope: ['精选模型', '海外模型', '企业模型'] },
-        { name: 'DeepSeek 多模态', provider: 'DeepSeek', info: '开源路线下的图文协同处理能力。', tag: '开源', scope: ['精选模型', '开源模型'] },
-      ],
-    },
-    {
-      name: '代码模型',
-      desc: '面向研发全流程，支持代码生成、理解与重构',
-      items: [
-        { name: 'CodeGeeX', provider: '智谱', info: '多语言代码生成与补全，适配企业开发场景。', tag: '推荐模型', scope: ['精选模型'] },
-        { name: 'Claude Code', provider: 'Anthropic', info: '代码审阅与重构能力，支持复杂工程任务。', tag: '海外模型', scope: ['精选模型', '海外模型'] },
-        { name: 'GPT Code', provider: 'OpenAI', info: '编程问答、单测生成与代码解释能力完整。', tag: '热门模型', scope: ['精选模型', '海外模型'] },
-        { name: 'Qwen Code', provider: '阿里云', info: '国产代码模型，支持企业研发提效。', tag: '企业可用', scope: ['精选模型', '企业模型'] },
-        { name: 'DeepSeek Code', provider: 'DeepSeek', info: '开源代码模型，适配私有化研发环境。', tag: '开源', scope: ['精选模型', '开源模型'] },
-      ],
-    },
-  ] as const;
-
-  const searchedGroups = modelGroups
-    .map((group) => ({
-      ...group,
-      items: group.items.filter((item) => {
-        const query = searchValue.trim().toLowerCase();
-        if (!query) return item.scope.includes(activeTab);
-        const matched = `${item.name} ${item.provider} ${item.info} ${item.tag}`.toLowerCase().includes(query);
-        return matched && item.scope.includes(activeTab);
-      }),
-    }))
-    .filter((group) => group.items.length > 0);
-
-  const tagStyle = {
-    推荐模型: 'bg-blue-50 text-blue-700 border-blue-200',
-    推荐上新: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-    热门模型: 'bg-rose-50 text-rose-700 border-rose-200',
-    企业首选: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    企业可用: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    开源: 'bg-violet-50 text-violet-700 border-violet-200',
-    海外模型: 'bg-slate-100 text-slate-700 border-slate-200',
-    模型上新: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-    多模态: 'bg-amber-50 text-amber-700 border-amber-200',
-    推理增强: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-    长上下文: 'bg-slate-100 text-slate-700 border-slate-200',
-    低延迟: 'bg-teal-50 text-teal-700 border-teal-200',
-  } as const;
-
   return (
-    <Section className="bg-white py-6">
+    <Section className="bg-slate-50 py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Mobile: Search full width, tabs horizontal scroll | Desktop: Search + tabs inline */}
-        <div className="flex flex-col gap-4 mb-5">
-          {/* Search - Full width on mobile */}
-          <div className="relative flex-1 lg:max-w-lg">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="搜索模型名称、厂商、能力、关键词…"
-              className="w-full h-9 rounded-md border border-slate-300 bg-white pl-9 pr-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors placeholder:text-slate-400 mobile-button"
-            />
-          </div>
-          
-          {/* Action Buttons - Horizontal scroll on mobile */}
-          <div className="flex items-center gap-2 mobile-scroll-x">
-            <div className="flex items-center gap-1 bg-slate-100 rounded-md p-0.5 border border-slate-200 flex-shrink-0">
-              {(['精选模型', '开源模型', '企业模型', '海外模型'] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={cn(
-                    'px-3 h-7 rounded-[4px] text-xs font-medium transition-all mobile-touch-feedback',
-                    activeTab === tab
-                      ? 'bg-white text-slate-900 shadow-sm border border-slate-200/50'
-                      : 'text-slate-500 hover:text-slate-800 hover:bg-slate-200/50'
-                  )}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-            <div className="h-4 w-px bg-slate-200 mx-1 flex-shrink-0" />
-            <Button variant="secondary" className="h-8 px-3 text-xs border-slate-200 text-slate-600 hover:bg-slate-50 flex-shrink-0">模型对比</Button>
-            <Button variant="secondary" className="h-8 px-3 text-xs border-slate-200 text-slate-600 hover:bg-slate-50 flex-shrink-0">接入指南</Button>
-          </div>
-        </div>
-
-        {/* Featured Models - Horizontal scroll on mobile */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="mobile-title-section lg:text-lg font-semibold text-slate-900">推荐模型</h3>
-            <Link to="#" className="text-blue-600 hover:text-blue-700 text-sm font-medium">查看全部</Link>
-          </div>
-          <div className="mobile-scroll-x">
-            <div className="mobile-scroll-content">
-              {featuredModels.map((item) => (
-                <div key={item.name} className="group rounded-lg border border-slate-200 bg-white p-3 hover:border-blue-300 hover:shadow-md transition-all duration-200 cursor-pointer mobile-card w-[280px] mobile-touch-feedback">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br text-white shadow-sm", item.gradient)}>
-                        <Brain className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{item.name}</h3>
-                        <p className="text-xs text-slate-500">{item.subtitle}</p>
-                      </div>
-                    </div>
-                    <Badge variant="outline" className="text-[10px] py-0 h-5 bg-slate-50 text-slate-600 border-slate-200 font-normal">
-                      {item.status}
-                    </Badge>
-                  </div>
-                  <p className="text-xs text-slate-500 leading-relaxed mobile-text-truncate-2">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Model Categories - Mobile optimized */}
-        <div className="space-y-4">
-          {searchedGroups.map((group) => (
-            <section key={group.name} className="rounded-lg border border-slate-200 bg-white overflow-hidden">
-              <div className="px-3 py-2 bg-slate-50/50 border-b border-slate-100">
-                <h3 className="text-sm font-bold text-slate-800">{group.name}</h3>
-                <p className="text-xs text-slate-500 mt-0.5">{group.desc}</p>
-              </div>
-              <div className="divide-y divide-slate-100">
-                {group.items.map((item) => (
-                  <div key={item.name} className="ui-list-item group flex items-center justify-between px-3 py-3 transition-colors cursor-pointer hover:bg-blue-50/30 mobile-touch-feedback">
-                    <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <div className="w-8 h-8 rounded-md bg-white border border-slate-200 text-slate-500 flex items-center justify-center shrink-0 shadow-sm group-hover:border-blue-200 group-hover:text-blue-600 transition-colors">
-                        <Box className="w-4 h-4" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <h4 className="text-sm font-semibold text-slate-900 group-hover:text-blue-700 transition-colors">{item.name}</h4>
-                          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-500 border border-slate-200">{item.provider}</span>
-                          <span className={cn('text-[10px] px-2 py-0.5 rounded border', tagStyle[item.tag])}>{item.tag}</span>
+        <div className="rounded-lg border border-slate-200 bg-white overflow-hidden">
+          <div className="flex flex-col md:flex-row min-h-[600px]">
+            {/* Sidebar */}
+            <div className="w-full md:w-[240px] lg:w-[260px] border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/50 p-4 shrink-0">
+              <div className="space-y-6">
+                {SIDEBAR_CATEGORIES.map((category) => (
+                  <div key={category.title}>
+                    <div className="text-[13px] font-bold text-slate-900 mb-2.5 px-2">{category.title}</div>
+                    <div className="space-y-1">
+                      {category.items.map((item) => (
+                        <div
+                          key={item}
+                          className="px-2 py-1.5 rounded-md text-[13px] text-slate-600 hover:text-blue-700 hover:bg-blue-50 cursor-pointer transition-colors"
+                        >
+                          {item}
                         </div>
-                        <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">{item.info}</p>
-                      </div>
+                      ))}
                     </div>
-                    <Button variant="ghost" size="sm" className="h-7 w-7 p-0 rounded-full text-slate-400 hover:text-blue-600 hover:bg-blue-50 ml-2">
-                      <ArrowRight className="w-4 h-4" />
-                    </Button>
                   </div>
                 ))}
               </div>
-            </section>
-          ))}
+            </div>
+            
+            {/* Content */}
+            <div className="flex-1 p-4 md:p-5">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5">
+                <div className="relative w-full sm:w-[320px]">
+                  <input
+                    type="text"
+                    placeholder="输入关键词搜索您想要的模型..."
+                    className="w-full h-10 pl-10 pr-3 rounded-lg border border-slate-200 bg-slate-50 text-[13px] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500/50 transition-all"
+                  />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                </div>
+                <div className="flex items-center gap-4 text-[12px] text-slate-500">
+                  <div className="flex items-center gap-1 cursor-pointer hover:text-slate-700">
+                    支持体验
+                    <ChevronDown className="w-3 h-3" />
+                  </div>
+                  <div className="flex items-center gap-1 cursor-pointer hover:text-slate-700">
+                    支持训练
+                    <ChevronDown className="w-3 h-3" />
+                  </div>
+                  <div className="flex items-center gap-1 cursor-pointer hover:text-slate-700">
+                    支持部署
+                    <ChevronDown className="w-3 h-3" />
+                  </div>
+                  <div className="flex items-center gap-1 cursor-pointer hover:text-slate-700">
+                    综合排序
+                    <ChevronDown className="w-3 h-3" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {MODEL_LIST_ITEMS.map((item) => (
+                  <div key={item.name} className="group rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-200 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 cursor-pointer">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
+                          {item.name.substring(0, 2)}
+                        </div>
+                        <div>
+                          <div className="text-[14px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-1">{item.name}</div>
+                          <div className="flex items-center gap-1.5 mt-0.5">
+                            <Badge variant="gray" className="text-[10px] h-4 px-1.5">{item.tag}</Badge>
+                            {item.name.includes('3.5') && <Badge variant="blue" className="text-[10px] h-4 px-1.5">NEW</Badge>}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
+                        <Cpu className="w-3 h-3" />
+                        <span>{item.name.includes('7B') ? '7B' : item.name.includes('30B') ? '30B' : '175B'}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
+                        <Boxes className="w-3 h-3" />
+                        <span>Safetensors</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-3 border-t border-slate-50">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-4 h-4 rounded-full bg-slate-100 flex items-center justify-center text-[9px] text-slate-600 font-bold">
+                          {item.provider[0]}
+                        </div>
+                        <span className="text-[12px] text-slate-500">{item.provider}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-[11px] text-slate-400">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {item.date.substring(5)}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <ArrowRight className="w-3 h-3 rotate-90" />
+                          {item.downloads > 1000 ? (item.downloads / 1000).toFixed(1) + 'k' : item.downloads}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Section>
