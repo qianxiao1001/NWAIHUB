@@ -10,7 +10,7 @@ const NAV_ITEMS = [
   { name: '算力资源', path: '/compute' },
   { name: '数据资源', path: '/datasets' },
   { name: '智能体市场', path: '/apps' },
-  { name: '政策中心', path: '/policy' },
+  { name: '政策支持', path: '/policy' },
   { name: '培训认证', path: '/training' },
   { name: '活动社群', path: '/community' },
 ];
@@ -50,10 +50,9 @@ export const Header = () => {
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="h-full flex items-center justify-between">
-            {/* Logo - Left side on mobile */}
-            <Link to="/" className="flex items-center mobile-touch-feedback">
+            <div className="flex items-center mobile-touch-feedback">
               <img src={NORTH_LATITUDE_LOGO} alt="中关村AI北纬社区 Logo" className="h-7 w-auto object-contain" />
-            </Link>
+            </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-6">
@@ -76,11 +75,14 @@ export const Header = () => {
               ))}
             </nav>
 
-            {/* Desktop Logo - Center on desktop */}
+            {/* Desktop Action */}
             <div className="hidden lg:flex items-center">
-              <Link to="/" className="flex items-center">
-                <img src={NORTH_LATITUDE_LOGO} alt="中关村AI北纬社区 Logo" className="h-7 w-auto object-contain" />
-              </Link>
+              <Button
+                variant="secondary"
+                className="h-8 px-3 text-xs border-slate-300 text-slate-700 hover:bg-slate-50"
+              >
+                登录与认证
+              </Button>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -204,7 +206,7 @@ export const Footer = () => {
           <div className="hidden md:block col-span-1 md:col-span-2">
             <h3 className="text-white font-semibold mb-3 text-xs tracking-wide border-l-2 border-blue-600 pl-2.5">支持与政策</h3>
             <ul className="space-y-2 text-xs">
-              <li><Link to="/policy" className="hover:text-white transition-colors duration-200">政策中心</Link></li>
+              <li><Link to="/policy" className="hover:text-white transition-colors duration-200">政策支持</Link></li>
               <li><Link to="/training" className="hover:text-white transition-colors duration-200">培训认证</Link></li>
               <li><Link to="/community" className="hover:text-white transition-colors duration-200">活动社群</Link></li>
               <li><a href="#" className="hover:text-white transition-colors duration-200">企业入驻</a></li>
@@ -249,7 +251,7 @@ export const Footer = () => {
                 <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
               </summary>
               <ul className="px-3 pb-3 space-y-2 text-[11px] text-slate-400">
-                <li><Link to="/policy" className="hover:text-white transition-colors duration-200">政策中心</Link></li>
+                <li><Link to="/policy" className="hover:text-white transition-colors duration-200">政策支持</Link></li>
                 <li><Link to="/training" className="hover:text-white transition-colors duration-200">培训认证</Link></li>
                 <li><Link to="/community" className="hover:text-white transition-colors duration-200">活动社群</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors duration-200">企业入驻</a></li>
