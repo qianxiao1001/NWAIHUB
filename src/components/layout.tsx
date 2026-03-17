@@ -17,8 +17,8 @@ const NAV_ITEMS = [
 const BASE_URL = import.meta.env.BASE_URL;
 const NORTH_LATITUDE_LOGO = `${BASE_URL}Logos/微信图片_20260308232726_966_99.jpg`;
 const NORTH_LATITUDE_WHITE_LOGO = `${BASE_URL}Logos/北纬白色.png`;
-const RUANJIMU_LOGO = `${BASE_URL}Logos/图片1.png`;
-const CAICT_LOGO = `${BASE_URL}Logos/20260307072409-c0c263379b8032a24285272397b28a05-18c9a7.png`;
+const RUANJIMU_LOGO = `${BASE_URL}Logos/软积木logo.png`;
+const CAICT_LOGO = `${BASE_URL}Logos/翻白色logo.png`;
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -182,13 +182,13 @@ export const Footer = () => {
               <img src={NORTH_LATITUDE_WHITE_LOGO} alt="中关村AI北纬社区 Logo（白）" className="h-7 md:h-8 w-auto object-contain" />
             </div>
             <p className="text-[11px] md:text-xs text-slate-400 leading-relaxed mb-3 md:mb-5 max-w-sm">
-              围绕AI创业与产业生态建设的综合服务平台，提供模型、算力、数据、政策等全方位支持，助力中国AI产业蓬勃发展。
+              中关村AI北纬社区 是北京市海淀区重点打造的 人工智能产业集聚区与AI原生创业孵化平台 ，定位为面向全球的AI创新枢纽和生态社区
             </p>
-            <div className="rounded-lg border border-slate-700/50 bg-slate-800/50 p-2.5 md:p-3 max-w-sm">
-              <p className="text-[10px] text-slate-500 font-medium mb-1.5">平台战略合作伙伴</p>
-              <div className="flex items-center gap-4 px-1">
-                <img src={CAICT_LOGO} alt="中国信通院 Logo" className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                <img src={RUANJIMU_LOGO} alt="软积木 Logo" className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+            <div className="rounded-lg border border-slate-700/50 bg-slate-800/50 p-3 md:p-4 max-w-sm">
+              <p className="text-[11px] text-slate-400 font-medium mb-2">平台支撑单位</p>
+              <div className="flex items-center gap-5">
+                <img src={CAICT_LOGO} alt="中国信通院 Logo" className="h-8 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
+                <img src={RUANJIMU_LOGO} alt="软积木 Logo" className="h-8 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
               </div>
             </div>
           </div>

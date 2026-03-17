@@ -17,7 +17,7 @@ const TrainingHero = () => (
         <div className="lg:max-w-2xl">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-3">
             <GraduationCap className="w-3.5 h-3.5" />
-            人工智能人才培养基地
+            人工智能与OPC人才培养
           </div>
           
           <h1 className="mobile-title-hero lg:text-2xl font-bold text-slate-900 mb-2 tracking-tight">

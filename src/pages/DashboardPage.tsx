@@ -1,55 +1,107 @@
 import React, { useState, useEffect } from 'react';
 import { 
   PieChart, Pie, Cell, ResponsiveContainer, 
-  AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid
+  AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid,
+  BarChart, Bar, Legend, FunnelChart, Funnel, LabelList
 } from 'recharts';
 import { 
-  ArrowUpRight, Users, Box, Cpu, Activity, 
+  ArrowUpRight, ArrowDownRight, Users, Box, Cpu, Activity, 
   Layers, MapPin, Database, Server, Zap, 
   Clock, Calendar, ChevronDown, MonitorPlay, 
-  Target, FileText, CheckCircle2, Shield
+  Target, FileText, CheckCircle2, Shield,
+  TrendingUp, Building2, Lightbulb, Briefcase,
+  Award, Handshake, FileCheck, AlertTriangle
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // --- Mock Data ---
 
 const INDUSTRY_DATA = [
-  { name: '工业质检', value: 55, color: '#3b82f6' }, // blue-500
-  { name: '教育科普', value: 25, color: '#06b6d4' }, // cyan-500
-  { name: '文创设计', value: 12, color: '#8b5cf6' }, // violet-500
-  { name: '其他', value: 8, color: '#64748b' },     // slate-500
+  { name: '工业质检', value: 55, color: '#3b82f6' },
+  { name: '教育科普', value: 25, color: '#06b6d4' },
+  { name: '文创设计', value: 12, color: '#8b5cf6' },
+  { name: '其他', value: 8, color: '#64748b' },
 ];
 
 const STAGE_DATA = [
-  { name: '概念研究', value: 35, full: 100 },
-  { name: '验证测试', value: 22, full: 100 },
-  { name: '优化推广', value: 15, full: 100 },
-  { name: '量产扩张', value: 28, full: 100 },
+  { name: '初创期', value: 42 },
+  { name: '成长期', value: 35 },
+  { name: '扩张期', value: 18 },
+  { name: '成熟期', value: 5 },
+];
+
+const TECH_DIRECTION_DATA = [
+  { name: '大模型', value: 38, color: '#3b82f6' },
+  { name: '智能体', value: 28, color: '#06b6d4' },
+  { name: '数据智能', value: 20, color: '#8b5cf6' },
+  { name: '工业 AI', value: 14, color: '#10b981' },
+];
+
+const SERVICE_DEMAND_DATA = [
+  { name: '算力服务', value: 68, unit: '家' },
+  { name: '模型调用', value: 52, unit: '家' },
+  { name: '数据资源', value: 45, unit: '家' },
+  { name: '政策咨询', value: 38, unit: '家' },
+  { name: '融资对接', value: 25, unit: '家' },
 ];
 
 const MODEL_RANK_DATA = [
-  { rank: 1, vendor: '阿里', name: 'Qwen3.5-Plus', calls: '3.1M', trend: 'up' },
-  { rank: 2, vendor: '阿里', name: 'Wan2.6', calls: '2.8M', trend: 'up' },
-  { rank: 3, vendor: '阿里', name: 'Fun-ASR', calls: '2.4M', trend: 'down' },
-  { rank: 4, vendor: '阿里', name: 'Qwen-Image', calls: '1.9M', trend: 'up' },
+  { rank: 1, vendor: '智谱 AI', name: 'GLM-5', calls: '3.1M', trend: 'up' },
+  { rank: 2, vendor: 'MiniMax', name: 'MiniMax-M2.5', calls: '2.8M', trend: 'up' },
+  { rank: 3, vendor: '阿里', name: 'Qwen3.5-Plus', calls: '2.4M', trend: 'down' },
+  { rank: 4, vendor: 'NVIDIA', name: 'Nemotron-3-Super', calls: '1.9M', trend: 'up' },
   { rank: 5, vendor: '月之暗面', name: 'Moonshot-v1', calls: '1.5M', trend: 'up' },
 ];
 
-const POLICY_EFFICIENCY_DATA = [
-  { month: '1月', compute: 40, model: 24, data: 20 },
-  { month: '2月', compute: 30, model: 13, data: 22 },
-  { month: '3月', compute: 50, model: 38, data: 25 },
-  { month: '4月', compute: 45, model: 30, data: 30 },
-  { month: '5月', compute: 60, model: 45, data: 35 },
-  { month: '6月', compute: 55, model: 50, data: 40 },
+const AREA_RANKING_DATA = [
+  { name: 'A 区 - 科技园', count: 45, growth: 12 },
+  { name: 'B 区 - 孵化器', count: 38, growth: 8 },
+  { name: 'C 区 - 产业园', count: 32, growth: 15 },
+  { name: 'D 区 - 创新中心', count: 25, growth: 6 },
+  { name: 'E 区 - 加速器', count: 15, growth: 10 },
 ];
 
-const SUBSIDY_LOGS = [
-  { company: '江苏智能制造科技有限公司', type: '研发补贴', amount: '120万', date: '2026-02-01', level: '重点' },
-  { company: '南京数字创新研究院', type: '平台建设', amount: '80万', date: '2026-01-28', level: '重点' },
-  { company: '苏州工业互联网集团', type: '设备采购', amount: '50万', date: '2026-01-25', level: '一般' },
-  { company: '扬子江AI实验室', type: '人才引进', amount: '30万', date: '2026-01-20', level: '一般' },
-  { company: '北纬社区智慧城市运营中心', type: '场景应用', amount: '200万', date: '2026-01-15', level: '重点' },
+const MONTHLY_GROWTH_DATA = [
+  { month: '1 月', new: 12, active: 128 },
+  { month: '2 月', new: 18, active: 135 },
+  { month: '3 月', new: 22, active: 142 },
+  { month: '4 月', new: 25, active: 148 },
+  { month: '5 月', new: 28, active: 152 },
+  { month: '6 月', new: 32, active: 155 },
+];
+
+const POLICY_FUNNEL_DATA = [
+  { stage: '申请', count: 245 },
+  { stage: '受理', count: 218 },
+  { stage: '审批', count: 195 },
+  { stage: '公示', count: 187 },
+  { stage: '发放', count: 182 },
+];
+
+const POLICY_METRICS_DATA = [
+  { label: '平均审批时长', value: '5.2', unit: '天', trend: 'down', change: '18%' },
+  { label: '资金拨付完成率', value: '94.5', unit: '%', trend: 'up', change: '3.2%' },
+  { label: '延迟项目数', value: '8', unit: '个', trend: 'down', change: '25%' },
+  { label: '异常预警', value: '3', unit: '个', trend: 'stable', change: '-' },
+];
+
+const TOKEN_CONSUMPTION_DATA = [
+  { month: '1 月', tokens: 120 },
+  { month: '2 月', tokens: 185 },
+  { month: '3 月', tokens: 245 },
+  { month: '4 月', tokens: 320 },
+  { month: '5 月', tokens: 410 },
+  { month: '6 月', tokens: 520 },
+];
+
+const ACHIEVEMENT_DATA = [
+  { label: '新增签约项目', value: '28', unit: '个', sub: '↑ 15%', subLabel: '环比增长' },
+  { label: '落地场景数', value: '42', unit: '个', sub: '↑ 8', subLabel: '本月新增' },
+  { label: '标杆项目', value: '12', unit: '个', sub: '国家级 3 个', subLabel: '重点培育' },
+  { label: '融资转化额', value: '1.8', unit: '亿元', sub: '↑ 22%', subLabel: '季度累计' },
+  { label: '知识产权', value: '156', unit: '件', sub: '授权 89 件', subLabel: '专利申请' },
+  { label: '解决方案落地', value: '35', unit: '个', sub: '工业 AI 18 个', subLabel: '垂类应用' },
+  { label: '模型/智能体上线', value: '48', unit: '个', sub: '↑ 12', subLabel: '本月新增' },
 ];
 
 // --- Components ---
@@ -132,26 +184,50 @@ export const DashboardPage = () => {
         <div className="hidden lg:flex items-center gap-4 w-1/4">
           <div className="flex items-center gap-2 bg-slate-900/70 border border-sky-400/20 rounded-lg px-3 py-1.5 text-xs text-slate-300 shadow-[inset_0_0_20px_rgba(14,165,233,0.08)]">
             <Calendar className="w-3.5 h-3.5" />
-            <span>2025.12.01 - 2026.01.31</span>
-            <ChevronDown className="w-3 h-3 opacity-50 ml-2" />
-          </div>
-          <div className="flex items-center gap-2 bg-slate-900/70 border border-sky-400/20 rounded-lg px-3 py-1.5 text-xs text-slate-300 shadow-[inset_0_0_20px_rgba(14,165,233,0.08)]">
-            <MapPin className="w-3.5 h-3.5" />
-            <span>全部区域</span>
-            <ChevronDown className="w-3 h-3 opacity-50 ml-2" />
+            <span>截至 2026.03</span>
           </div>
         </div>
 
         <div className="flex-1 flex justify-center relative">
-          <h1 className="text-base lg:text-xl font-bold text-slate-50 tracking-[0.08em] text-center relative z-10 truncate px-2">
-            南京 OPC 创业创新专区 · 产业运营看板
-          </h1>
+          <div className="text-center">
+            <h1 className="text-lg lg:text-2xl font-bold text-slate-50 tracking-[0.08em] text-center relative z-10">
+              中关村 AI 北纬社区·产业运营驾驶舱
+            </h1>
+            <p className="text-[10px] lg:text-xs text-slate-400 mt-0.5 tracking-wider">产业运营监测数据</p>
+          </div>
         </div>
 
         <div className="hidden lg:flex w-1/4 justify-end">
           <ClockWidget />
         </div>
       </header>
+
+      {/* Top Overview Metrics */}
+      <div className="px-4 lg:px-8 py-4 border-b border-slate-700/40 bg-slate-950/30 backdrop-blur-sm z-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
+          {[
+            { label: '社区主体总数', value: '155', unit: '家', sub: '↑ 12.3%', subColor: 'text-emerald-400', icon: Users, color: 'from-blue-500 to-cyan-500' },
+            { label: '月度新增主体', value: '32', unit: '家', sub: '↑ 8', subColor: 'text-emerald-400', icon: TrendingUp, color: 'from-cyan-500 to-teal-500' },
+            { label: '活跃企业数', value: '142', unit: '家', sub: '91.6%', subColor: 'text-blue-400', icon: Activity, color: 'from-blue-600 to-indigo-500' },
+            { label: '服务触达率', value: '87.5', unit: '%', sub: '↑ 5.2%', subColor: 'text-emerald-400', icon: Target, color: 'from-indigo-500 to-purple-500' },
+            { label: '模型调用总量', value: '32.8', unit: '亿次', sub: '↑ 22%', subColor: 'text-emerald-400', icon: Server, color: 'from-purple-500 to-pink-500' },
+            { label: '政策覆盖企业', value: '187', unit: '家', sub: '覆盖率 76%', subColor: 'text-cyan-400', icon: FileCheck, color: 'from-emerald-500 to-teal-500' },
+          ].map((item, i) => (
+            <div key={i} className="relative overflow-hidden rounded-xl bg-slate-900/60 border border-slate-700/60 backdrop-blur p-3 lg:p-4 hover:border-slate-600 transition-all group">
+              <div className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-br ${item.color} opacity-10 rounded-bl-full transition-opacity group-hover:opacity-15`} />
+              <div className="flex items-center gap-2 mb-2">
+                <item.icon className="w-4 h-4 text-slate-400" />
+                <span className="text-[10px] lg:text-xs text-slate-400">{item.label}</span>
+              </div>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="text-2xl lg:text-3xl font-bold font-mono text-white">{item.value}</span>
+                <span className="text-xs text-slate-500">{item.unit}</span>
+              </div>
+              <div className={`text-[10px] lg:text-xs font-medium ${item.subColor}`}>{item.sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Main Layout */}
       <main className="flex-1 p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 relative z-10 overflow-y-auto lg:overflow-hidden">
@@ -162,8 +238,8 @@ export const DashboardPage = () => {
           <Card title="创业态势" icon={Activity} className="h-[300px] lg:h-[32%]">
             <div className="flex items-end justify-between mb-4">
               <div>
-                <p className="text-slate-400 text-xs mb-1">全国 OPC 创业主体</p>
-                <p className="text-3xl font-bold text-white font-mono tracking-tight drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]">12,587<span className="text-sm font-sans text-slate-400 ml-1">家</span></p>
+                <p className="text-slate-400 text-xs mb-1">OPC 创新主体</p>
+                <p className="text-3xl font-bold text-white font-mono tracking-tight drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]">155<span className="text-sm font-sans text-slate-400 ml-1">家</span></p>
               </div>
               <div className="text-emerald-400 text-sm font-medium flex items-center bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
                 <ArrowUpRight className="w-3.5 h-3.5 mr-1" />
@@ -210,7 +286,7 @@ export const DashboardPage = () => {
 
             <div className="grid grid-cols-3 gap-2 mt-auto pt-4 border-t border-slate-800/50">
               <div className="text-center">
-                <p className="text-[10px] text-slate-500 mb-0.5">南京占比</p>
+                <p className="text-[10px] text-slate-500 mb-0.5">北纬社区占比</p>
                 <p className="text-sm font-bold text-blue-300">18.7%</p>
               </div>
               <div className="text-center border-l border-slate-800/50">
@@ -228,7 +304,7 @@ export const DashboardPage = () => {
           <Card title="主体画像" icon={Users} className="h-[300px] lg:h-[32%]">
             <div className="mb-4">
               <div className="flex justify-between text-xs text-slate-400 mb-1.5">
-                <span>南京本地 <span className="text-blue-400 font-bold">52%</span></span>
+                <span>北纬社区本地 <span className="text-blue-400 font-bold">52%</span></span>
                 <span>省内其他 <span className="text-slate-500 font-bold">48%</span></span>
               </div>
               <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden flex">
@@ -293,7 +369,7 @@ export const DashboardPage = () => {
            <div className="lg:absolute top-0 left-0 right-0 h-12 flex items-center justify-center z-10 mb-4 lg:mb-0">
               <div className="bg-slate-950/65 backdrop-blur-xl border border-cyan-400/20 px-8 py-1.5 rounded-full shadow-[0_8px_30px_rgba(14,165,233,0.2)] flex items-center gap-2">
                 <Target className="w-4 h-4 text-cyan-300" />
-                <span className="text-slate-200 font-semibold tracking-wide">南京 OPC 创业主体分布情况</span>
+                <span className="text-slate-200 font-semibold tracking-wide">中关村AI北纬社区创业主体分布情况</span>
               </div>
            </div>
 
@@ -332,37 +408,8 @@ export const DashboardPage = () => {
 
         {/* Right Column */}
         <div className="col-span-1 lg:col-span-3 flex flex-col gap-5 h-auto lg:h-full">
-           {/* 1. Policy Efficiency */}
-           <Card title="政策效能趋势" icon={Box} className="h-[300px] lg:h-[32%]">
-             <div className="w-full h-full -ml-4 mt-2">
-               <ResponsiveContainer width="100%" height="100%">
-                 <AreaChart data={POLICY_EFFICIENCY_DATA}>
-                   <defs>
-                     <linearGradient id="colorCompute" x1="0" y1="0" x2="0" y2="1">
-                       <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.42}/>
-                       <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
-                     </linearGradient>
-                     <linearGradient id="colorModel" x1="0" y1="0" x2="0" y2="1">
-                       <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.42}/>
-                       <stop offset="95%" stopColor="#06b6d4" stopOpacity={0}/>
-                     </linearGradient>
-                   </defs>
-                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                   <XAxis dataKey="month" stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
-                   <YAxis stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
-                   <Tooltip 
-                      contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', fontSize: '12px' }}
-                      itemStyle={{ color: '#e2e8f0' }}
-                   />
-                   <Area type="monotone" dataKey="compute" stroke="#38bdf8" fillOpacity={1} fill="url(#colorCompute)" strokeWidth={2.3} name="算力" />
-                   <Area type="monotone" dataKey="model" stroke="#06b6d4" fillOpacity={1} fill="url(#colorModel)" strokeWidth={2.3} name="模型" />
-                 </AreaChart>
-               </ResponsiveContainer>
-             </div>
-           </Card>
-
-           {/* 2. Policy Process */}
-           <Card title="政策申报流程监控" icon={CheckCircle2} className="h-[250px] lg:h-[25%]">
+           {/* 1. Policy Process */}
+           <Card title="政策申报流程监控" icon={CheckCircle2} className="flex-1 min-h-[280px]">
               <div className="flex items-center justify-between px-2 mt-4 relative">
                 {/* Connecting Line */}
                 <div className="absolute top-4 left-4 right-4 h-0.5 bg-slate-800 -z-10" />
@@ -385,37 +432,33 @@ export const DashboardPage = () => {
                   <p className="text-lg font-bold text-white">187</p>
                 </div>
                 <div className="bg-cyan-900/20 border border-cyan-500/20 rounded p-2 text-center">
-                  <p className="text-[10px] text-cyan-300">带动产值(亿)</p>
+                  <p className="text-[10px] text-cyan-300">带动产值 (亿)</p>
                   <p className="text-lg font-bold text-white">1.2</p>
                 </div>
               </div>
            </Card>
 
-           {/* 3. Policy Subsidy Logs */}
-           <Card title="政策补贴日志" icon={FileText} className="h-[300px] lg:flex-1">
-             <div className="flex gap-2 mb-3">
-               <span className="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded border border-blue-500/30 cursor-pointer hover:bg-blue-500/30">全部行业</span>
-               <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded border border-slate-700 cursor-pointer hover:bg-slate-700">全部等级</span>
-             </div>
-             <div className="space-y-2 overflow-y-auto max-h-[200px] pr-1 custom-scrollbar">
-               {SUBSIDY_LOGS.map((log, i) => (
-                 <div key={i} className="bg-slate-800/30 p-2 rounded border border-slate-800 hover:border-blue-500/30 transition-colors">
-                   <div className="flex justify-between items-start mb-1">
-                     <span className="text-xs text-slate-200 font-medium truncate max-w-[140px]" title={log.company}>{log.company}</span>
-                     <span className={cn(
-                       "text-[10px] px-1.5 py-0.5 rounded-full scale-90 origin-right",
-                       log.level === '重点' ? "bg-amber-500/20 text-amber-300 border border-amber-500/30" : "bg-slate-700 text-slate-400"
-                     )}>{log.level}</span>
-                   </div>
-                   <div className="flex justify-between items-center text-[10px] text-slate-500">
-                     <span>{log.type}</span>
-                     <div className="flex gap-3">
-                       <span className="text-emerald-400">{log.amount}</span>
-                       <span>{log.date}</span>
-                     </div>
-                   </div>
-                 </div>
-               ))}
+           {/* 2. Token Consumption Trend */}
+           <Card title="模型调用 Token 消耗趋势" icon={Activity} className="h-[280px]">
+             <div className="w-full h-full -ml-4 mt-2">
+               <ResponsiveContainer width="100%" height="100%">
+                 <AreaChart data={TOKEN_CONSUMPTION_DATA}>
+                   <defs>
+                     <linearGradient id="colorTokens" x1="0" y1="0" x2="0" y2="1">
+                       <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.42}/>
+                       <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                     </linearGradient>
+                   </defs>
+                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                   <XAxis dataKey="month" stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
+                   <YAxis stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} />
+                   <Tooltip 
+                      contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', fontSize: '12px' }}
+                      itemStyle={{ color: '#e2e8f0' }}
+                   />
+                   <Area type="monotone" dataKey="tokens" stroke="#8b5cf6" fillOpacity={1} fill="url(#colorTokens)" strokeWidth={2.3} name="Token" />
+                 </AreaChart>
+               </ResponsiveContainer>
              </div>
            </Card>
         </div>

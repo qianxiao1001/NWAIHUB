@@ -29,15 +29,17 @@ const PolicyHero = () => (
           </p>
         </div>
         
-        <div className="w-full lg:w-auto lg:min-w-[400px]">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input 
-              type="text" 
-              placeholder="搜索政策文件、标准编号或关键词..." 
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500/15 focus:border-blue-400 transition-all duration-200 mobile-text-body"
-            />
-            <Button size="sm" className="absolute right-1 top-1 bottom-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-sm px-4 h-auto text-xs">
+        <div className="w-full lg:max-w-xl">
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <input 
+                type="text" 
+                placeholder="搜索政策文件、标准编号或关键词..." 
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500/15 focus:border-blue-400 transition-all duration-200 mobile-text-body"
+              />
+            </div>
+            <Button size="sm" className="h-10 px-6 bg-blue-600 hover:bg-blue-700 text-white shadow-sm">
               搜索
             </Button>
           </div>
@@ -177,7 +179,7 @@ const PolicyContent = () => {
           )}>
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-slate-200">
-                <h3 className="font-semibold text-slate-900">海淀区人工智能OPC专项支持计划</h3>
+                <h3 className="font-semibold text-slate-900">中关村AI北纬社区专项支持计划</h3>
                 <button 
                   onClick={() => setSidebarDrawerOpen(false)}
                   className="p-1 text-slate-600 hover:bg-slate-50 rounded"

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   Box,
+  Bot,
   BriefcaseBusiness,
   Building2,
   CircleCheck,
@@ -66,47 +67,53 @@ const stats = [
 
 const HomePageMain = () => (
   <main className="bg-[#f6f8fc]">
-    <section className="relative pt-24 pb-14 border-b border-slate-200 bg-[linear-gradient(180deg,#eef4ff_0%,#f4f8ff_54%,#f6f8fc_100%)]">
-      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-[720px] mx-auto text-center">
-          <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700 px-3 py-1 text-xs">中关村AI北纬社区 · OPC技术服务平台</Badge>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-3 whitespace-nowrap">OPC HUB人工智能OPC综合服务平台</h1>
-          <p className="text-[26px] leading-tight font-semibold text-slate-800 mb-4 sm:text-[30px]">
-            算法赋能、模型优选、智能体市场，打造人工智能创业首选平台
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-left max-w-[640px] mx-auto mb-8">
-            {focusItems.map(({ label, icon: Icon }) => (
-              <div key={label} className="flex items-center gap-2 text-[15px] text-slate-700">
-                <Icon className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>{label}</span>
-              </div>
-            ))}
+    <section 
+      className="relative min-h-[360px] sm:min-h-[400px] flex items-center justify-center overflow-hidden"
+      style={{ backgroundImage: `url(${import.meta.env.BASE_URL}Logos/Gemini_Generated_Image_gaqs6sgaqs6sgaqs.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/65 to-white/80 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/40 via-transparent to-blue-50/40" />
+      
+      <div className="relative z-10 w-full max-w-[900px] mx-auto px-6 sm:px-8 py-8 sm:py-10">
+        <div className="text-center">
+          <div className="mb-3 flex justify-center">
+            <img 
+              src={`${import.meta.env.BASE_URL}Logos/微信图片_20260308232726_966_99.jpg`} 
+              alt="中关村AI北纬社区" 
+              className="h-9 w-auto opacity-90" 
+            />
           </div>
-          <div className="flex flex-col sm:flex-row justify-center gap-3 mb-6">
-            <Link to="/policy">
-              <Button className="mobile-button h-10 px-8 bg-blue-600 hover:bg-blue-700 shadow-sm">
-                立即咨询 / 申请接入
-                <ArrowRight className="ml-1.5 w-4 h-4" />
-              </Button>
+          
+          <h1 className="text-[36px] sm:text-[44px] lg:text-[52px] font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
+            人工智能 OPC 综合服务平台
+          </h1>
+          
+          <div className="flex flex-col sm:flex-row justify-center gap-2.5 mb-6">
+            <Link to="/community">
+              <button className="inline-flex items-center justify-center h-10 px-7 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 text-[13px]">
+                申请入驻
+                <ArrowRight className="ml-2 w-3.5 h-3.5" />
+              </button>
             </Link>
             <Link to="/models">
-              <Button variant="secondary" className="mobile-button h-10 px-8">
-                浏览服务 / 资源能力
-                <ArrowRight className="ml-1.5 w-4 h-4" />
-              </Button>
+              <button className="inline-flex items-center justify-center h-10 px-7 bg-white/80 hover:bg-white text-slate-700 font-medium rounded-lg border border-slate-200 hover:border-slate-300 shadow-sm transition-all duration-300 text-[13px]">
+                服务资源
+                <ArrowRight className="ml-2 w-3.5 h-3.5" />
+              </button>
             </Link>
           </div>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-slate-500">
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-blue-600" />
-              官方认证平台
+          
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-[13px] text-slate-500">
+            <span className="inline-flex items-center gap-2 opacity-80">
+              <ShieldCheck className="w-4 h-4 text-blue-500" />
+              权威产品渠道
             </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Building2 className="w-4 h-4 text-blue-600" />
+            <span className="inline-flex items-center gap-2 opacity-80">
+              <Building2 className="w-4 h-4 text-blue-500" />
               政企服务对接
             </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Headphones className="w-4 h-4 text-blue-600" />
+            <span className="inline-flex items-center gap-2 opacity-80">
+              <Headphones className="w-4 h-4 text-blue-500" />
               专家咨询服务
             </span>
           </div>
@@ -114,28 +121,28 @@ const HomePageMain = () => (
       </div>
     </section>
 
-    <section className="py-10 border-b border-slate-200">
+    <section className="py-4 border-b border-slate-200">
       <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-2.5">
           {capabilityCards.map(({ title, desc, icon: Icon, iconClass }) => (
-            <article key={title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex items-start gap-4">
-                <div className={`w-12 h-12 rounded-xl border flex items-center justify-center ${iconClass}`}>
-                  <Icon className="w-6 h-6" />
+            <article key={title} className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+              <div className="flex items-start gap-2.5">
+                <div className={`w-9 h-9 rounded-md border flex items-center justify-center ${iconClass}`}>
+                  <Icon className="w-4.5 h-4.5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2">{title}</h3>
-                  <p className="text-sm text-slate-500 leading-6">{desc}</p>
+                  <h3 className="text-sm font-semibold text-slate-900 mb-0.5">{title}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
                 </div>
               </div>
             </article>
           ))}
         </div>
-        <div className="flex justify-center mt-7">
+        <div className="flex justify-center mt-5">
           <Link to="/policy">
-            <Button className="h-10 px-12 bg-blue-600 hover:bg-blue-700">
+            <Button className="h-9 px-10 bg-blue-600 hover:bg-blue-700 text-sm">
               申请支持计划
-              <ArrowRight className="ml-1.5 w-4 h-4" />
+              <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
             </Button>
           </Link>
         </div>
@@ -163,16 +170,26 @@ const HomePageMain = () => (
                   </div>
                 </div>
               ))}
-              <div className="pt-1 flex gap-2">
-                <Link to="/dashboard">
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+              <div className="pt-1 flex flex-col gap-2">
+                <Link to="/dashboard" className="w-full">
+                  <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700 justify-center">
                     进入总控大厅
                     <ArrowRight className="ml-1 w-3.5 h-3.5" />
                   </Button>
                 </Link>
-                <Link to="/community">
-                  <Button size="sm" variant="secondary">
-                    预约演示
+                <Link to="/policy" className="w-full">
+                  <Button size="sm" variant="secondary" className="w-full justify-center">
+                    政策获取
+                  </Button>
+                </Link>
+                <Link to="/community" className="w-full">
+                  <Button size="sm" variant="secondary" className="w-full justify-center">
+                    申请入驻
+                  </Button>
+                </Link>
+                <Link to="/models" className="w-full">
+                  <Button size="sm" variant="secondary" className="w-full justify-center">
+                    服务资源
                   </Button>
                 </Link>
               </div>
@@ -200,16 +217,16 @@ const HomePageMain = () => (
                 ))}
               </div>
 
-              <div className="rounded-lg border border-slate-200 bg-white p-3">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs text-slate-500">近24小时 Token 调用趋势</p>
-                  <span className="text-[11px] text-slate-400 inline-flex items-center gap-1">
-                    <Gauge className="w-3 h-3" />
-                    24H 总量: 127,476 Tokens
+              <div className="rounded-lg border border-slate-200 bg-white p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-sm text-slate-600 font-medium">近 24 小时 Token 调用趋势</p>
+                  <span className="text-xs text-slate-500 inline-flex items-center gap-1">
+                    <Gauge className="w-3.5 h-3.5" />
+                    24H 总量：127,476 Tokens
                   </span>
                 </div>
-                <div className="h-16 w-full rounded bg-[linear-gradient(180deg,rgba(37,99,235,0.14)_0%,rgba(37,99,235,0.03)_72%,rgba(255,255,255,0.92)_100%)] relative overflow-hidden">
-                  <div className="absolute inset-x-0 bottom-2 h-[2px] bg-blue-200" />
+                <div className="h-32 w-full rounded bg-[linear-gradient(180deg,rgba(37,99,235,0.14)_0%,rgba(37,99,235,0.03)_72%,rgba(255,255,255,0.92)_100%)] relative overflow-hidden">
+                  <div className="absolute inset-x-0 bottom-3 h-[2px] bg-blue-200" />
                   <svg viewBox="0 0 600 80" className="absolute inset-0 w-full h-full">
                     <path
                       d="M0,62 C45,58 90,66 130,60 C180,52 225,34 270,37 C320,42 360,22 405,30 C455,38 500,45 600,60"
@@ -255,11 +272,11 @@ const HomeShortcut = () => (
           数据资源
         </Link>
         <Link
-          to="/training"
+          to="/apps"
           className="rounded-lg border border-slate-200 p-3 text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 transition-colors inline-flex items-center gap-2"
         >
-          <BriefcaseBusiness className="w-4 h-4 text-blue-600" />
-          培训认证
+          <Bot className="w-4 h-4 text-blue-600" />
+          智能体市场
         </Link>
       </div>
     </div>

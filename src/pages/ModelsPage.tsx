@@ -96,14 +96,30 @@ const SIDEBAR_CATEGORIES = [
 ];
 
 const MODEL_LIST_ITEMS = [
-  { name: 'MiniMax-M2.5', tag: '文本生成', provider: 'MiniMax', date: '2026-03-02', downloads: 1701, desc: '适用于企业助手、知识问答与流程自动化场景。' },
-  { name: 'Qwen3.5-27B', tag: '图文/文本', provider: 'Qwen', date: '2026-03-03', downloads: 988, desc: '高性能通用模型，支持复杂指令理解与推理。' },
-  { name: 'Sarvam-30B', tag: '文本生成', provider: 'Sarvam', date: '2026-01-17', downloads: 970, desc: '面向多语言企业场景，适配客服与文档处理流程。' },
-  { name: 'GLM-5', tag: '文本生成', provider: '智谱', date: '2026-03-03', downloads: 1394, desc: '兼顾推理与长上下文，适合企业知识服务。' },
-  { name: 'Kimi-K2.5', tag: '图文/文本', provider: 'Moonshot', date: '2026-02-09', downloads: 1610, desc: '支持多轮交互与工具调用，面向业务编排任务。' },
-  { name: 'MiniMax-M2.1', tag: '文本生成', provider: 'MiniMax', date: '2026-01-07', downloads: 1427, desc: '轻量高效，适用于办公自动化与低延迟问答。' },
-  { name: 'DeepSeek-OCR', tag: '图文/文本', provider: 'DeepSeek', date: '2025-10-23', downloads: 1303, desc: '高精度文档识别能力，适配票据与档案数字化。' },
-  { name: 'GLM-4.6V-Flash', tag: '图文/文本', provider: '智谱', date: '2025-12-11', downloads: 921, desc: '视觉理解与文本推理融合，适配复杂图文任务。' },
+  { name: 'GLM-5', tag: '文本生成', provider: '智谱 AI', date: '2026-03-13', downloads: 753868, likes: 245, size: '137.1k', params: '753.86B' },
+  { name: 'MiniMax/MiniMax-M2.5', tag: '文本生成', provider: 'MiniMax', date: '2026-03-11', downloads: 228708, likes: 143, size: '184.5k', params: '228.70B' },
+  { name: 'NVIDIA-Nemotron-3-Super-120B-A12B-FP8', tag: '文本生成', provider: 'NVIDIA', date: '2026-03-17', downloads: 123618, likes: 6, size: '2.5k', params: '123.61B', badge: 'NEW' },
+  { name: 'nanbeige/Nanbeige4.1-3B', tag: '文本生成', provider: '南北湖实验室', date: '2026-02-26', downloads: 3938, likes: 35, size: '38.6k', params: '3.93B' },
+  { name: 'LocoreMind/LocoOperator-4B', tag: '文本生成', provider: 'LocoreMind', date: '2026-02-25', downloads: 4028, likes: 11, size: '4.0k', params: '4.02B', badge: 'NEW' },
+  { name: 'TeichAI/Qwen3-14B-Claude-4.5-Opus-High-Reasoning-Distill', tag: '文本生成', provider: 'TeichAI', date: '2026-02-24', downloads: 14778, likes: 17, size: '4.0k', params: '14.77B' },
+  { name: 'inclusionAI/Ling-2.5-1T', tag: '文本生成', provider: 'InclusionAI', date: '2026-02-16', downloads: 1012238, likes: 12, size: '3.3k', params: '1012.23B' },
+  { name: 'jd-opensource/JoyAI-LLM-Flash', tag: '文本生成', provider: '京东开源', date: '2026-03-11', downloads: 49298, likes: 6, size: '837', params: '49.29B', badge: 'NEW' },
+  { name: 'inclusionAI/Ring-2.5-1T', tag: '文本生成', provider: 'InclusionAI', date: '2026-02-15', downloads: 1012475, likes: 13, size: '1.5k', params: '1012.47B' },
+  { name: 'GLM-4.7-Flash', tag: '文本生成', provider: '智谱 AI', date: '2026-01-29', downloads: 31229, likes: 123, size: '613.0k', params: '31.22B' },
+  { name: 'meituan-longcat/LongCat-Flash-Lite', tag: '文本生成', provider: '美团 - 龙猫', date: '2026-02-07', downloads: 69075, likes: 11, size: '1.4k', params: '69.07B' },
+  { name: 'ZhipuAI/GLM-4.7', tag: '文本生成', provider: '智谱 AI', date: '2026-01-29', downloads: 358348, likes: 186, size: '163.7k', params: '358.34B' },
+  { name: 'Youtu-LLM-2B', tag: '文本生成', provider: '腾讯优图实验室', date: '2026-02-24', downloads: 1968, likes: 25, size: '3.2k', params: '1.96B' },
+  { name: 'deepseek-ai/DeepSeek-V3.2', tag: '文本生成', provider: 'DeepSeek', date: '2025-12-01', downloads: 695405, likes: 377, size: '240.3k', params: '695.40B' },
+  { name: '千问 3-8B', tag: '文本生成', provider: '通义千问', date: '2025-07-27', downloads: 8195, likes: 259, size: '5.5m', params: '8.19B' },
+  { name: '千问 3-32B', tag: '文本生成', provider: '通义千问', date: '2025-07-27', downloads: 32765, likes: 301, size: '3.4m', params: '32.76B' },
+  { name: '千问 3-Coder-Next', tag: '文本生成', provider: '通义千问', date: '2026-02-04', downloads: 79678, likes: 67, size: '35.5k', params: '79.67B' },
+  { name: '千问 2.5-7B-Instruct', tag: '文本生成', provider: '通义千问', date: '2025-03-07', downloads: 7625, likes: 431, size: '6.0m', params: '7.62B' },
+  { name: '千问 3-235B-A22B-Instruct-2507', tag: '文本生成', provider: '通义千问', date: '2025-09-17', downloads: 235095, likes: 222, size: '280.3k', params: '235.09B' },
+  { name: '千问 3-0.6B', tag: '文本生成', provider: '通义千问', date: '2025-07-27', downloads: 751633, likes: 198, size: '4.2m', params: '751.63M' },
+  { name: '千问 3-4B', tag: '文本生成', provider: '通义千问', date: '2025-07-27', downloads: 4025, likes: 115, size: '2.9m', params: '4.02B' },
+  { name: 'Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distill', tag: '文本生成', provider: 'Jackrong', date: '2026-03-16', downloads: 26905, likes: 10, size: '5.1k', params: '26.90B', badge: 'NEW' },
+  { name: '千问 3-Coder-480B-A35B-Instruct', tag: '文本生成', provider: '通义千问', date: '2025-08-22', downloads: 480155, likes: 117, size: '127.1k', params: '480.15B' },
+  { name: '千问 3-30B-A3B-Instruct-2507', tag: '文本生成', provider: '通义千问', date: '2025-09-17', downloads: 30535, likes: 117, size: '1.6m', params: '30.53B' },
 ];
 
 // --- Model Catalog ---
@@ -177,20 +193,24 @@ const ModelCatalog = () => {
                           <div className="text-[14px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-1">{item.name}</div>
                           <div className="flex items-center gap-1.5 mt-0.5">
                             <Badge variant="gray" className="text-[10px] h-4 px-1.5">{item.tag}</Badge>
-                            {item.name.includes('3.5') && <Badge variant="blue" className="text-[10px] h-4 px-1.5">NEW</Badge>}
+                            {item.badge && <Badge variant="blue" className="text-[10px] h-4 px-1.5">{item.badge}</Badge>}
                           </div>
                         </div>
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-3 flex-wrap">
                       <div className="flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
                         <Cpu className="w-3 h-3" />
-                        <span>{item.name.includes('7B') ? '7B' : item.name.includes('30B') ? '30B' : '175B'}</span>
+                        <span>{item.params}</span>
                       </div>
                       <div className="flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
                         <Boxes className="w-3 h-3" />
                         <span>Safetensors</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
+                        <Server className="w-3 h-3" />
+                        <span>PyTorch</span>
                       </div>
                     </div>
 
@@ -199,7 +219,7 @@ const ModelCatalog = () => {
                         <div className="w-4 h-4 rounded-full bg-slate-100 flex items-center justify-center text-[9px] text-slate-600 font-bold">
                           {item.provider[0]}
                         </div>
-                        <span className="text-[12px] text-slate-500">{item.provider}</span>
+                        <span className="text-[12px] text-slate-500 truncate max-w-[120px]">{item.provider}</span>
                       </div>
                       <div className="flex items-center gap-3 text-[11px] text-slate-400">
                         <div className="flex items-center gap-1">
@@ -208,7 +228,11 @@ const ModelCatalog = () => {
                         </div>
                         <div className="flex items-center gap-1">
                           <ArrowRight className="w-3 h-3 rotate-90" />
-                          {item.downloads > 1000 ? (item.downloads / 1000).toFixed(1) + 'k' : item.downloads}
+                          {item.size}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Star className="w-3 h-3" />
+                          {item.likes}
                         </div>
                       </div>
                     </div>
