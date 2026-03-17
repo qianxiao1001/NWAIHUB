@@ -69,10 +69,10 @@ const HomePageMain = () => (
     <section className="relative pt-24 pb-14 border-b border-slate-200 bg-[linear-gradient(180deg,#eef4ff_0%,#f4f8ff_54%,#f6f8fc_100%)]">
       <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[720px] mx-auto text-center">
-          <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700">中关村AI北纬社区 · OPC技术服务平台</Badge>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-3">OPC技术服务平台</h1>
+          <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700 px-3 py-1 text-xs">中关村AI北纬社区 · OPC技术服务平台</Badge>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-3 whitespace-nowrap">OPC HUB人工智能OPC综合服务平台</h1>
           <p className="text-[26px] leading-tight font-semibold text-slate-800 mb-4 sm:text-[30px]">
-            面向政研与企业的AI服务门户，整合全周期能力
+            算法赋能、模型优选、智能体市场，打造人工智能创业首选平台
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-left max-w-[640px] mx-auto mb-8">
             {focusItems.map(({ label, icon: Icon }) => (

@@ -21,7 +21,7 @@ const PolicyHero = () => (
           </div>
           
           <h1 className="mobile-title-hero lg:text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-            政策与标准中心
+            政策与支持中心
           </h1>
           
           <p className="mobile-text-body lg:text-sm text-slate-600 leading-relaxed lg:max-w-xl mobile-text-truncate-3">
@@ -177,7 +177,7 @@ const PolicyContent = () => {
           )}>
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-slate-200">
-                <h3 className="font-semibold text-slate-900">政策分类</h3>
+                <h3 className="font-semibold text-slate-900">海淀区人工智能OPC专项支持计划</h3>
                 <button 
                   onClick={() => setSidebarDrawerOpen(false)}
                   className="p-1 text-slate-600 hover:bg-slate-50 rounded"
@@ -212,19 +212,6 @@ const PolicyContent = () => {
                     </button>
                   ))}
                 </div>
-
-                <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg p-4 text-white shadow-md">
-                  <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
-                    <FileCheck className="w-4 h-4 text-blue-200" />
-                    申报助手
-                  </h4>
-                  <p className="text-xs text-blue-100 mb-3 leading-relaxed opacity-90">
-                    智能匹配企业适用的政策补贴与资质认定项目。
-                  </p>
-                  <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0 text-xs backdrop-blur-sm">
-                    开始匹配
-                  </Button>
-                </div>
               </div>
             </div>
           </div>
@@ -258,10 +245,10 @@ const PolicyContent = () => {
               <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg p-4 text-white shadow-md">
                 <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
                   <FileCheck className="w-4 h-4 text-blue-200" />
-                  申报助手
+                  北京市专精特新企业服务站
                 </h4>
                 <p className="text-xs text-blue-100 mb-3 leading-relaxed opacity-90">
-                  智能匹配企业适用的政策补贴与资质认定项目。
+                  为专精特新企业提供政策申报、资质认定等一站式服务支持。
                 </p>
                 <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0 text-xs backdrop-blur-sm">
                   开始匹配

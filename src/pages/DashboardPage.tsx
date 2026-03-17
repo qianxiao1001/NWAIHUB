@@ -49,14 +49,14 @@ const SUBSIDY_LOGS = [
   { company: '南京数字创新研究院', type: '平台建设', amount: '80万', date: '2026-01-28', level: '重点' },
   { company: '苏州工业互联网集团', type: '设备采购', amount: '50万', date: '2026-01-25', level: '一般' },
   { company: '扬子江AI实验室', type: '人才引进', amount: '30万', date: '2026-01-20', level: '一般' },
-  { company: '建邺区智慧城市运营中心', type: '场景应用', amount: '200万', date: '2026-01-15', level: '重点' },
+  { company: '北纬社区智慧城市运营中心', type: '场景应用', amount: '200万', date: '2026-01-15', level: '重点' },
 ];
 
 // --- Components ---
 
 const Card = ({ title, children, className, icon: Icon }: { title: string, children: React.ReactNode, className?: string, icon?: any }) => (
-  <div className={cn("relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col shadow-sm", className)}>
-    <div className="px-4 py-3 border-b border-slate-800 flex items-center gap-2 bg-slate-900/50">
+  <div className={cn("relative rounded-2xl overflow-hidden flex flex-col border border-sky-400/10 bg-slate-900/70 backdrop-blur-xl shadow-[0_10px_30px_rgba(2,6,23,0.45)] before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-sky-300/40 before:to-transparent", className)}>
+    <div className="px-4 py-3 border-b border-slate-700/60 flex items-center gap-2 bg-slate-900/30">
       {Icon && <Icon className="w-4 h-4 text-blue-400" />}
       <h3 className="text-slate-200 font-semibold tracking-wide text-sm">{title}</h3>
     </div>
@@ -111,8 +111,8 @@ const MapVisualization = () => {
         
         {/* Tooltip Overlay (Static for design) */}
         <g transform="translate(260, 130)">
-          <path d="M0,0 L20,-20 H100 V30 H0 Z" fill="rgba(15, 23, 42, 0.9)" stroke="#3b82f6" strokeWidth="1" />
-          <text x="30" y="0" fill="white" fontSize="10" fontWeight="bold">建邺区</text>
+          <path d="M0,0 L20,-20 H100 V30 H0 Z" fill="rgba(15, 23, 42, 0.95)" stroke="#60a5fa" strokeWidth="1" />
+          <text x="30" y="0" fill="white" fontSize="10" fontWeight="bold">北纬社区</text>
           <text x="30" y="16" fill="#60a5fa" fontSize="12" fontWeight="bold">2,157 家</text>
         </g>
       </svg>
@@ -122,19 +122,20 @@ const MapVisualization = () => {
 
 export const DashboardPage = () => {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-blue-500/30 overflow-hidden flex flex-col relative">
+    <div className="min-h-screen bg-[#030712] text-slate-200 font-sans selection:bg-cyan-500/30 overflow-hidden flex flex-col relative">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-[#0f172a] to-[#1e1b4b] -z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(14,165,233,0.18),transparent_30%),radial-gradient(circle_at_80%_8%,rgba(37,99,235,0.16),transparent_32%),radial-gradient(circle_at_70%_90%,rgba(6,182,212,0.14),transparent_34%),linear-gradient(145deg,#030712_0%,#0b1325_48%,#0f172a_100%)] -z-20" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:42px_42px] [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_100%)] -z-10 opacity-30" />
       
       {/* Header */}
-      <header className="h-16 relative flex items-center justify-between px-4 lg:px-8 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md z-20">
+      <header className="h-16 relative flex items-center justify-between px-4 lg:px-8 border-b border-slate-700/60 bg-slate-950/45 backdrop-blur-xl z-20">
         <div className="hidden lg:flex items-center gap-4 w-1/4">
-          <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-xs text-slate-300">
+          <div className="flex items-center gap-2 bg-slate-900/70 border border-sky-400/20 rounded-lg px-3 py-1.5 text-xs text-slate-300 shadow-[inset_0_0_20px_rgba(14,165,233,0.08)]">
             <Calendar className="w-3.5 h-3.5" />
             <span>2025.12.01 - 2026.01.31</span>
             <ChevronDown className="w-3 h-3 opacity-50 ml-2" />
           </div>
-          <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded px-3 py-1.5 text-xs text-slate-300">
+          <div className="flex items-center gap-2 bg-slate-900/70 border border-sky-400/20 rounded-lg px-3 py-1.5 text-xs text-slate-300 shadow-[inset_0_0_20px_rgba(14,165,233,0.08)]">
             <MapPin className="w-3.5 h-3.5" />
             <span>全部区域</span>
             <ChevronDown className="w-3 h-3 opacity-50 ml-2" />
@@ -142,7 +143,7 @@ export const DashboardPage = () => {
         </div>
 
         <div className="flex-1 flex justify-center relative">
-          <h1 className="text-base lg:text-xl font-bold text-slate-100 tracking-wide uppercase text-center relative z-10 truncate px-2">
+          <h1 className="text-base lg:text-xl font-bold text-slate-50 tracking-[0.08em] text-center relative z-10 truncate px-2">
             南京 OPC 创业创新专区 · 产业运营看板
           </h1>
         </div>
@@ -153,7 +154,7 @@ export const DashboardPage = () => {
       </header>
 
       {/* Main Layout */}
-      <main className="flex-1 p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10 overflow-y-auto lg:overflow-hidden">
+      <main className="flex-1 p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 relative z-10 overflow-y-auto lg:overflow-hidden">
         
         {/* Left Column */}
         <div className="col-span-1 lg:col-span-3 flex flex-col gap-5 h-auto lg:h-full">
@@ -290,14 +291,14 @@ export const DashboardPage = () => {
         <div className="col-span-1 lg:col-span-6 flex flex-col gap-6 h-auto lg:h-full relative">
            {/* Center Header */}
            <div className="lg:absolute top-0 left-0 right-0 h-12 flex items-center justify-center z-10 mb-4 lg:mb-0">
-              <div className="bg-slate-900/80 backdrop-blur border border-slate-700 px-8 py-1.5 rounded-full shadow-sm flex items-center gap-2">
-                <Target className="w-4 h-4 text-blue-400" />
+              <div className="bg-slate-950/65 backdrop-blur-xl border border-cyan-400/20 px-8 py-1.5 rounded-full shadow-[0_8px_30px_rgba(14,165,233,0.2)] flex items-center gap-2">
+                <Target className="w-4 h-4 text-cyan-300" />
                 <span className="text-slate-200 font-semibold tracking-wide">南京 OPC 创业主体分布情况</span>
               </div>
            </div>
 
            {/* Map Area */}
-           <div className="h-[400px] lg:flex-1 relative rounded-2xl border border-slate-800 bg-slate-900/20 overflow-hidden group">
+           <div className="h-[400px] lg:flex-1 relative rounded-2xl border border-cyan-400/15 bg-slate-950/30 overflow-hidden group shadow-[inset_0_0_80px_rgba(14,165,233,0.08)]">
               <MapVisualization />
            </div>
 
@@ -309,7 +310,7 @@ export const DashboardPage = () => {
                 { label: '补贴发放总额', value: '2,480', unit: '万', sub: '187', subLabel: '覆盖(家)', icon: Layers, color: 'text-purple-400' },
                 { label: '数据集下载量', value: '1,560', unit: 'GB', sub: '工业', subLabel: '数据集Top1', icon: Database, color: 'text-emerald-400' },
               ].map((stat, i) => (
-                <div key={i} className="bg-slate-900/60 border border-slate-800/80 backdrop-blur rounded-xl p-4 flex flex-col justify-between hover:border-blue-500/30 transition-all hover:-translate-y-1 relative overflow-hidden group">
+                <div key={i} className="bg-slate-900/60 border border-slate-700/60 backdrop-blur rounded-xl p-4 flex flex-col justify-between hover:border-cyan-400/35 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
                   <div className={`absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-40 transition-opacity ${stat.color}`}>
                     <stat.icon className="w-8 h-8" />
                   </div>
@@ -320,7 +321,7 @@ export const DashboardPage = () => {
                       <span className="text-xs text-slate-500">{stat.unit}</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 pt-2 border-t border-slate-800">
+                  <div className="flex items-center gap-2 pt-2 border-t border-slate-700/60">
                      <span className={`text-xs font-medium ${stat.color}`}>{stat.sub}</span>
                      <span className="text-[10px] text-slate-500">{stat.subLabel}</span>
                   </div>
@@ -338,11 +339,11 @@ export const DashboardPage = () => {
                  <AreaChart data={POLICY_EFFICIENCY_DATA}>
                    <defs>
                      <linearGradient id="colorCompute" x1="0" y1="0" x2="0" y2="1">
-                       <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                       <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.42}/>
                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
                      </linearGradient>
                      <linearGradient id="colorModel" x1="0" y1="0" x2="0" y2="1">
-                       <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3}/>
+                       <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.42}/>
                        <stop offset="95%" stopColor="#06b6d4" stopOpacity={0}/>
                      </linearGradient>
                    </defs>
@@ -353,8 +354,8 @@ export const DashboardPage = () => {
                       contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', fontSize: '12px' }}
                       itemStyle={{ color: '#e2e8f0' }}
                    />
-                   <Area type="monotone" dataKey="compute" stroke="#3b82f6" fillOpacity={1} fill="url(#colorCompute)" strokeWidth={2} name="算力" />
-                   <Area type="monotone" dataKey="model" stroke="#06b6d4" fillOpacity={1} fill="url(#colorModel)" strokeWidth={2} name="模型" />
+                   <Area type="monotone" dataKey="compute" stroke="#38bdf8" fillOpacity={1} fill="url(#colorCompute)" strokeWidth={2.3} name="算力" />
+                   <Area type="monotone" dataKey="model" stroke="#06b6d4" fillOpacity={1} fill="url(#colorModel)" strokeWidth={2.3} name="模型" />
                  </AreaChart>
                </ResponsiveContainer>
              </div>
