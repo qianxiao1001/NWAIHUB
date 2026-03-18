@@ -61,7 +61,7 @@ export const Header = () => {
                   key={item.path}
                   to={item.path}
                   className={cn(
-                    "text-[13px] font-medium transition-all duration-200 relative py-1.5",
+                    "text-[13px] font-medium transition-all duration-200 relative py-1.5 ui-link-underline ui-focus-ring",
                     location.pathname === item.path
                       ? "text-blue-700 font-semibold"
                       : "text-slate-600 hover:text-blue-600"
@@ -79,7 +79,7 @@ export const Header = () => {
             <div className="hidden lg:flex items-center">
               <Button
                 variant="secondary"
-                className="h-8 px-3 text-xs border-slate-300 text-slate-700 hover:bg-slate-50"
+                className="h-8 px-3 text-xs border-slate-300 text-slate-700 hover:bg-slate-50 ui-button-pop ui-focus-ring"
               >
                 登录与认证
               </Button>
@@ -87,7 +87,7 @@ export const Header = () => {
 
             {/* Mobile Menu Toggle */}
             <button
-              className="lg:hidden p-2 text-slate-600 hover:bg-slate-50 rounded-md mobile-touch-feedback"
+              className="lg:hidden p-2 text-slate-600 hover:bg-slate-50 rounded-md mobile-touch-feedback ui-focus-ring"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -135,7 +135,7 @@ export const Header = () => {
                 key={item.path}
                 to={item.path}
                 className={cn(
-                  "flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-colors mobile-touch-feedback",
+                  "flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-colors mobile-touch-feedback ui-hover-lift ui-focus-ring",
                   location.pathname === item.path 
                     ? "bg-blue-50 text-blue-700 border-l-2 border-blue-600 pl-4" 
                     : "text-slate-700 hover:bg-slate-50"
@@ -153,14 +153,14 @@ export const Header = () => {
           <div className="p-4 border-t border-slate-200 space-y-2">
             <Button 
               variant="secondary" 
-              className="w-full justify-center border-slate-200 mobile-button"
+              className="w-full justify-center border-slate-200 mobile-button ui-button-pop ui-focus-ring"
               onClick={() => setMobileMenuOpen(false)}
             >
               企业入驻
             </Button>
             <Button 
               variant="primary" 
-              className="w-full justify-center bg-blue-700 hover:bg-blue-800 mobile-button"
+              className="w-full justify-center bg-blue-700 hover:bg-blue-800 mobile-button ui-button-pop ui-focus-ring"
               onClick={() => setMobileMenuOpen(false)}
             >
               企业认证
@@ -196,21 +196,21 @@ export const Footer = () => {
           <div className="hidden md:block col-span-1 md:col-span-2 md:col-start-6">
             <h3 className="text-white font-semibold mb-3 text-xs tracking-wide border-l-2 border-blue-600 pl-2.5">平台服务</h3>
             <ul className="space-y-2 text-xs">
-              <li><Link to="/models" className="hover:text-white transition-colors duration-200">模型广场</Link></li>
-              <li><Link to="/compute" className="hover:text-white transition-colors duration-200">算力资源</Link></li>
-              <li><Link to="/datasets" className="hover:text-white transition-colors duration-200">数据资源</Link></li>
-              <li><Link to="/apps" className="hover:text-white transition-colors duration-200">智能体市场</Link></li>
+              <li><Link to="/models" className="hover:text-white transition-colors duration-200 ui-link-underline">模型广场</Link></li>
+              <li><Link to="/compute" className="hover:text-white transition-colors duration-200 ui-link-underline">算力资源</Link></li>
+              <li><Link to="/datasets" className="hover:text-white transition-colors duration-200 ui-link-underline">数据资源</Link></li>
+              <li><Link to="/apps" className="hover:text-white transition-colors duration-200 ui-link-underline">智能体市场</Link></li>
             </ul>
           </div>
 
           <div className="hidden md:block col-span-1 md:col-span-2">
             <h3 className="text-white font-semibold mb-3 text-xs tracking-wide border-l-2 border-blue-600 pl-2.5">支持与政策</h3>
             <ul className="space-y-2 text-xs">
-              <li><Link to="/policy" className="hover:text-white transition-colors duration-200">政策支持</Link></li>
-              <li><Link to="/training" className="hover:text-white transition-colors duration-200">培训认证</Link></li>
-              <li><Link to="/community" className="hover:text-white transition-colors duration-200">活动社群</Link></li>
-              <li><a href="#" className="hover:text-white transition-colors duration-200">企业入驻</a></li>
-              <li><a href="#" className="hover:text-white transition-colors duration-200">文档中心</a></li>
+              <li><Link to="/policy" className="hover:text-white transition-colors duration-200 ui-link-underline">政策支持</Link></li>
+              <li><Link to="/training" className="hover:text-white transition-colors duration-200 ui-link-underline">培训认证</Link></li>
+              <li><Link to="/community" className="hover:text-white transition-colors duration-200 ui-link-underline">活动社群</Link></li>
+              <li><a href="#" className="hover:text-white transition-colors duration-200 ui-link-underline">企业入驻</a></li>
+              <li><a href="#" className="hover:text-white transition-colors duration-200 ui-link-underline">文档中心</a></li>
             </ul>
           </div>
 
@@ -284,9 +284,9 @@ export const Footer = () => {
         <div className="pt-4 md:pt-5 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-2.5 md:gap-3 text-[10px] text-slate-500">
           <p>© 2026 中关村AI北纬社区OPC技术服务平台 版权所有</p>
           <div className="flex gap-4 md:gap-5 flex-wrap justify-center">
-            <a href="#" className="hover:text-slate-300 transition-colors duration-200">隐私政策</a>
-            <a href="#" className="hover:text-slate-300 transition-colors duration-200">服务条款</a>
-            <a href="#" className="hover:text-slate-300 transition-colors duration-200">京ICP备12345678号</a>
+            <a href="#" className="hover:text-slate-300 transition-colors duration-200 ui-link-underline">隐私政策</a>
+            <a href="#" className="hover:text-slate-300 transition-colors duration-200 ui-link-underline">服务条款</a>
+            <a href="#" className="hover:text-slate-300 transition-colors duration-200 ui-link-underline">京ICP备12345678号</a>
           </div>
         </div>
       </div>
@@ -302,6 +302,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     if (!revealTargets.length) {
       return;
     }
+
+    revealTargets.forEach((target) => {
+      if (!target.classList.contains('ui-reveal') && target.tagName.toLowerCase() === 'section') {
+        target.classList.add('ui-reveal');
+      }
+    });
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -337,7 +343,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <Footer />
       {showBackTop && (
         <button
-          className="fixed bottom-4 right-4 md:bottom-5 md:right-5 z-40 w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg hover:bg-slate-800 transition-colors mobile-touch-feedback"
+          className="fixed bottom-4 right-4 md:bottom-5 md:right-5 z-40 w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg hover:bg-slate-800 transition-colors mobile-touch-feedback ui-button-pop ui-focus-ring"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="返回顶部"
         >
