@@ -4,11 +4,11 @@
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
+  --color-primary-50: #eaf3ff;
+  --color-primary-100: #d6e7ff;
+  --color-primary-500: #2a69d3;
+  --color-primary-600: #1f5fca;
+  --color-primary-700: #184ea8;
   
   --color-accent-500: #64748b;
   --color-accent-600: #475569;
@@ -26,8 +26,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* More subtle, enterprise background */
   background-image: 
-    radial-gradient(circle at 15% -20%, rgba(59, 130, 246, 0.02), transparent 40%),
-    radial-gradient(circle at 85% 0%, rgba(15, 23, 42, 0.02), transparent 35%);
+    radial-gradient(circle at 15% -20%, rgba(47, 102, 232, 0.045), transparent 42%),
+    radial-gradient(circle at 85% 0%, rgba(32, 73, 177, 0.04), transparent 36%);
 }
 
 /* Custom Thin Scrollbar */
@@ -60,8 +60,8 @@ body {
 }
 
 .card-enterprise:hover {
-  border-color: #bfdbfe;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-color: #b7cdfd;
+  box-shadow: 0 6px 12px -4px rgb(37 88 212 / 0.16), 0 2px 6px -3px rgb(0 0 0 / 0.08);
   transform: translateY(-2px);
 }
 
@@ -91,7 +91,7 @@ body {
     width: 100%;
     height: 2px;
     border-radius: 9999px;
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    background: linear-gradient(90deg, #2558d4, #2f66e8);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.22s ease;
@@ -104,7 +104,7 @@ body {
 
 .ui-focus-ring:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.24);
+  box-shadow: 0 0 0 3px rgb(37 88 212 / 0.26);
 }
 
 /* Glass Panel - Cleaner */
@@ -173,7 +173,7 @@ body {
   bottom: 10%;
   width: 3px;
   border-radius: 0 2px 2px 0;
-  background: #2563eb; /* blue-600 */
+  background: #2558d4;
   opacity: 0;
   transform: scaleY(0.5);
   transition: all 0.2s ease;
@@ -187,6 +187,25 @@ body {
   opacity: 1;
   transform: scaleY(1);
 }
+
+/* Brand Color Mapping (Shangdi logo inspired) */
+.bg-blue-50 { background-color: var(--color-primary-50) !important; }
+.bg-blue-100 { background-color: var(--color-primary-100) !important; }
+.bg-blue-600 { background-color: var(--color-primary-600) !important; }
+.bg-blue-700 { background-color: var(--color-primary-700) !important; }
+.text-blue-500 { color: var(--color-primary-500) !important; }
+.text-blue-600 { color: var(--color-primary-600) !important; }
+.text-blue-700 { color: var(--color-primary-700) !important; }
+.border-blue-100 { border-color: color-mix(in srgb, var(--color-primary-100) 88%, white) !important; }
+.border-blue-300 { border-color: color-mix(in srgb, var(--color-primary-500) 35%, white) !important; }
+.border-blue-600 { border-color: var(--color-primary-600) !important; }
+.ring-blue-500\/10 { --tw-ring-color: color-mix(in srgb, var(--color-primary-500) 10%, transparent) !important; }
+.ring-blue-500\/20 { --tw-ring-color: color-mix(in srgb, var(--color-primary-500) 20%, transparent) !important; }
+
+.hover\:bg-blue-700:hover { background-color: var(--color-primary-700) !important; }
+.hover\:bg-blue-800:hover { background-color: #143f8a !important; }
+.hover\:text-blue-600:hover { color: var(--color-primary-600) !important; }
+.hover\:border-blue-300:hover { border-color: color-mix(in srgb, var(--color-primary-500) 35%, white) !important; }
 
 /* Mobile Design System */
 @media (max-width: 768px) {

@@ -179,7 +179,7 @@ const PolicyContent = () => {
           )}>
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-slate-200">
-                <h3 className="font-semibold text-slate-900">中关村AI北纬社区专项支持计划</h3>
+                <h3 className="font-semibold text-slate-900">上地街道专项支持计划</h3>
                 <button 
                   onClick={() => setSidebarDrawerOpen(false)}
                   className="p-1 text-slate-600 hover:bg-slate-50 rounded"

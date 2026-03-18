@@ -79,7 +79,7 @@ const HomePageMain = () => {
       
       <div className="relative z-10 w-full max-w-[900px] mx-auto px-2 sm:px-8 py-8 sm:py-10">
         <div className="text-center">
-          <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700 px-4 py-1.5 text-sm font-medium">中关村AI北纬社区 · OPC技术服务平台</Badge>
+          <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700 px-4 py-1.5 text-sm font-medium">上地街道 · OPC技术服务平台</Badge>
           <h1 className="text-[clamp(1rem,4.1vw,3rem)] sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-3 whitespace-nowrap">
             OPC HUB人工智能OPC综合服务平台
           </h1>
@@ -200,7 +200,7 @@ const HomePageMain = () => {
 
             <div className="lg:col-span-8 rounded-xl border border-slate-200 bg-slate-50/70 p-4 md:p-5">
               <div className="pb-3 mb-3 border-b border-slate-200">
-                <h3 className="text-[34px] leading-tight font-semibold text-slate-900 md:text-4xl">中关村AI北纬社区 · 统一运营监测</h3>
+                <h3 className="text-[34px] leading-tight font-semibold text-slate-900 md:text-4xl">上地街道 · 统一运营监测</h3>
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-4">

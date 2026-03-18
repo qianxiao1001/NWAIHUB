@@ -107,21 +107,13 @@ const ACHIEVEMENT_DATA = [
 // --- Components ---
 
 const Card = ({ title, children, className, icon: Icon }: { title: string, children: React.ReactNode, className?: string, icon?: any }) => (
-  <div className={cn("relative rounded-2xl overflow-hidden flex flex-col border border-sky-400/10 bg-slate-900/70 backdrop-blur-xl shadow-[0_10px_30px_rgba(2,6,23,0.45)] before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-sky-300/40 before:to-transparent", className)}>
-    <div className="px-4 py-3 border-b border-slate-700/60 flex items-center gap-2 bg-slate-900/30">
-      {Icon && <Icon className="w-4 h-4 text-blue-400" />}
-      <h3 className="text-slate-200 font-semibold tracking-wide text-sm">{title}</h3>
+  <section className={cn("relative rounded-xl border border-slate-700/55 bg-slate-900/70 backdrop-blur-sm overflow-hidden flex flex-col", className)}>
+    <div className="h-10 px-3 flex items-center gap-2 border-b border-slate-700/55 bg-slate-900/45">
+      {Icon && <Icon className="w-3.5 h-3.5 text-cyan-300" />}
+      <h3 className="text-slate-100 text-sm font-semibold tracking-wide">{title}</h3>
     </div>
-    <div className="p-4 flex-1 overflow-hidden relative text-slate-300">
-      {children}
-    </div>
-  </div>
-);
-
-const NumberTicker = ({ value }: { value: string | number }) => (
-  <span className="font-mono text-white tracking-wider tabular-nums">
-    {value}
-  </span>
+    <div className="p-3 flex-1 min-h-0 text-slate-300">{children}</div>
+  </section>
 );
 
 const ClockWidget = () => {
@@ -144,98 +136,108 @@ const ClockWidget = () => {
   );
 };
 
-const MapVisualization = () => {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Abstract Map SVG (Conceptual Nanjing) */}
-      <svg viewBox="0 0 400 400" className="w-[80%] h-[80%]">
-        <path d="M200,80 L240,110 L230,160 L260,180 L250,240 L200,280 L140,230 L150,160 L120,130 L160,90 Z" 
-              fill="rgba(30, 58, 138, 0.2)" stroke="#3b82f6" strokeWidth="1.5" className="hover:fill-blue-900/40 transition-colors duration-300 cursor-pointer" />
-        <path d="M240,110 L280,100 L300,150 L260,180 L230,160 Z" 
-              fill="rgba(6, 182, 212, 0.1)" stroke="#06b6d4" strokeWidth="1.5" className="hover:fill-cyan-900/30 transition-colors duration-300 cursor-pointer" />
-        <path d="M250,240 L280,260 L240,320 L200,280 Z" 
-              fill="rgba(99, 102, 241, 0.1)" stroke="#6366f1" strokeWidth="1.5" className="hover:fill-indigo-900/30 transition-colors duration-300 cursor-pointer" />
-        
-        {/* Hotspots */}
-        <circle cx="210" cy="150" r="4" fill="#fbbf24" className="animate-pulse" />
-        <circle cx="250" cy="190" r="3" fill="#34d399" className="animate-pulse" />
-        <circle cx="180" cy="200" r="3" fill="#60a5fa" className="animate-pulse" />
-        
-        {/* Tooltip Overlay (Static for design) */}
-        <g transform="translate(260, 130)">
-          <path d="M0,0 L20,-20 H100 V30 H0 Z" fill="rgba(15, 23, 42, 0.95)" stroke="#60a5fa" strokeWidth="1" />
-          <text x="30" y="0" fill="white" fontSize="10" fontWeight="bold">北纬社区</text>
-          <text x="30" y="16" fill="#60a5fa" fontSize="12" fontWeight="bold">2,157 家</text>
-        </g>
-      </svg>
-    </div>
-  );
-};
+const MapVisualization = () => (
+  <div className="relative w-full h-full flex items-center justify-center">
+    <svg viewBox="0 0 820 520" className="w-[88%] h-[88%]">
+      <defs>
+        <linearGradient id="polyFillA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="rgba(30,64,175,0.30)" />
+          <stop offset="100%" stopColor="rgba(15,23,42,0.18)" />
+        </linearGradient>
+        <linearGradient id="polyFillB" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="rgba(6,182,212,0.24)" />
+          <stop offset="100%" stopColor="rgba(15,23,42,0.14)" />
+        </linearGradient>
+        <linearGradient id="polyFillC" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="rgba(99,102,241,0.22)" />
+          <stop offset="100%" stopColor="rgba(15,23,42,0.12)" />
+        </linearGradient>
+      </defs>
+
+      {/* Left arc group: D3 D4 D9 */}
+      <polygon points="220,125 300,105 350,155 305,220 235,205 195,165" fill="url(#polyFillA)" stroke="#38bdf8" strokeWidth="2.2" />
+      <polygon points="210,220 300,235 318,315 248,360 175,305 185,250" fill="url(#polyFillA)" stroke="#3b82f6" strokeWidth="2.2" />
+      <polygon points="170,320 245,365 228,442 140,458 95,392 116,338" fill="url(#polyFillB)" stroke="#22d3ee" strokeWidth="2.2" />
+
+      {/* Core D5 */}
+      <polygon points="320,165 470,140 560,210 535,350 405,420 300,315" fill="url(#polyFillA)" stroke="#60a5fa" strokeWidth="2.6" />
+
+      {/* D2 top-mid-left */}
+      <polygon points="345,78 455,82 495,126 462,165 345,162 305,122" fill="url(#polyFillB)" stroke="#67e8f9" strokeWidth="2.2" />
+
+      {/* Right vertical group D1 D6 D7 */}
+      <rect x="566" y="88" width="125" height="68" rx="8" fill="url(#polyFillC)" stroke="#818cf8" strokeWidth="2.2" />
+      <rect x="568" y="166" width="125" height="86" rx="8" fill="url(#polyFillC)" stroke="#6366f1" strokeWidth="2.2" />
+      <rect x="572" y="263" width="125" height="82" rx="8" fill="url(#polyFillB)" stroke="#22d3ee" strokeWidth="2.2" />
+
+      {/* D8 connector */}
+      <polygon points="355,395 485,370 550,432 495,488 360,470 315,430" fill="url(#polyFillC)" stroke="#818cf8" strokeWidth="2.2" />
+
+      {[
+        ['D1', 620, 126], ['D2', 398, 122], ['D3', 255, 164], ['D4', 242, 274], ['D5', 430, 277],
+        ['D6', 620, 214], ['D7', 624, 306], ['D8', 430, 438], ['D9', 168, 400],
+      ].map(([txt, x, y]) => (
+        <text key={txt} x={Number(x)} y={Number(y)} fill="#bfdbfe" fontSize="13" textAnchor="middle">{txt}</text>
+      ))}
+
+      <circle cx="450" cy="245" r="7" fill="#fbbf24" />
+      <circle cx="372" cy="276" r="6" fill="#60a5fa" />
+      <circle cx="520" cy="286" r="6" fill="#22d3ee" />
+      <circle cx="272" cy="327" r="5" fill="#a78bfa" />
+    </svg>
+  </div>
+);
 
 export const DashboardPage = () => {
   return (
-    <div className="min-h-screen bg-[#030712] text-slate-200 font-sans selection:bg-cyan-500/30 overflow-hidden flex flex-col relative">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(14,165,233,0.18),transparent_30%),radial-gradient(circle_at_80%_8%,rgba(37,99,235,0.16),transparent_32%),radial-gradient(circle_at_70%_90%,rgba(6,182,212,0.14),transparent_34%),linear-gradient(145deg,#030712_0%,#0b1325_48%,#0f172a_100%)] -z-20" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:42px_42px] [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_100%)] -z-10 opacity-30" />
-      
-      {/* Header */}
-      <header className="h-16 relative flex items-center justify-between px-4 lg:px-8 border-b border-slate-700/60 bg-slate-950/45 backdrop-blur-xl z-20">
-        <div className="hidden lg:flex items-center gap-4 w-1/4">
-          <div className="flex items-center gap-2 bg-slate-900/70 border border-sky-400/20 rounded-lg px-3 py-1.5 text-xs text-slate-300 shadow-[inset_0_0_20px_rgba(14,165,233,0.08)]">
-            <Calendar className="w-3.5 h-3.5" />
-            <span>截至 2026.03</span>
-          </div>
-        </div>
+    <div className="h-screen bg-[#030712] text-slate-200 font-sans selection:bg-cyan-500/30 overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(14,165,233,0.14),transparent_36%),radial-gradient(circle_at_85%_8%,rgba(37,99,235,0.12),transparent_34%),linear-gradient(145deg,#030712_0%,#0a1224_55%,#0f172a_100%)] -z-20" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.045)_1px,transparent_1px)] bg-[size:38px_38px] opacity-25 -z-10" />
 
-        <div className="flex-1 flex justify-center relative">
-          <div className="text-center">
-            <h1 className="text-lg lg:text-2xl font-bold text-slate-50 tracking-[0.08em] text-center relative z-10">
-              中关村 AI 北纬社区·产业运营驾驶舱
-            </h1>
-            <p className="text-[10px] lg:text-xs text-slate-400 mt-0.5 tracking-wider">产业运营监测数据</p>
-          </div>
-        </div>
-
-        <div className="hidden lg:flex w-1/4 justify-end">
-          <ClockWidget />
-        </div>
-      </header>
-
-      {/* Top Overview Metrics */}
-      <div className="px-4 lg:px-8 py-4 border-b border-slate-700/40 bg-slate-950/30 backdrop-blur-sm z-10">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
-          {[
-            { label: '社区主体总数', value: '155', unit: '家', sub: '↑ 12.3%', subColor: 'text-emerald-400', icon: Users, color: 'from-blue-500 to-cyan-500' },
-            { label: '月度新增主体', value: '32', unit: '家', sub: '↑ 8', subColor: 'text-emerald-400', icon: TrendingUp, color: 'from-cyan-500 to-teal-500' },
-            { label: '活跃企业数', value: '142', unit: '家', sub: '91.6%', subColor: 'text-blue-400', icon: Activity, color: 'from-blue-600 to-indigo-500' },
-            { label: '服务触达率', value: '87.5', unit: '%', sub: '↑ 5.2%', subColor: 'text-emerald-400', icon: Target, color: 'from-indigo-500 to-purple-500' },
-            { label: '模型调用总量', value: '32.8', unit: '亿次', sub: '↑ 22%', subColor: 'text-emerald-400', icon: Server, color: 'from-purple-500 to-pink-500' },
-            { label: '政策覆盖企业', value: '187', unit: '家', sub: '覆盖率 76%', subColor: 'text-cyan-400', icon: FileCheck, color: 'from-emerald-500 to-teal-500' },
-          ].map((item, i) => (
-            <div key={i} className="relative overflow-hidden rounded-xl bg-slate-900/60 border border-slate-700/60 backdrop-blur p-3 lg:p-4 hover:border-slate-600 transition-all group">
-              <div className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-br ${item.color} opacity-10 rounded-bl-full transition-opacity group-hover:opacity-15`} />
-              <div className="flex items-center gap-2 mb-2">
-                <item.icon className="w-4 h-4 text-slate-400" />
-                <span className="text-[10px] lg:text-xs text-slate-400">{item.label}</span>
-              </div>
-              <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-2xl lg:text-3xl font-bold font-mono text-white">{item.value}</span>
-                <span className="text-xs text-slate-500">{item.unit}</span>
-              </div>
-              <div className={`text-[10px] lg:text-xs font-medium ${item.subColor}`}>{item.sub}</div>
+      <div className="h-full p-3 lg:p-4">
+        <div className="h-full border border-slate-700/45 rounded-xl overflow-hidden bg-slate-950/35 backdrop-blur-sm grid grid-rows-[7%_11%_82%]">
+          {/* Header */}
+          <header className="px-4 lg:px-6 border-b border-slate-700/45 flex items-center">
+            <div className="w-1/4 text-xs text-slate-400 hidden lg:flex items-center gap-2">
+              <Calendar className="w-3.5 h-3.5" />
+              <span>截至 2026.03</span>
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="flex-1 text-center">
+              <h1 className="text-lg lg:text-[34px] leading-tight font-bold tracking-[0.06em] text-slate-50">上地街道·产业运营驾驶舱</h1>
+              <p className="text-[11px] text-slate-400 tracking-wide">产业运营监测数据</p>
+            </div>
+            <div className="w-1/4 flex justify-end">
+              <ClockWidget />
+            </div>
+          </header>
 
-      {/* Main Layout */}
-      <main className="flex-1 p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 relative z-10 overflow-y-auto lg:overflow-hidden">
+          {/* Unified Overview Strip */}
+          <section className="px-4 lg:px-6 py-2 border-b border-slate-700/45">
+            <div className="h-full rounded-lg border border-slate-700/55 bg-slate-900/55 grid grid-cols-6 divide-x divide-slate-700/50">
+              {[
+                { label: '社区主体总数', value: '155', unit: '家', sub: '↑ 12.3%', subColor: 'text-emerald-400', icon: Users },
+                { label: '月度新增主体', value: '32', unit: '家', sub: '↑ 8', subColor: 'text-emerald-400', icon: TrendingUp },
+                { label: '活跃企业数', value: '142', unit: '家', sub: '91.6%', subColor: 'text-cyan-400', icon: Activity },
+                { label: '服务触达率', value: '87.5', unit: '%', sub: '↑ 5.2%', subColor: 'text-emerald-400', icon: Target },
+                { label: '模型调用总量', value: '32.8', unit: '亿次', sub: '↑ 22%', subColor: 'text-emerald-400', icon: Server },
+                { label: '政策覆盖企业数', value: '187', unit: '家', sub: '覆盖率 76%', subColor: 'text-cyan-400', icon: FileCheck },
+              ].map((item) => (
+                <div key={item.label} className="px-3 py-2 flex flex-col justify-center">
+                  <div className="flex items-center gap-1.5 text-[11px] text-slate-400 mb-1"><item.icon className="w-3.5 h-3.5" />{item.label}</div>
+                  <div className="flex items-baseline gap-1"><span className="font-mono text-[34px] leading-none font-bold text-white">{item.value}</span><span className="text-xs text-slate-500">{item.unit}</span></div>
+                  <div className={cn('text-[11px] mt-1 font-medium', item.subColor)}>{item.sub}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Main Layout */}
+          <main className="px-4 lg:px-6 py-2.5 grid grid-cols-12 gap-3 min-h-0">
         
         {/* Left Column */}
-        <div className="col-span-1 lg:col-span-3 flex flex-col gap-5 h-auto lg:h-full">
+        <div className="col-span-3 flex flex-col gap-3 min-h-0">
           {/* 1. Entrepreneurship Status */}
-          <Card title="创业态势" icon={Activity} className="h-[300px] lg:h-[32%]">
+          <Card title="创业态势" icon={Activity} className="basis-[42%] min-h-0">
             <div className="flex items-end justify-between mb-4">
               <div>
                 <p className="text-slate-400 text-xs mb-1">OPC 创新主体</p>
@@ -301,7 +303,7 @@ export const DashboardPage = () => {
           </Card>
 
           {/* 2. Subject Portrait */}
-          <Card title="主体画像" icon={Users} className="h-[300px] lg:h-[32%]">
+          <Card title="主体画像" icon={Users} className="basis-[32%] min-h-0">
             <div className="mb-4">
               <div className="flex justify-between text-xs text-slate-400 mb-1.5">
                 <span>北纬社区本地 <span className="text-blue-400 font-bold">52%</span></span>
@@ -338,7 +340,7 @@ export const DashboardPage = () => {
           </Card>
 
           {/* 3. Model Rankings */}
-          <Card title="模型调用量月度 TOP5" icon={Server} className="h-[300px] lg:flex-1">
+          <Card title="模型调用量月度TOP5" icon={Server} className="basis-[26%] min-h-0">
             <div className="space-y-3 mt-2">
               {MODEL_RANK_DATA.map((item, index) => (
                 <div key={index} className="flex items-center gap-3 p-2 hover:bg-white/5 rounded-lg transition-colors group cursor-default border border-transparent hover:border-blue-500/20">
@@ -364,52 +366,56 @@ export const DashboardPage = () => {
         </div>
 
         {/* Center Column */}
-        <div className="col-span-1 lg:col-span-6 flex flex-col gap-6 h-auto lg:h-full relative">
-           {/* Center Header */}
-           <div className="lg:absolute top-0 left-0 right-0 h-12 flex items-center justify-center z-10 mb-4 lg:mb-0">
-              <div className="bg-slate-950/65 backdrop-blur-xl border border-cyan-400/20 px-8 py-1.5 rounded-full shadow-[0_8px_30px_rgba(14,165,233,0.2)] flex items-center gap-2">
-                <Target className="w-4 h-4 text-cyan-300" />
-                <span className="text-slate-200 font-semibold tracking-wide">中关村AI北纬社区创业主体分布情况</span>
-              </div>
-           </div>
-
-           {/* Map Area */}
-           <div className="h-[400px] lg:flex-1 relative rounded-2xl border border-cyan-400/15 bg-slate-950/30 overflow-hidden group shadow-[inset_0_0_80px_rgba(14,165,233,0.08)]">
-              <MapVisualization />
-           </div>
-
-           {/* Bottom Stats */}
-           <div className="h-auto lg:h-[140px] grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="col-span-6 min-h-0">
+           <div className="h-full rounded-xl border border-slate-700/55 bg-slate-900/60 overflow-hidden grid grid-rows-[1fr_auto]">
+             <div className="relative min-h-0">
+               <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 bg-slate-950/70 border border-cyan-400/25 px-6 py-1 rounded-full flex items-center gap-2">
+                  <Target className="w-4 h-4 text-cyan-300" />
+                  <span className="text-slate-200 font-semibold text-sm tracking-wide">上地街道创业主体分布情况</span>
+               </div>
+               <MapVisualization />
+               <div className="absolute right-3 top-12 rounded-lg border border-cyan-400/35 bg-slate-950/82 p-3 w-[220px]">
+                 <p className="text-xs text-slate-400 mb-1">北纬社区核心摘要</p>
+                 <div className="text-2xl font-mono font-bold text-cyan-300">2,157 家</div>
+                 <div className="grid grid-cols-2 gap-2 mt-2 text-[11px]">
+                   <div><span className="text-slate-500">区域占比</span><p className="text-slate-100 font-semibold">18.7%</p></div>
+                   <div><span className="text-slate-500">月度增长</span><p className="text-emerald-400 font-semibold">+12.3%</p></div>
+                   <div className="col-span-2"><span className="text-slate-500">重点行业</span><p className="text-slate-100 font-semibold">工业质检 / 智能体 / 数据智能</p></div>
+                 </div>
+               </div>
+             </div>
+             <div className="grid grid-cols-4 gap-2 p-2 border-t border-slate-700/55 bg-slate-950/38">
               {[
                 { label: '累计算力租赁', value: '1,256', unit: 'GPU时', sub: '↑ 12.3%', subLabel: '月度增长', icon: Zap, color: 'text-blue-400' },
                 { label: '模型调用频次', value: '32.8', unit: '万次', sub: '42%', subLabel: '工业场景', icon: Cpu, color: 'text-cyan-400' },
                 { label: '补贴发放总额', value: '2,480', unit: '万', sub: '187', subLabel: '覆盖(家)', icon: Layers, color: 'text-purple-400' },
                 { label: '数据集下载量', value: '1,560', unit: 'GB', sub: '工业', subLabel: '数据集Top1', icon: Database, color: 'text-emerald-400' },
               ].map((stat, i) => (
-                <div key={i} className="bg-slate-900/60 border border-slate-700/60 backdrop-blur rounded-xl p-4 flex flex-col justify-between hover:border-cyan-400/35 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                <div key={i} className="bg-slate-900/60 border border-slate-700/45 rounded-lg p-2.5 flex flex-col justify-between relative overflow-hidden">
                   <div className={`absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-40 transition-opacity ${stat.color}`}>
                     <stat.icon className="w-8 h-8" />
                   </div>
                   <div>
-                    <p className="text-slate-400 text-xs mb-1">{stat.label}</p>
+                    <p className="text-slate-400 text-[11px] mb-1">{stat.label}</p>
                     <div className="flex items-baseline gap-1">
-                      <span className={`text-2xl font-bold font-mono tracking-tight text-white`}>{stat.value}</span>
+                      <span className={`text-xl font-bold font-mono tracking-tight text-white`}>{stat.value}</span>
                       <span className="text-xs text-slate-500">{stat.unit}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 pt-2 border-t border-slate-700/60">
-                     <span className={`text-xs font-medium ${stat.color}`}>{stat.sub}</span>
+                     <span className={`text-[11px] font-medium ${stat.color}`}>{stat.sub}</span>
                      <span className="text-[10px] text-slate-500">{stat.subLabel}</span>
                   </div>
                 </div>
               ))}
+             </div>
            </div>
         </div>
 
         {/* Right Column */}
-        <div className="col-span-1 lg:col-span-3 flex flex-col gap-5 h-auto lg:h-full">
+        <div className="col-span-3 flex flex-col gap-3 min-h-0">
            {/* 1. Policy Process */}
-           <Card title="政策申报流程监控" icon={CheckCircle2} className="flex-1 min-h-[280px]">
+           <Card title="政策申报流程监控" icon={CheckCircle2} className="basis-[68%] min-h-0">
               <div className="flex items-center justify-between px-2 mt-4 relative">
                 {/* Connecting Line */}
                 <div className="absolute top-4 left-4 right-4 h-0.5 bg-slate-800 -z-10" />
@@ -426,7 +432,7 @@ export const DashboardPage = () => {
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-2 gap-3 mt-6">
+              <div className="grid grid-cols-2 gap-2 mt-5">
                 <div className="bg-blue-900/20 border border-blue-500/20 rounded p-2 text-center">
                   <p className="text-[10px] text-blue-300">覆盖企业</p>
                   <p className="text-lg font-bold text-white">187</p>
@@ -435,12 +441,24 @@ export const DashboardPage = () => {
                   <p className="text-[10px] text-cyan-300">带动产值 (亿)</p>
                   <p className="text-lg font-bold text-white">1.2</p>
                 </div>
+                <div className="bg-indigo-900/20 border border-indigo-500/20 rounded p-2 text-center">
+                  <p className="text-[10px] text-indigo-300">通过率</p>
+                  <p className="text-lg font-bold text-white">88%</p>
+                </div>
+                <div className="bg-emerald-900/20 border border-emerald-500/20 rounded p-2 text-center">
+                  <p className="text-[10px] text-emerald-300">审批时长</p>
+                  <p className="text-lg font-bold text-white">5.2 天</p>
+                </div>
+                <div className="col-span-2 bg-rose-900/20 border border-rose-500/20 rounded p-2 text-center">
+                  <p className="text-[10px] text-rose-300">异常待处理</p>
+                  <p className="text-lg font-bold text-white">3 个</p>
+                </div>
               </div>
            </Card>
 
            {/* 2. Token Consumption Trend */}
-           <Card title="模型调用 Token 消耗趋势" icon={Activity} className="h-[280px]">
-             <div className="w-full h-full -ml-4 mt-2">
+           <Card title="模型调用Token消耗趋势" icon={Activity} className="basis-[32%] min-h-0">
+             <div className="w-full h-full">
                <ResponsiveContainer width="100%" height="100%">
                  <AreaChart data={TOKEN_CONSUMPTION_DATA}>
                    <defs>
@@ -462,20 +480,9 @@ export const DashboardPage = () => {
              </div>
            </Card>
         </div>
-      </main>
-      
-      <style>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(30, 41, 59, 0.5);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(71, 85, 105, 0.8);
-          border-radius: 4px;
-        }
-      `}</style>
+          </main>
+        </div>
+      </div>
     </div>
   );
 };
