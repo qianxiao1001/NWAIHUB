@@ -24,7 +24,7 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <Router basename="/NWAIHUB">
+    <Router basename="/opcservicehub">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
