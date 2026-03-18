@@ -76,17 +76,11 @@ const HomePageMain = () => (
       
       <div className="relative z-10 w-full max-w-[900px] mx-auto px-6 sm:px-8 py-8 sm:py-10">
         <div className="text-center">
-          <div className="mb-3 flex justify-center">
-            <img 
-              src={`${import.meta.env.BASE_URL}Logos/微信图片_20260308232726_966_99.jpg`} 
-              alt="中关村AI北纬社区" 
-              className="h-9 w-auto opacity-90" 
-            />
-          </div>
-          
-          <h1 className="text-[36px] sm:text-[44px] lg:text-[52px] font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
-            人工智能 OPC 综合服务平台
-          </h1>
+          <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700 px-4 py-1.5 text-sm font-medium">中关村AI北纬社区 · OPC技术服务平台</Badge>
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-3 whitespace-nowrap">OPC HUB人工智能OPC综合服务平台</h1>
+          <p className="text-[26px] leading-tight font-semibold text-slate-800 mb-4 sm:text-[30px]">
+            算法赋能、模型优选、智能体市场，打造人工智能创业首选平台
+          </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-2.5 mb-6">
             <Link to="/community">
