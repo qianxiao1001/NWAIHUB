@@ -23,8 +23,9 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const routerBase = import.meta.env.BASE_URL.replace(/\/$/, '');
   return (
-    <Router basename="/opcservicehub">
+    <Router basename={routerBase}>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
