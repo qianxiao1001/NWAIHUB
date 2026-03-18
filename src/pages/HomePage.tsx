@@ -74,11 +74,13 @@ const HomePageMain = () => (
       <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/65 to-white/80 backdrop-blur-[2px]" />
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50/40 via-transparent to-blue-50/40" />
       
-      <div className="relative z-10 w-full max-w-[900px] mx-auto px-6 sm:px-8 py-8 sm:py-10">
+      <div className="relative z-10 w-full max-w-[900px] mx-auto px-2 sm:px-8 py-8 sm:py-10">
         <div className="text-center">
           <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700 px-4 py-1.5 text-sm font-medium">中关村AI北纬社区 · OPC技术服务平台</Badge>
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-3 whitespace-nowrap">OPC HUB人工智能OPC综合服务平台</h1>
-          <p className="text-[26px] leading-tight font-semibold text-slate-800 mb-4 sm:text-[30px]">
+          <h1 className="text-[clamp(1rem,4.1vw,3rem)] sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-3 whitespace-nowrap">
+            OPC HUB人工智能OPC综合服务平台
+          </h1>
+          <p className="text-[clamp(0.72rem,3.1vw,1.875rem)] leading-tight font-semibold text-slate-800 mb-4 sm:text-[30px] whitespace-nowrap">
             算法赋能、模型优选、智能体市场，打造人工智能创业首选平台
           </p>
           
