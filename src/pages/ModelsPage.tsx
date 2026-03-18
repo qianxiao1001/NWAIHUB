@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const BASE_URL = import.meta.env.BASE_URL;
 
-const HERO_BANNER = `${BASE_URL}banners/baiduqianfan.png`;
+const HERO_BANNER = `${BASE_URL}banners/baiduqianfan.png?v=20260318a`;
 
 // --- Hero Section: Model Matrix ---
 const HeroSection = () => {

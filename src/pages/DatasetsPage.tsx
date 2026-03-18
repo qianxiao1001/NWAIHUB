@@ -77,7 +77,7 @@ const DatasetHero = () => (
         <div className="lg:col-span-5">
           <div className="overflow-hidden rounded-xl">
             <img
-              src={`${BASE_URL}banners/qianfan.png`}
+              src={`${BASE_URL}banners/qianfan.png?v=20260318a`}
               alt="千帆数据资源展示图"
               className="w-full h-[180px] sm:h-[220px] lg:h-[250px] object-contain"
               loading="eager"

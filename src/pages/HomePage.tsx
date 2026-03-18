@@ -65,7 +65,7 @@ const stats = [
   { label: '新增企业', value: '126', extra: '本周新增' },
 ];
 
-const PROMO_BANNER = `${import.meta.env.BASE_URL}banners/qianfanagent.png`;
+const PROMO_BANNER = `${import.meta.env.BASE_URL}banners/qianfanagent.png?v=20260318a`;
 
 const HomePageMain = () => {
   return (
