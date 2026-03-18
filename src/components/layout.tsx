@@ -16,9 +16,9 @@ const NAV_ITEMS = [
 ];
 const BASE_URL = import.meta.env.BASE_URL;
 const NORTH_LATITUDE_LOGO = `${BASE_URL}Logos/微信图片_20260308232726_966_99.jpg`;
-const NORTH_LATITUDE_WHITE_LOGO = `${BASE_URL}Logos/翻白色logo.png`;
+const NORTH_LATITUDE_WHITE_LOGO = `${BASE_URL}Logos/北纬白色.png`;
 const RUANJIMU_LOGO = `${BASE_URL}Logos/软积木logo.png`;
-const CAICT_LOGO = `${BASE_URL}Logos/20260307072409-c0c263379b8032a24285272397b28a05-18c9a7.png`;
+const KRSTAR_LOGO = `${BASE_URL}Logos/翻白色logo.png`;
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -184,11 +184,15 @@ export const Footer = () => {
             <p className="text-[11px] md:text-xs text-slate-400 leading-relaxed mb-3 md:mb-5 max-w-sm">
               中关村AI北纬社区 是北京市海淀区重点打造的 人工智能产业集聚区与AI原生创业孵化平台 ，定位为面向全球的AI创新枢纽和生态社区
             </p>
-            <div className="rounded-lg border border-slate-700/50 bg-slate-800/50 p-3 md:p-4 max-w-sm">
-              <p className="text-[11px] text-slate-400 font-medium mb-2">平台支撑单位</p>
-              <div className="flex items-center gap-5">
-                <img src={CAICT_LOGO} alt="中国信通院 Logo" className="h-8 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
-                <img src={RUANJIMU_LOGO} alt="软积木 Logo" className="h-8 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
+            <div className="rounded-xl border border-slate-700/50 bg-slate-800/55 p-3 md:p-4 max-w-md">
+              <p className="text-[11px] text-slate-300 font-medium mb-2.5 tracking-wide">平台支撑单位</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="rounded-lg border border-slate-700 bg-slate-900/35 px-3 py-2.5 flex items-center justify-center min-h-[56px] ui-hover-lift">
+                  <img src={KRSTAR_LOGO} alt="氪星创服 Logo" className="h-7 w-auto object-contain opacity-95" />
+                </div>
+                <div className="rounded-lg border border-slate-700 bg-slate-900/35 px-3 py-2.5 flex items-center justify-center min-h-[56px] ui-hover-lift">
+                  <img src={RUANJIMU_LOGO} alt="软积木 Logo" className="h-7 w-auto object-contain opacity-95" />
+                </div>
               </div>
             </div>
           </div>

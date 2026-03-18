@@ -148,15 +148,21 @@ const HomePageMain = () => (
     <section className="py-8">
       <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
-          <Badge variant="blue" className="mb-3">
-            实时算力监控
-          </Badge>
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <Badge variant="blue">
+              实时算力监控
+            </Badge>
+            <span className="inline-flex items-center gap-1.5 text-xs text-emerald-600 font-semibold rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 shrink-0">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              系统在线
+            </span>
+          </div>
           <h2 className="text-3xl font-bold text-slate-900 mb-2">园区 AI 运营总控中心</h2>
           <p className="text-sm text-slate-500 leading-6 mb-5">
             以首页作为观测枢纽完成算力交互与模型运行指标态势，让管理者快速查看资源算力、模型、数据与服务健康状态。
           </p>
 
-          <div className="grid lg:grid-cols-12 gap-4">
+          <div className="grid lg:grid-cols-12 gap-4 lg:gap-5">
             <div className="lg:col-span-4 space-y-3">
               {overviewTasks.map((task) => (
                 <div key={task} className="rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3">
@@ -168,44 +174,22 @@ const HomePageMain = () => (
               ))}
               <div className="pt-1 flex flex-col gap-2">
                 <Link to="/dashboard" className="w-full">
-                  <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700 justify-center">
+                  <Button size="sm" className="w-full h-10 bg-blue-600 hover:bg-blue-700 justify-center">
                     进入总控大厅
                     <ArrowRight className="ml-1 w-3.5 h-3.5" />
-                  </Button>
-                </Link>
-                <Link to="/policy" className="w-full">
-                  <Button size="sm" variant="secondary" className="w-full justify-center">
-                    政策获取
-                  </Button>
-                </Link>
-                <Link to="/community" className="w-full">
-                  <Button size="sm" variant="secondary" className="w-full justify-center">
-                    申请入驻
-                  </Button>
-                </Link>
-                <Link to="/models" className="w-full">
-                  <Button size="sm" variant="secondary" className="w-full justify-center">
-                    服务资源
                   </Button>
                 </Link>
               </div>
             </div>
 
-            <div className="lg:col-span-8 rounded-xl border border-slate-200 bg-slate-50/70 p-4">
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                <div>
-                  <p className="text-xs text-slate-500 mb-0.5">园区协同观测概览</p>
-                  <h3 className="text-xl font-semibold text-slate-900">中关村AI北纬社区 · 统一运营监测</h3>
-                </div>
-                <span className="inline-flex items-center gap-1.5 text-xs text-emerald-600 font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  系统在线
-                </span>
+            <div className="lg:col-span-8 rounded-xl border border-slate-200 bg-slate-50/70 p-4 md:p-5">
+              <div className="pb-3 mb-3 border-b border-slate-200">
+                <h3 className="text-[34px] leading-tight font-semibold text-slate-900 md:text-4xl">中关村AI北纬社区 · 统一运营监测</h3>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-4">
                 {stats.map((item) => (
-                  <div key={item.label} className="rounded-lg border border-slate-200 bg-white p-3">
+                  <div key={item.label} className="rounded-lg border border-slate-200 bg-white p-3 md:p-4">
                     <p className="text-[11px] text-slate-500">{item.label}</p>
                     <p className="text-3xl font-semibold text-slate-900 mt-1">{item.value}</p>
                     <p className="text-[11px] text-slate-400 mt-1">{item.extra}</p>
