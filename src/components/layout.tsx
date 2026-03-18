@@ -187,10 +187,10 @@ export const Footer = () => {
             <div className="rounded-xl border border-slate-700/50 bg-slate-800/55 p-3 md:p-4 max-w-md">
               <p className="text-[11px] text-slate-300 font-medium mb-2.5 tracking-wide">平台支撑单位</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                <div className="rounded-lg border border-slate-700 bg-slate-900/35 px-2 py-2 flex items-center justify-center min-h-[76px] ui-hover-lift">
+                <div className="px-2 py-2 flex items-center justify-center min-h-[76px]">
                   <img src={KRSTAR_LOGO} alt="氪星创服 Logo" className="h-10 w-full object-contain opacity-95" />
                 </div>
-                <div className="rounded-lg border border-slate-700 bg-slate-900/35 px-2 py-2 flex items-center justify-center min-h-[76px] ui-hover-lift">
+                <div className="px-2 py-2 flex items-center justify-center min-h-[76px]">
                   <img src={RUANJIMU_LOGO} alt="软积木 Logo" className="h-10 w-full object-contain opacity-95" />
                 </div>
               </div>
