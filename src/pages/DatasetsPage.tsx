@@ -8,65 +8,80 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 // --- Hero Section ---
 const DatasetHero = () => (
   <div className="relative bg-slate-50 border-b border-slate-200 py-5 overflow-hidden ui-reveal">
     <div className="absolute inset-0 bg-grid-pattern opacity-[0.16]" />
     
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div className="max-w-4xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-2 py-0.5 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold mb-3">
-          <Database className="w-3 h-3" />
-          海量高质量数据资源
-        </div>
-        
-        <h1 className="mobile-title-hero lg:text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-          数据资源交易平台
-        </h1>
-        
-        <p className="mobile-text-body lg:text-xs text-slate-600 mb-4 lg:max-w-2xl mx-auto mobile-text-truncate-3">
-          汇聚金融、医疗、政务等垂直领域高质量数据集，支持在线检索、预览与安全交易，赋能大模型训练与行业应用。
-        </p>
-        
-        {/* Search Box - Full width on mobile */}
-        <div className="relative max-w-xl mx-auto mb-3">
-          <div className="relative flex items-center bg-white rounded-lg border border-slate-300 focus-within:ring-2 focus-within:ring-blue-500/15 focus-within:border-blue-400 transition-all duration-200 shadow-sm">
-             <div className="pl-3 pr-2 text-slate-400">
-               <Search className="w-3.5 h-3.5" />
-             </div>
-             <input 
-               type="text" 
-               placeholder="搜索数据集名称、ID、供应商..." 
-               className="w-full py-2 bg-transparent border-none focus:outline-none text-slate-900 placeholder:text-slate-400 mobile-text-body"
-             />
-             <div className="pr-1 flex items-center gap-2">
-               <div className="h-4 w-px bg-slate-200 mx-1" />
-               <select className="bg-transparent text-[11px] text-slate-600 font-medium focus:outline-none cursor-pointer hover:text-blue-600 transition-colors">
-                 <option>全部类目</option>
-                 <option>文本数据</option>
-                 <option>图像数据</option>
-                 <option>音频数据</option>
-               </select>
-               <Button className="rounded-md px-3 h-7 bg-blue-600 hover:bg-blue-700 text-white shadow-sm text-[11px]">
-                 搜索
-               </Button>
-             </div>
+      <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        <div className="lg:col-span-7">
+          <div className="max-w-3xl text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-2 py-0.5 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold mb-3">
+              <Database className="w-3 h-3" />
+              海量高质量数据资源
+            </div>
+            
+            <h1 className="mobile-title-hero lg:text-2xl font-bold text-slate-900 mb-2 tracking-tight">
+              数据资源交易平台
+            </h1>
+            
+            <p className="mobile-text-body lg:text-xs text-slate-600 mb-4 lg:max-w-2xl mobile-text-truncate-3">
+              汇聚金融、医疗、政务等垂直领域高质量数据集，支持在线检索、预览与安全交易，赋能大模型训练与行业应用。
+            </p>
+            
+            <div className="relative max-w-xl lg:max-w-2xl mb-3 mx-auto lg:mx-0">
+              <div className="relative flex items-center bg-white rounded-lg border border-slate-300 focus-within:ring-2 focus-within:ring-blue-500/15 focus-within:border-blue-400 transition-all duration-200 shadow-sm">
+                <div className="pl-3 pr-2 text-slate-400">
+                  <Search className="w-3.5 h-3.5" />
+                </div>
+                <input 
+                  type="text" 
+                  placeholder="搜索数据集名称、ID、供应商..." 
+                  className="w-full py-2 bg-transparent border-none focus:outline-none text-slate-900 placeholder:text-slate-400 mobile-text-body"
+                />
+                <div className="pr-1 flex items-center gap-2">
+                  <div className="h-4 w-px bg-slate-200 mx-1" />
+                  <select className="bg-transparent text-[11px] text-slate-600 font-medium focus:outline-none cursor-pointer hover:text-blue-600 transition-colors">
+                    <option>全部类目</option>
+                    <option>文本数据</option>
+                    <option>图像数据</option>
+                    <option>音频数据</option>
+                  </select>
+                  <Button className="rounded-md px-3 h-7 bg-blue-600 hover:bg-blue-700 text-white shadow-sm text-[11px]">
+                    搜索
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-center lg:justify-start gap-5 text-[11px] text-slate-500 mobile-scroll-x">
+              <div className="flex items-center gap-1.5 flex-shrink-0">
+                <Database className="w-3 h-3 text-blue-600" />
+                <span><strong className="text-slate-900">5,000+</strong> 数据集</span>
+              </div>
+              <div className="flex items-center gap-1.5 flex-shrink-0">
+                <ShieldCheck className="w-3 h-3 text-blue-600" />
+                <span><strong className="text-slate-900">100%</strong> 官方认证</span>
+              </div>
+              <div className="flex items-center gap-1.5 flex-shrink-0">
+                <Download className="w-3 h-3 text-blue-600" />
+                <span><strong className="text-slate-900">10PB+</strong> 累计下载</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Quick Stats - Horizontal scroll on mobile */}
-        <div className="flex justify-center gap-5 text-[11px] text-slate-500 mobile-scroll-x">
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <Database className="w-3 h-3 text-blue-600" />
-            <span><strong className="text-slate-900">5,000+</strong> 数据集</span>
-          </div>
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <ShieldCheck className="w-3 h-3 text-blue-600" />
-            <span><strong className="text-slate-900">100%</strong> 官方认证</span>
-          </div>
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            <Download className="w-3 h-3 text-blue-600" />
-            <span><strong className="text-slate-900">10PB+</strong> 累计下载</span>
+        <div className="lg:col-span-5">
+          <div className="overflow-hidden rounded-xl">
+            <img
+              src={`${BASE_URL}banners/qianfan.png`}
+              alt="千帆数据资源展示图"
+              className="w-full h-[180px] sm:h-[220px] lg:h-[250px] object-contain"
+              loading="eager"
+            />
           </div>
         </div>
       </div>

@@ -65,7 +65,10 @@ const stats = [
   { label: '新增企业', value: '126', extra: '本周新增' },
 ];
 
-const HomePageMain = () => (
+const PROMO_BANNER = `${import.meta.env.BASE_URL}banners/qianfanagent.png`;
+
+const HomePageMain = () => {
+  return (
   <main className="bg-[#f6f8fc]">
     <section 
       className="relative min-h-[360px] sm:min-h-[400px] flex items-center justify-center overflow-hidden"
@@ -141,6 +144,19 @@ const HomePageMain = () => (
               <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
             </Button>
           </Link>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-4 border-b border-slate-200 bg-white/70">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-xl">
+          <img
+            src={PROMO_BANNER}
+            alt="平台推广图"
+            className="w-full h-[220px] sm:h-[300px] lg:h-[420px] object-contain"
+            loading="eager"
+          />
         </div>
       </div>
     </section>
@@ -224,7 +240,8 @@ const HomePageMain = () => (
       </div>
     </section>
   </main>
-);
+  );
+};
 
 const HomeShortcut = () => (
   <section className="py-6 border-t border-slate-200 bg-white">
