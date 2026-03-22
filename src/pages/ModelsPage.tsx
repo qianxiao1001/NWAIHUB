@@ -33,10 +33,10 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button size="sm" className="mobile-button lg:h-8 bg-blue-700 hover:bg-blue-800 text-white shadow-sm">
-              申请接入
+              提交接入
             </Button>
             <Button variant="secondary" size="sm" className="mobile-button lg:h-8 bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
-              查看文档
+              接口文档
             </Button>
           </div>
         </div>
@@ -228,7 +228,7 @@ const EnterpriseSolutions = () => (
   <Section className="bg-slate-50 py-10 border-t border-slate-200 mobile-section">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8">
-        <h2 className="mobile-title-section lg:text-xl font-bold text-slate-900">企业级解决方案</h2>
+        <h2 className="mobile-title-section lg:text-xl font-bold text-slate-900">交付方案中心</h2>
         <p className="mobile-text-body lg:text-sm text-slate-500 mt-2">针对不同业务规模与安全需求，提供灵活的交付模式</p>
       </div>
       

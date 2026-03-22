@@ -21,7 +21,7 @@ const TrainingHero = () => (
           </div>
           
           <h1 className="mobile-title-hero lg:text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-            人才与培训中心
+            人才发展与培训中心
           </h1>
           
           <p className="mobile-text-body lg:text-sm text-slate-600 leading-relaxed lg:max-w-xl mobile-text-truncate-3">
@@ -31,10 +31,10 @@ const TrainingHero = () => (
         
         <div className="flex flex-col sm:flex-row gap-3">
           <Button size="sm" className="mobile-button bg-blue-600 hover:bg-blue-700 text-white shadow-sm">
-            浏览课程目录
+            查看培训计划
           </Button>
           <Button variant="secondary" size="sm" className="mobile-button bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
-            查询证书
+            查询培训档案
           </Button>
         </div>
       </div>
@@ -158,7 +158,7 @@ const TrainingContent = () => {
           )}>
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-slate-200">
-                <h3 className="font-semibold text-slate-900">培训分类</h3>
+                <h3 className="font-semibold text-slate-900">学习分类</h3>
                 <button 
                   onClick={() => setSidebarDrawerOpen(false)}
                   className="p-1 text-slate-600 hover:bg-slate-50 rounded"
@@ -199,13 +199,13 @@ const TrainingContent = () => {
                 <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-lg p-4 text-white shadow-md">
                   <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
                     <Users className="w-4 h-4 text-emerald-200" />
-                    企业定制培训
+                    企业定制学习
                   </h4>
                   <p className="text-xs text-emerald-100 mb-3 leading-relaxed opacity-90">
                     根据企业业务需求，量身定制内训课程，提升团队技术实力。
                   </p>
                   <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0 text-xs backdrop-blur-sm">
-                    联系培训顾问
+                    联系学习顾问
                   </Button>
                 </div>
               </div>
@@ -243,13 +243,13 @@ const TrainingContent = () => {
               <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-lg p-4 text-white shadow-md">
                 <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
                   <Users className="w-4 h-4 text-emerald-200" />
-                  企业定制培训
+                  企业定制学习
                 </h4>
                 <p className="text-xs text-emerald-100 mb-3 leading-relaxed opacity-90">
                   根据企业业务需求，量身定制内训课程，提升团队技术实力。
                 </p>
                 <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0 text-xs backdrop-blur-sm">
-                  联系培训顾问
+                  联系学习顾问
                 </Button>
               </div>
             </div>

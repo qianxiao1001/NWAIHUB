@@ -13,15 +13,15 @@ const CommunityHero = () => (
           产业活动与社群协同
         </div>
         <h1 className="mobile-title-hero lg:text-3xl lg:md:text-4xl font-bold text-slate-900 mb-3 tracking-tight leading-[1.15]">
-          活动社群中心
+          活动与协作中心
         </h1>
         <p className="mobile-text-body lg:text-base text-slate-600 mb-5 leading-relaxed lg:max-w-2xl mobile-text-truncate-3">
           聚合路演、沙龙、训练营与供需对接活动，连接企业、技术团队与生态伙伴，持续推动项目落地与产业协作。
         </p>
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button className="mobile-button bg-blue-600 hover:bg-blue-700 text-white shadow-sm">查看活动日历</Button>
+          <Button className="mobile-button bg-blue-600 hover:bg-blue-700 text-white shadow-sm">活动排期总览</Button>
           <Button variant="secondary" className="mobile-button bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
-            加入社群
+            加入协作网络
           </Button>
         </div>
       </div>
@@ -34,7 +34,7 @@ const ACTIVITY_ITEMS = [
     title: 'AI 产业路演专场',
     type: '线下活动',
     time: '2026-03-22 14:00',
-    place: '中关村科学城创新中心',
+    place: '上地街道创新中心',
     desc: '聚焦大模型应用与行业实践，邀请项目方、投资机构与企业用户进行路演及深度对接。',
     status: '报名中',
   },
@@ -76,7 +76,7 @@ const CommunityContent = () => (
                   <Badge variant="secondary" className="bg-blue-50 text-blue-700 border border-blue-100">{item.type}</Badge>
                   <span className="text-xs text-slate-500">{item.status}</span>
                 </div>
-                <Button variant="outline" size="sm" className="h-7 text-xs px-2.5">活动详情</Button>
+                <Button variant="outline" size="sm" className="h-7 text-xs px-2.5">查看详情</Button>
               </div>
               <h3 className="mobile-title-section lg:text-lg font-bold text-slate-900 mb-3 lg:mb-2">{item.title}</h3>
               <p className="mobile-text-body lg:text-sm text-slate-500 leading-relaxed mb-4 lg:mb-3">{item.desc}</p>
@@ -103,13 +103,13 @@ const CommunityContent = () => (
             <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
               <div className="inline-flex items-center gap-1.5 text-xs text-blue-700 font-medium mb-2">
                 <Calendar className="w-3.5 h-3.5" />
-                本月重点活动
+                本月重点事项
               </div>
               <p className="mobile-text-body lg:text-sm text-slate-600 leading-relaxed mb-3">
                 重点围绕企业智能化升级与应用实战，持续组织产业对接活动。
               </p>
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs h-9">
-                预约活动席位
+                提交活动申请
                 <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
               </Button>
             </div>

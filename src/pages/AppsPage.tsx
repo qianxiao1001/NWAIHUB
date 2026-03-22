@@ -51,7 +51,7 @@ const CATEGORY_ITEMS = [
 
 const FEATURE_ZONES = ['行业标杆案例', '爆款智能体', '新品上线', '已验证可用', '企业私有化专区'] as const;
 
-const TOOL_LINKS = ['发布智能体', '智能体管理', 'API 管理', '帮助中心'] as const;
+const TOOL_LINKS = ['发布应用', '应用管理', 'API 管理', '使用指南'] as const;
 
 const FILTER_TAGS = ['全部', '已认证', '免费', '企业可用', 'API接入', '私有部署', '多模态', '行业场景'] as const;
 
@@ -93,7 +93,7 @@ const MARKET_AGENTS = [
     favorites: 12520,
     likes: 6340,
     updated: '2026-03-07',
-    author: '北纬知识引擎',
+    author: '上地知识引擎',
     rating: 4.8,
     channels: ['推荐', '企业精选'],
     filters: ['已认证', '企业可用', '私有部署', 'API接入'],
@@ -125,7 +125,7 @@ const MARKET_AGENTS = [
     favorites: 11420,
     likes: 5420,
     updated: '2026-03-08',
-    author: '北纬政务实验室',
+    author: '上地政务实验室',
     rating: 4.9,
     channels: ['推荐', '官方推荐', '热门'],
     filters: ['已认证', '免费', '企业可用'],
@@ -317,7 +317,7 @@ const MARKET_AGENTS = [
     favorites: 12110,
     likes: 6480,
     updated: '2026-03-05',
-    author: '北纬服务云',
+    author: '上地服务云',
     rating: 4.8,
     channels: ['推荐', '热门'],
     filters: ['已认证', '企业可用', '私有部署', 'API接入'],
@@ -478,14 +478,14 @@ const MarketHero = () => (
       <div className="max-w-5xl">
         <div className="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold">
           <Sparkles className="w-3 h-3" />
-          智能体市场频道
+          智能应用市场频道
         </div>
-        <h1 className="mt-2 mobile-title-hero lg:text-2xl lg:md:text-3xl font-bold text-slate-900 tracking-tight leading-[1.15]">智能体市场</h1>
+        <h1 className="mt-2 mobile-title-hero lg:text-2xl lg:md:text-3xl font-bold text-slate-900 tracking-tight leading-[1.15]">智能应用市场</h1>
         <p className="mt-2 mobile-text-body lg:text-xs text-slate-600 leading-5 lg:max-w-3xl mobile-text-truncate-3">
           面向企业与园区提供高可用智能体应用广场，支持快速浏览、筛选、评估与即刻调用。
         </p>
         <div className="mt-3 flex flex-col sm:flex-row gap-2">
-          <Button className="mobile-button bg-blue-600 hover:bg-blue-700 text-white shadow-sm">发布智能体</Button>
+          <Button className="mobile-button bg-blue-600 hover:bg-blue-700 text-white shadow-sm">发布应用</Button>
           <Button variant="secondary" className="mobile-button bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
             浏览热门
           </Button>

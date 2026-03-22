@@ -17,11 +17,11 @@ const PolicyHero = () => (
         <div className="lg:max-w-2xl">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-3">
             <Scale className="w-3.5 h-3.5" />
-            政策法规与行业标准
+            政策服务与实施标准
           </div>
           
           <h1 className="mobile-title-hero lg:text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-            政策与支持中心
+            政策与服务中心
           </h1>
           
           <p className="mobile-text-body lg:text-sm text-slate-600 leading-relaxed lg:max-w-xl mobile-text-truncate-3">
@@ -35,7 +35,7 @@ const PolicyHero = () => (
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input 
                 type="text" 
-                placeholder="搜索政策文件、标准编号或关键词..." 
+                placeholder="搜索政策事项、标准编号或关键词..." 
                 className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500/15 focus:border-blue-400 transition-all duration-200 mobile-text-body"
               />
             </div>
@@ -65,7 +65,7 @@ const PolicyContent = () => {
     policy: [
       {
         title: "关于支持人工智能产业发展的若干措施",
-        dept: "中关村管委会",
+        dept: "上地街道产业服务办公室",
         date: "2025-12-10",
         type: "资金扶持",
         desc: "支持企业开展大模型研发与应用，最高给予 1000 万元资金支持；对购买算力服务的企业给予 30% 补贴。"
@@ -179,7 +179,7 @@ const PolicyContent = () => {
           )}>
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-slate-200">
-                <h3 className="font-semibold text-slate-900">上地街道专项支持计划</h3>
+                <h3 className="font-semibold text-slate-900">上地街道政策服务计划</h3>
                 <button 
                   onClick={() => setSidebarDrawerOpen(false)}
                   className="p-1 text-slate-600 hover:bg-slate-50 rounded"
@@ -247,13 +247,13 @@ const PolicyContent = () => {
               <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg p-4 text-white shadow-md">
                 <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
                   <FileCheck className="w-4 h-4 text-blue-200" />
-                  北京市专精特新企业服务站
+                  上地街道企业服务工作台
                 </h4>
                 <p className="text-xs text-blue-100 mb-3 leading-relaxed opacity-90">
                   为专精特新企业提供政策申报、资质认定等一站式服务支持。
                 </p>
                 <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0 text-xs backdrop-blur-sm">
-                  开始匹配
+                  立即匹配
                 </Button>
               </div>
             </div>

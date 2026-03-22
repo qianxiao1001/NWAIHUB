@@ -203,8 +203,8 @@ export const DashboardPage = () => {
               <span>截至 2026.03</span>
             </div>
             <div className="flex-1 text-center">
-              <h1 className="text-lg lg:text-[34px] leading-tight font-bold tracking-[0.06em] text-slate-50">上地街道·产业运营驾驶舱</h1>
-              <p className="text-[11px] text-slate-400 tracking-wide">产业运营监测数据</p>
+              <h1 className="text-lg lg:text-[34px] leading-tight font-bold tracking-[0.06em] text-slate-50">上地街道·产业运营总览驾驶舱</h1>
+              <p className="text-[11px] text-slate-400 tracking-wide">产业运行实时监测数据</p>
             </div>
             <div className="w-1/4 flex justify-end">
               <ClockWidget />
@@ -240,7 +240,7 @@ export const DashboardPage = () => {
           <Card title="创业态势" icon={Activity} className="basis-[42%] min-h-0">
             <div className="flex items-end justify-between mb-4">
               <div>
-                <p className="text-slate-400 text-xs mb-1">OPC 创新主体</p>
+                <p className="text-slate-400 text-xs mb-1">上地创新主体</p>
                 <p className="text-3xl font-bold text-white font-mono tracking-tight drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]">155<span className="text-sm font-sans text-slate-400 ml-1">家</span></p>
               </div>
               <div className="text-emerald-400 text-sm font-medium flex items-center bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
@@ -371,7 +371,7 @@ export const DashboardPage = () => {
              <div className="relative min-h-0">
                <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 bg-slate-950/70 border border-cyan-400/25 px-6 py-1 rounded-full flex items-center gap-2">
                   <Target className="w-4 h-4 text-cyan-300" />
-                  <span className="text-slate-200 font-semibold text-sm tracking-wide">上地街道创业主体分布情况</span>
+                  <span className="text-slate-200 font-semibold text-sm tracking-wide">上地街道企业主体分布情况</span>
                </div>
                <MapVisualization />
                <div className="absolute right-3 top-12 rounded-lg border border-cyan-400/35 bg-slate-950/82 p-3 w-[220px]">
@@ -457,7 +457,7 @@ export const DashboardPage = () => {
            </Card>
 
            {/* 2. Token Consumption Trend */}
-           <Card title="模型调用Token消耗趋势" icon={Activity} className="basis-[32%] min-h-0">
+           <Card title="模型调用 Token 趋势" icon={Activity} className="basis-[32%] min-h-0">
              <div className="w-full h-full">
                <ResponsiveContainer width="100%" height="100%">
                  <AreaChart data={TOKEN_CONSUMPTION_DATA}>

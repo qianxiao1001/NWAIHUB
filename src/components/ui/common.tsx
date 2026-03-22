@@ -9,16 +9,16 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', ...props }, ref) => {
     const variants = {
-      primary: 'bg-blue-600 text-white hover:bg-blue-700 border border-blue-600 shadow-sm transition-colors',
-      secondary: 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-colors',
-      outline: 'bg-transparent border border-slate-300 text-slate-600 hover:border-blue-600 hover:text-blue-600 transition-colors',
-      ghost: 'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-transparent transition-colors',
+      primary: 'bg-gradient-to-br from-[#004ac6] to-[#2563eb] text-white hover:from-[#003ea8] hover:to-[#1f57d4] border border-blue-600/60 shadow-[0_12px_30px_-18px_rgba(0,74,198,0.75)] transition-all',
+      secondary: 'bg-white/85 text-slate-700 border border-slate-300/40 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all',
+      outline: 'bg-transparent border border-slate-300/40 text-slate-600 hover:border-blue-500/40 hover:text-blue-700 hover:bg-blue-50/35 transition-all',
+      ghost: 'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-transparent transition-all',
     };
 
     const sizes = {
-      sm: 'px-2.5 h-7 text-xs font-medium rounded',
-      md: 'px-3 h-8 text-sm font-medium rounded-md',
-      lg: 'px-5 h-9 text-sm font-medium rounded-md',
+      sm: 'px-2.5 h-7 text-xs font-medium rounded-md',
+      md: 'px-3.5 h-9 text-sm font-medium rounded-lg',
+      lg: 'px-5 h-10 text-sm font-medium rounded-lg',
     };
 
     return (
@@ -39,7 +39,7 @@ Button.displayName = 'Button';
 
 export const Card = ({ className, children, hoverEffect = true, ...props }: React.HTMLAttributes<HTMLDivElement> & { hoverEffect?: boolean }) => (
   <div className={cn(
-    "card-enterprise p-3",
+    "card-enterprise p-4",
     hoverEffect && "hover:border-blue-300 hover:shadow-sm",
     className
   )} {...props}>
@@ -60,9 +60,9 @@ export const Badge = ({
   interactive?: boolean;
 } & React.HTMLAttributes<HTMLSpanElement>) => {
   const variants = {
-    blue: 'bg-blue-50 text-blue-700 border-blue-100',
-    purple: 'bg-violet-50 text-violet-700 border-violet-100',
-    green: 'bg-emerald-50 text-emerald-700 border-emerald-100',
+    blue: 'bg-blue-50 text-blue-700 border-blue-200',
+    purple: 'bg-violet-50 text-violet-700 border-violet-200',
+    green: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     gray: 'bg-slate-100 text-slate-600 border-slate-200',
     outline: 'bg-transparent border-slate-300 text-slate-600',
     dark: 'bg-slate-800 text-slate-200 border-slate-700',

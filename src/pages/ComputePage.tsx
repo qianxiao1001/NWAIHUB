@@ -19,7 +19,7 @@ const ComputeHero = () => (
         <div className="lg:flex-1 lg:max-w-2xl">
           <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-indigo-50 border border-indigo-100 text-indigo-700 text-[11px] font-semibold mb-3">
             <Server className="w-3.5 h-3.5" />
-            高性能算力集群
+            高可用算力资源池
           </div>
           
           <h1 className="mobile-title-hero lg:text-2xl lg:md:text-3xl font-bold text-slate-900 tracking-tight mb-3">
@@ -32,10 +32,10 @@ const ComputeHero = () => (
           
           <div className="flex flex-col sm:flex-row gap-3">
             <Button size="sm" className="mobile-button lg:h-8 bg-indigo-700 hover:bg-indigo-800 text-white shadow-sm">
-              立即开通
+              开通资源
             </Button>
             <Button variant="secondary" size="sm" className="mobile-button lg:h-8 bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
-              价格计算器
+              费用测算
             </Button>
           </div>
           
@@ -125,7 +125,7 @@ const ComputeMarket = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-5 gap-4">
           <div>
-            <h2 className="mobile-title-section lg:text-xl font-bold text-slate-900">算力资源市场</h2>
+            <h2 className="mobile-title-section lg:text-xl font-bold text-slate-900">算力资源目录</h2>
             <p className="mobile-text-body lg:text-xs text-slate-500 mt-1">
               实时资源池监控，支持按量付费与包年包月
             </p>
@@ -133,7 +133,7 @@ const ComputeMarket = () => {
           
           {/* Horizontal scroll tabs on mobile */}
           <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-md border border-slate-200 mobile-scroll-x">
-            {['全部资源', '训练型', '推理型', '渲染型'].map((tab, i) => (
+            {['全部规格', '训练型', '推理型', '渲染型'].map((tab, i) => (
               <button
                 key={i}
                 onClick={() => setActiveTab(tab)}
@@ -193,7 +193,7 @@ const ComputeMarket = () => {
                     <span className="text-xs text-slate-500">/{row.unit}</span>
                   </div>
                   <Button size="sm" className="h-8 bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50 hover:border-indigo-300 shadow-sm text-xs px-3">
-                    立即租用
+                    立即开通
                   </Button>
                 </div>
               </div>
@@ -209,7 +209,7 @@ const ComputeMarket = () => {
 const Advantages = () => (
   <Section className="bg-slate-50 py-8 border-t border-slate-200 mobile-section">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeader title="服务优势" subtitle="企业级基础设施，保障业务连续性" />
+      <SectionHeader title="平台优势" subtitle="企业级基础设施，保障业务连续性" />
       
       {/* Mobile: 2 columns | Desktop: 4 columns */}
       <div className="ui-reveal-group grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">

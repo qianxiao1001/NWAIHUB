@@ -3,15 +3,22 @@
 :root {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", var(--font-sans);
   
-  --color-primary-50: #eaf3ff;
-  --color-primary-100: #d6e7ff;
-  --color-primary-500: #2a69d3;
-  --color-primary-600: #1f5fca;
-  --color-primary-700: #184ea8;
+  --color-primary-50: #e8f3ff;
+  --color-primary-100: #d5e8ff;
+  --color-primary-500: #1f5bd8;
+  --color-primary-600: #1a4fc1;
+  --color-primary-700: #143f98;
   
-  --color-accent-500: #64748b;
-  --color-accent-600: #475569;
+  --color-accent-500: #4f5f7a;
+  --color-accent-600: #34435f;
+  --color-bg: #f4f8ff;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f0f3ff;
+  --color-border: #dbe5f4;
+  --color-border-strong: #c9d7ee;
+  --shadow-ambient: 0 12px 40px rgba(17, 28, 45, 0.06);
 }
 
 html {
@@ -19,15 +26,19 @@ html {
 }
 
 body {
-  background-color: #f8fafc;
+  background-color: var(--color-bg);
   color: #0f172a;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* More subtle, enterprise background */
   background-image: 
-    radial-gradient(circle at 15% -20%, rgba(47, 102, 232, 0.045), transparent 42%),
-    radial-gradient(circle at 85% 0%, rgba(32, 73, 177, 0.04), transparent 36%);
+    radial-gradient(circle at 10% -15%, rgba(31, 91, 216, 0.08), transparent 40%),
+    radial-gradient(circle at 90% -5%, rgba(26, 79, 193, 0.07), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(244, 248, 255, 0.95) 55%, rgba(240, 246, 255, 0.85) 100%);
+}
+
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 /* Custom Thin Scrollbar */
@@ -52,16 +63,16 @@ body {
 
 /* Unified Enterprise Card */
 .card-enterprise {
-  background-color: #ffffff;
-  border: 1px solid rgb(226 232 240 / 0.8);
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  transition: all 0.3s;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+  border: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
+  border-radius: 0.85rem;
+  box-shadow: 0 10px 26px -24px rgba(20, 41, 87, 0.45), 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition: all 0.26s;
 }
 
 .card-enterprise:hover {
-  border-color: #b7cdfd;
-  box-shadow: 0 6px 12px -4px rgb(37 88 212 / 0.16), 0 2px 6px -3px rgb(0 0 0 / 0.08);
+  border-color: var(--color-border-strong);
+  box-shadow: 0 18px 34px -24px rgba(26, 79, 193, 0.42), 0 4px 10px -6px rgba(17, 24, 39, 0.12);
   transform: translateY(-2px);
 }
 
@@ -109,10 +120,10 @@ body {
 
 /* Glass Panel - Cleaner */
 .glass-panel {
-  background-color: rgb(255 255 255 / 0.95);
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  backdrop-filter: blur(4px);
+  background-color: rgb(255 255 255 / 0.8);
+  border: 1px solid color-mix(in srgb, var(--color-border) 24%, transparent);
+  box-shadow: var(--shadow-ambient);
+  backdrop-filter: blur(14px);
 }
 
 /* Animations */
@@ -186,6 +197,135 @@ body {
 .ui-list-item:hover::before {
   opacity: 1;
   transform: scaleY(1);
+}
+
+/* Global visual refresh without touching page copy */
+main {
+  position: relative;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(31, 91, 216, 0.05), transparent 42%),
+    radial-gradient(circle at 86% 6%, rgba(20, 63, 152, 0.045), transparent 35%);
+  z-index: 0;
+}
+
+main > * {
+  position: relative;
+  z-index: 1;
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+main p {
+  color: color-mix(in srgb, #475569 88%, #0f172a);
+}
+
+main section {
+  margin-top: 0;
+}
+
+main input,
+main select,
+main textarea {
+  background: color-mix(in srgb, var(--color-surface-soft) 86%, white) !important;
+  border-color: color-mix(in srgb, var(--color-border) 88%, white) !important;
+  border-radius: 0.7rem !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+main input:focus,
+main select:focus,
+main textarea:focus {
+  border-color: color-mix(in srgb, var(--color-primary-500) 58%, white) !important;
+  box-shadow: 0 0 0 3px rgba(31, 91, 216, 0.12) !important;
+  background: #fff !important;
+}
+
+main [class*="bg-white"],
+main [class*="bg-slate-50"],
+main [class*="bg-slate-100"],
+main [class*="bg-surface-container"] {
+  border-color: color-mix(in srgb, var(--color-border) 24%, transparent);
+}
+
+main [class*="rounded-xl"] {
+  border-radius: 0.78rem;
+}
+
+main [class*="rounded-2xl"] {
+  border-radius: 1rem;
+}
+
+main [class*="shadow-sm"] {
+  box-shadow: 0 8px 24px -24px rgba(17, 28, 45, 0.35) !important;
+}
+
+main [class*="shadow-md"],
+main [class*="shadow-lg"] {
+  box-shadow: var(--shadow-ambient) !important;
+}
+
+main button {
+  transition: transform 0.16s ease, box-shadow 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+}
+
+main button:hover {
+  box-shadow: 0 12px 24px -18px rgba(26, 79, 193, 0.45);
+}
+
+main button:active {
+  transform: translateY(0.5px);
+}
+
+/* Reference style mapping from redesign package */
+.bg-slate-50 {
+  background-color: #f0f3ff !important;
+}
+
+.bg-slate-100 {
+  background-color: #e7eeff !important;
+}
+
+.bg-white\/80,
+.bg-white\/90,
+.bg-white\/95 {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.border-slate-200,
+.border-slate-300 {
+  border-color: color-mix(in srgb, #c3c6d7 26%, transparent) !important;
+}
+
+.hover\:bg-slate-50:hover {
+  background-color: #e7eeff !important;
+}
+
+.text-slate-500 {
+  color: #5d6578 !important;
+}
+
+.text-slate-600 {
+  color: #434b5d !important;
+}
+
+.text-slate-900 {
+  color: #111c2d !important;
 }
 
 /* Brand Color Mapping (Shangdi logo inspired) */

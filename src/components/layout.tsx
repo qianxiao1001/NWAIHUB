@@ -41,10 +41,10 @@ export const Header = () => {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b bg-white/78 backdrop-blur-xl",
           isScrolled 
-            ? "border-slate-200 shadow-sm h-[46px]" 
-            : "border-slate-100 h-[50px]"
+            ? "border-slate-200/90 shadow-[0_10px_24px_-22px_rgba(15,23,42,0.7)] h-[48px]" 
+            : "border-slate-100/90 h-[52px]"
         )}
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -79,7 +79,7 @@ export const Header = () => {
               <a href="https://admin.chatu.pro/" target="_blank" rel="noopener noreferrer" className="ui-focus-ring rounded-lg">
                 <Button
                   variant="secondary"
-                  className="h-8 px-3 text-xs border-slate-300 text-slate-700 hover:bg-slate-50 ui-button-pop"
+                  className="h-8 px-3 text-xs border-slate-300 text-slate-700 hover:bg-slate-50 ui-button-pop rounded-lg"
                 >
                   登录与认证
                 </Button>
@@ -108,8 +108,8 @@ export const Header = () => {
 
       {/* Mobile Drawer Menu */}
       <div 
-        className={cn(
-          "fixed top-0 right-0 h-full w-[280px] bg-white shadow-xl z-50 lg:hidden transform transition-transform duration-300",
+          className={cn(
+          "fixed top-0 right-0 h-full w-[280px] bg-white/96 backdrop-blur-xl shadow-2xl z-50 lg:hidden transform transition-transform duration-300 border-l border-slate-200/80",
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -175,14 +175,14 @@ export const Header = () => {
 
 export const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-slate-300 py-5 md:py-6 border-t border-slate-800">
+    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-slate-300 py-5 md:py-6 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 mb-4 md:mb-5">
           <div className="col-span-1 md:col-span-4">
             <p className="text-[11px] md:text-[13px] text-slate-400 leading-relaxed mb-4 md:mb-5 max-w-md">
               上地街道位于北京市海淀区，是融合高新技术产业集聚与高端人才社区发展的科技创新高地。
             </p>
-            <div className="rounded-xl border border-slate-700/50 bg-slate-800/55 p-3 md:p-4 max-w-md">
+            <div className="rounded-xl border border-slate-700/50 bg-slate-800/45 p-3 md:p-4 max-w-md backdrop-blur-sm">
               <p className="text-[11px] text-slate-300 font-medium mb-2.5 tracking-wide">平台支撑单位</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div className="px-2 py-2 flex items-center justify-center min-h-[76px]">
@@ -337,7 +337,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-900">
+    <div className="min-h-screen flex flex-col font-sans bg-[#f4f8ff] text-slate-900">
       <Header />
       <main className="flex-grow pt-[52px]">
         {children}
