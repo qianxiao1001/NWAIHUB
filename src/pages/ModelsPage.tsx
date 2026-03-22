@@ -1,74 +1,39 @@
 import React from 'react';
 import { Layout } from '@/components/layout';
-import { Section, SectionHeader, Button, Card, Badge } from '@/components/ui/common';
-import { 
-  Sparkles, Zap, Image, Video, MessageSquare, Code, ArrowRight, 
-  Cpu, Layers, PlayCircle, CheckCircle2, Star, Box, Boxes, Calendar, Server,
-  Search, Filter, ChevronDown, Brain, Globe
+import { Button, Badge } from '@/components/ui/common';
+import {
+  Layers,
+  Search,
+  ChevronDown,
+  Cpu,
+  Boxes,
+  Server,
+  Calendar,
+  ArrowDownToLine,
+  Star,
+  Building2,
+  CheckCircle2,
+  Globe,
+  Box,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
 
 const BASE_URL = import.meta.env.BASE_URL;
 
 const HERO_BANNER = `${BASE_URL}banners/baiduqianfan.png?v=20260318a`;
 
-// --- Hero Section: Model Matrix ---
-const HeroSection = () => {
-  return (
-    <div className="relative bg-white border-b border-slate-200 py-5 overflow-hidden ui-reveal">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Mobile: Top text, Bottom card | Desktop: Left text, Right card */}
-        <div className="flex flex-col lg:flex-row lg:gap-5 lg:items-center lg:justify-between">
-          <div className="lg:flex-1 lg:max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-semibold mb-3">
-            <Layers className="w-3.5 h-3.5" />
-            MaaS 模型即服务
-          </div>
-          <h1 className="mobile-title-hero lg:text-2xl lg:md:text-3xl font-bold text-slate-900 tracking-tight mb-3">
-            全场景一站式 <span className="text-blue-700">大模型服务平台</span>
-          </h1>
-          <p className="mobile-text-body lg:text-xs text-slate-600 mb-5 leading-relaxed lg:max-w-xl mobile-text-truncate-3">
-            聚合智谱 GLM、通义千问等主流基座模型，覆盖通用语言、多模态理解与行业场景能力，支持 API 调用与企业级部署。
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button size="sm" className="mobile-button lg:h-8 bg-blue-700 hover:bg-blue-800 text-white shadow-sm">
-              提交接入
-            </Button>
-            <Button variant="secondary" size="sm" className="mobile-button lg:h-8 bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
-              接口文档
-            </Button>
-          </div>
-        </div>
-          <div className="lg:flex-1 w-full lg:max-w-[640px] mt-8 lg:mt-0">
-            <div className="relative h-[220px] sm:h-[260px] lg:h-[300px] overflow-hidden rounded-xl">
-              <img
-                src={HERO_BANNER}
-                alt="百度千帆模型服务展示图"
-                className="h-full w-full object-contain"
-                loading="eager"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const SIDEBAR_CATEGORIES = [
   {
     title: '热门任务',
-    items: ['文本生成', '文本生成图片', '文本生成视频', '视觉多模态理解', '语音合成', '统一多模态']
+    items: ['文本生成', '文本生成图片', '文本生成视频', '视觉多模态理解', '语音合成', '统一多模态'],
   },
   {
     title: '多模态',
-    items: ['视觉多模态理解', '文本生成图片', '图像描述', '视觉定位', '视觉问答', '视频问答', '图文检索']
+    items: ['视觉多模态理解', '文本生成图片', '图像描述', '视觉定位', '视觉问答', '视频问答', '图文检索'],
   },
   {
     title: '自然语言处理',
-    items: ['文本生成', '文本分类', '分词', '命名实体识别', '翻译', '文本摘要', '句子相似度', '预训练']
-  }
+    items: ['文本生成', '文本分类', '分词', '命名实体识别', '翻译', '文本摘要', '句子相似度', '预训练'],
+  },
 ];
 
 const MODEL_LIST_ITEMS = [
@@ -84,186 +49,160 @@ const MODEL_LIST_ITEMS = [
   { name: 'GLM-4.7-Flash', tag: '文本生成', provider: '智谱 AI', date: '2026-01-29', downloads: 31229, likes: 123, size: '613.0k', params: '31.22B' },
   { name: 'meituan-longcat/LongCat-Flash-Lite', tag: '文本生成', provider: '美团 - 龙猫', date: '2026-02-07', downloads: 69075, likes: 11, size: '1.4k', params: '69.07B' },
   { name: 'ZhipuAI/GLM-4.7', tag: '文本生成', provider: '智谱 AI', date: '2026-01-29', downloads: 358348, likes: 186, size: '163.7k', params: '358.34B' },
-  { name: 'Youtu-LLM-2B', tag: '文本生成', provider: '腾讯优图实验室', date: '2026-02-24', downloads: 1968, likes: 25, size: '3.2k', params: '1.96B' },
-  { name: 'deepseek-ai/DeepSeek-V3.2', tag: '文本生成', provider: 'DeepSeek', date: '2025-12-01', downloads: 695405, likes: 377, size: '240.3k', params: '695.40B' },
-  { name: '千问 3-8B', tag: '文本生成', provider: '通义千问', date: '2025-07-27', downloads: 8195, likes: 259, size: '5.5m', params: '8.19B' },
-  { name: '千问 3-32B', tag: '文本生成', provider: '通义千问', date: '2025-07-27', downloads: 32765, likes: 301, size: '3.4m', params: '32.76B' },
-  { name: '千问 3-Coder-Next', tag: '文本生成', provider: '通义千问', date: '2026-02-04', downloads: 79678, likes: 67, size: '35.5k', params: '79.67B' },
-  { name: '千问 2.5-7B-Instruct', tag: '文本生成', provider: '通义千问', date: '2025-03-07', downloads: 7625, likes: 431, size: '6.0m', params: '7.62B' },
-  { name: '千问 3-235B-A22B-Instruct-2507', tag: '文本生成', provider: '通义千问', date: '2025-09-17', downloads: 235095, likes: 222, size: '280.3k', params: '235.09B' },
-  { name: '千问 3-0.6B', tag: '文本生成', provider: '通义千问', date: '2025-07-27', downloads: 751633, likes: 198, size: '4.2m', params: '751.63M' },
-  { name: '千问 3-4B', tag: '文本生成', provider: '通义千问', date: '2025-07-27', downloads: 4025, likes: 115, size: '2.9m', params: '4.02B' },
-  { name: 'Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distill', tag: '文本生成', provider: 'Jackrong', date: '2026-03-16', downloads: 26905, likes: 10, size: '5.1k', params: '26.90B', badge: 'NEW' },
-  { name: '千问 3-Coder-480B-A35B-Instruct', tag: '文本生成', provider: '通义千问', date: '2025-08-22', downloads: 480155, likes: 117, size: '127.1k', params: '480.15B' },
-  { name: '千问 3-30B-A3B-Instruct-2507', tag: '文本生成', provider: '通义千问', date: '2025-09-17', downloads: 30535, likes: 117, size: '1.6m', params: '30.53B' },
 ];
 
-// --- Model Catalog ---
-const ModelCatalog = () => {
+const HeroSection = () => (
+  <section className="mb-6 rounded-xl border border-slate-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 relative overflow-hidden">
+    <div className="w-full lg:w-2/3 relative z-10">
+      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-4">
+        <Layers className="w-3.5 h-3.5" />
+        MaaS 模型即服务
+      </div>
+      <h1 className="text-3xl font-bold text-slate-900 mb-2">全场景一站式 <span className="text-blue-700">大模型服务平台</span></h1>
+      <p className="text-slate-600 text-sm mb-6 max-w-2xl">
+        聚合智谱 GLM、通义千问等主流基座模型，覆盖通用语言、多模态理解与行业场景能力，支持 API 调用与企业级部署。
+      </p>
+      <div className="flex flex-wrap gap-3">
+        <Button className="h-9 px-5">申请接入</Button>
+        <Button variant="secondary" className="h-9 px-5">查看文档</Button>
+      </div>
+    </div>
+    <div className="hidden lg:block absolute right-0 top-0 h-full w-[34%] opacity-85">
+      <img src={HERO_BANNER} alt="模型广场装饰图" className="h-full w-full object-cover mix-blend-multiply" />
+    </div>
+  </section>
+);
+
+const Toolbar = () => (
+  <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4 mb-6 flex flex-col sm:flex-row gap-4 justify-between items-center">
+    <div className="relative w-full sm:w-96">
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+      <input
+        className="block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-md bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 text-sm"
+        placeholder="输入关键词搜索您想要的模型..."
+        type="text"
+      />
+    </div>
+    <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+      {['支持体验', '支持训练', '支持部署', '综合排序'].map((label) => (
+        <button key={label} className="inline-flex items-center gap-1.5 pl-3 pr-2.5 py-2 text-sm border border-slate-300 rounded-md bg-white text-slate-700 shadow-sm hover:bg-slate-50">
+          {label}
+          <ChevronDown className="w-3.5 h-3.5" />
+        </button>
+      ))}
+    </div>
+  </div>
+);
+
+const ModelCard = ({ item }: { item: (typeof MODEL_LIST_ITEMS)[number] }) => {
+  const initial = item.name.replace(/[^A-Za-z0-9\u4e00-\u9fa5]/g, '').slice(0, 2).toUpperCase();
+  const downloads = item.downloads >= 1000 ? `${(item.downloads / 1000).toFixed(1)}k` : `${item.downloads}`;
+
   return (
-    <Section className="bg-slate-50 py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-lg border border-slate-200 bg-white overflow-hidden">
-          <div className="flex flex-col md:flex-row min-h-[600px]">
-            {/* Sidebar */}
-            <div className="w-full md:w-[240px] lg:w-[260px] border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/50 p-4 shrink-0">
-              <div className="space-y-6">
-                {SIDEBAR_CATEGORIES.map((category) => (
-                  <div key={category.title}>
-                    <div className="text-[13px] font-bold text-slate-900 mb-2.5 px-2">{category.title}</div>
-                    <div className="space-y-1">
-                      {category.items.map((item) => (
-                        <div
-                          key={item}
-                          className="px-2 py-1.5 rounded-md text-[13px] text-slate-600 hover:text-blue-700 hover:bg-blue-50 cursor-pointer transition-colors"
-                        >
-                          {item}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Content */}
-            <div className="flex-1 p-4 md:p-5">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5">
-                <div className="relative w-full sm:w-[320px]">
-                  <input
-                    type="text"
-                    placeholder="输入关键词搜索您想要的模型..."
-                    className="w-full h-10 pl-10 pr-3 rounded-lg border border-slate-200 bg-slate-50 text-[13px] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500/50 transition-all"
-                  />
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                </div>
-                <div className="flex items-center gap-4 text-[12px] text-slate-500">
-                  <div className="flex items-center gap-1 cursor-pointer hover:text-slate-700">
-                    支持体验
-                    <ChevronDown className="w-3 h-3" />
-                  </div>
-                  <div className="flex items-center gap-1 cursor-pointer hover:text-slate-700">
-                    支持训练
-                    <ChevronDown className="w-3 h-3" />
-                  </div>
-                  <div className="flex items-center gap-1 cursor-pointer hover:text-slate-700">
-                    支持部署
-                    <ChevronDown className="w-3 h-3" />
-                  </div>
-                  <div className="flex items-center gap-1 cursor-pointer hover:text-slate-700">
-                    综合排序
-                    <ChevronDown className="w-3 h-3" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {MODEL_LIST_ITEMS.map((item) => (
-                  <div key={item.name} className="group rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-200 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200 cursor-pointer">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">
-                          {item.name.substring(0, 2)}
-                        </div>
-                        <div>
-                          <div className="text-[14px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-1">{item.name}</div>
-                          <div className="flex items-center gap-1.5 mt-0.5">
-                            <Badge variant="gray" className="text-[10px] h-4 px-1.5">{item.tag}</Badge>
-                            {item.badge && <Badge variant="blue" className="text-[10px] h-4 px-1.5">{item.badge}</Badge>}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center gap-2 mb-3 flex-wrap">
-                      <div className="flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
-                        <Cpu className="w-3 h-3" />
-                        <span>{item.params}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
-                        <Boxes className="w-3 h-3" />
-                        <span>Safetensors</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-100">
-                        <Server className="w-3 h-3" />
-                        <span>PyTorch</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-3 border-t border-slate-50">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-4 h-4 rounded-full bg-slate-100 flex items-center justify-center text-[9px] text-slate-600 font-bold">
-                          {item.provider[0]}
-                        </div>
-                        <span className="text-[12px] text-slate-500 truncate max-w-[120px]">{item.provider}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-[11px] text-slate-400">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          {item.date.substring(5)}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <ArrowRight className="w-3 h-3 rotate-90" />
-                          {item.size}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Star className="w-3 h-3" />
-                          {item.likes}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+    <article className="bg-white rounded-lg shadow-sm border border-slate-200 p-4 hover:shadow-md transition-shadow flex flex-col h-full cursor-pointer group">
+      <div className="flex items-start mb-3">
+        <div className="h-10 w-10 rounded-md bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm shrink-0">
+          {initial || 'AI'}
+        </div>
+        <div className="ml-3 flex-grow min-w-0">
+          <h3 className="text-sm font-semibold text-slate-900 group-hover:text-blue-700 transition-colors line-clamp-1">{item.name}</h3>
+          <div className="flex items-center gap-1.5 mt-1">
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600">{item.tag}</span>
+            {item.badge && <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold text-red-600 bg-red-100 uppercase">{item.badge}</span>}
           </div>
         </div>
       </div>
-    </Section>
+
+      <div className="flex flex-wrap gap-2 mb-4 text-xs text-slate-500">
+        <span className="flex items-center gap-1"><Cpu className="w-3.5 h-3.5" />{item.params}</span>
+        <span className="flex items-center gap-1"><Server className="w-3.5 h-3.5" />PyTorch</span>
+        <span className="flex items-center gap-1"><Boxes className="w-3.5 h-3.5" />Safetensors</span>
+      </div>
+
+      <div className="mt-auto pt-3 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+        <span className="flex items-center gap-1"><Building2 className="w-3.5 h-3.5" />{item.provider}</span>
+        <div className="flex space-x-3">
+          <span className="flex items-center gap-1"><ArrowDownToLine className="w-3.5 h-3.5" />{downloads}</span>
+          <span className="flex items-center gap-1"><Star className="w-3.5 h-3.5 text-yellow-500" />{item.likes}</span>
+          <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{item.date.slice(5)}</span>
+        </div>
+      </div>
+    </article>
   );
 };
 
-// --- Enterprise Solutions ---
+const ModelCatalog = () => (
+  <section className="py-6 bg-slate-50">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col lg:flex-row gap-6">
+        <aside className="w-full lg:w-[260px] rounded-lg border border-slate-200 bg-white p-4 shrink-0">
+          <div className="space-y-6">
+            {SIDEBAR_CATEGORIES.map((category) => (
+              <div key={category.title}>
+                <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-2">{category.title}</h3>
+                <ul className="space-y-1">
+                  {category.items.map((item) => (
+                    <li key={item} className="block py-1.5 text-sm text-slate-600 hover:text-blue-700 transition-colors cursor-pointer">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </aside>
+
+        <div className="flex-grow w-full">
+          <HeroSection />
+          <Toolbar />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {MODEL_LIST_ITEMS.map((item) => (
+              <ModelCard key={item.name} item={item} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const EnterpriseSolutions = () => (
-  <Section className="bg-slate-50 py-10 border-t border-slate-200 mobile-section">
+  <section className="bg-slate-50 py-10 border-t border-slate-200">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8">
-        <h2 className="mobile-title-section lg:text-xl font-bold text-slate-900">交付方案中心</h2>
-        <p className="mobile-text-body lg:text-sm text-slate-500 mt-2">针对不同业务规模与安全需求，提供灵活的交付模式</p>
+        <h2 className="text-xl font-bold text-slate-900">交付方案中心</h2>
+        <p className="text-sm text-slate-500 mt-2">针对不同业务规模与安全需求，提供灵活的交付模式</p>
       </div>
-      
-      {/* Mobile: Single column | Desktop: 3 columns */}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
           {
-            title: "公有云 API",
-            desc: "标准接口调用，按量计费，弹性扩容，适合快速验证与轻量级应用。",
-            features: ["即开即用", "弹性伸缩", "按Token计费"],
-            icon: Globe
+            title: '公有云 API',
+            desc: '标准接口调用，按量计费，弹性扩容，适合快速验证与轻量级应用。',
+            features: ['即开即用', '弹性伸缩', '按Token计费'],
+            icon: Globe,
           },
           {
-            title: "私有化部署",
-            desc: "模型部署至企业本地服务器，数据不出域，保障核心资产安全。",
-            features: ["数据隐私", "定制微调", "本地算力"],
-            icon: Server
+            title: '私有化部署',
+            desc: '模型部署至企业本地服务器，数据不出域，保障核心资产安全。',
+            features: ['数据隐私', '定制微调', '本地算力'],
+            icon: Server,
           },
           {
-            title: "一体机交付",
-            desc: "软硬一体化交付方案，开箱即用，降低企业AI基础设施建设门槛。",
-            features: ["软硬一体", "开箱即用", "运维托管"],
-            icon: Box
-          }
+            title: '一体机交付',
+            desc: '软硬一体化交付方案，开箱即用，降低企业AI基础设施建设门槛。',
+            features: ['软硬一体', '开箱即用', '运维托管'],
+            icon: Box,
+          },
         ].map((item, idx) => (
-          <div key={idx} className="bg-white rounded-lg border border-slate-200 p-5 hover:border-blue-300 hover:shadow-sm transition-all duration-200 group mobile-touch-feedback">
+          <div key={idx} className="bg-white rounded-lg border border-slate-200 p-5 hover:border-blue-300 hover:shadow-sm transition-all duration-200 group">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-8 bg-blue-50 rounded-md flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                 <item.icon className="w-4 h-4" />
               </div>
-              <h3 className="mobile-title-section lg:text-base font-bold text-slate-900">{item.title}</h3>
+              <h3 className="text-base font-bold text-slate-900">{item.title}</h3>
             </div>
-            <p className="mobile-text-body lg:text-xs text-slate-500 leading-relaxed mb-4 min-h-[40px]">
-              {item.desc}
-            </p>
+            <p className="text-sm text-slate-500 leading-relaxed mb-4 min-h-[40px]">{item.desc}</p>
             <ul className="space-y-1.5">
               {item.features.map((feat, i) => (
                 <li key={i} className="flex items-center gap-2 text-xs text-slate-600">
@@ -276,13 +215,12 @@ const EnterpriseSolutions = () => (
         ))}
       </div>
     </div>
-  </Section>
+  </section>
 );
 
 export default function ModelsPage() {
   return (
     <Layout>
-      <HeroSection />
       <ModelCatalog />
       <EnterpriseSolutions />
     </Layout>

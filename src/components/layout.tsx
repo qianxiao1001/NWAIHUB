@@ -8,7 +8,6 @@ const NAV_ITEMS = [
   { name: '首页', path: '/' },
   { name: '模型广场', path: '/models' },
   { name: '算力资源', path: '/compute' },
-  { name: '数据资源', path: '/datasets' },
   { name: '智能体市场', path: '/apps' },
   { name: '政策支持', path: '/policy' },
   { name: '培训认证', path: '/training' },
@@ -200,7 +199,6 @@ export const Footer = () => {
             <ul className="space-y-2 text-xs">
               <li><Link to="/models" className="hover:text-white transition-colors duration-200 ui-link-underline">模型广场</Link></li>
               <li><Link to="/compute" className="hover:text-white transition-colors duration-200 ui-link-underline">算力资源</Link></li>
-              <li><Link to="/datasets" className="hover:text-white transition-colors duration-200 ui-link-underline">数据资源</Link></li>
               <li><Link to="/apps" className="hover:text-white transition-colors duration-200 ui-link-underline">智能体市场</Link></li>
             </ul>
           </div>
@@ -243,7 +241,6 @@ export const Footer = () => {
               <ul className="px-3 pb-3 space-y-2 text-[11px] text-slate-400">
                 <li><Link to="/models" className="hover:text-white transition-colors duration-200">模型广场</Link></li>
                 <li><Link to="/compute" className="hover:text-white transition-colors duration-200">算力资源</Link></li>
-                <li><Link to="/datasets" className="hover:text-white transition-colors duration-200">数据资源</Link></li>
                 <li><Link to="/apps" className="hover:text-white transition-colors duration-200">智能体市场</Link></li>
               </ul>
             </details>

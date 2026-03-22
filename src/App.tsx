@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import HomePage from '@/pages/HomePage';
 import ModelsPage from '@/pages/ModelsPage';
 import ComputePage from '@/pages/ComputePage';
-import DatasetsPage from '@/pages/DatasetsPage';
 import PolicyPage from '@/pages/PolicyPage';
 import TrainingPage from '@/pages/TrainingPage';
 import ActivityCommunityPage from '@/pages/ActivityCommunityPage';
@@ -31,7 +30,6 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/models" element={<ModelsPage />} />
         <Route path="/compute" element={<ComputePage />} />
-        <Route path="/datasets" element={<DatasetsPage />} />
         <Route path="/policy" element={<PolicyPage />} />
         <Route path="/training" element={<TrainingPage />} />
         <Route path="/community" element={<ActivityCommunityPage />} />

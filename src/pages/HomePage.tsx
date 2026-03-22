@@ -316,7 +316,7 @@ const HomePageMain = () => {
 const HomeShortcut = () => (
   <section className="py-6 border-t border-slate-200 bg-white">
     <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         <Link
           to="/models"
           className="rounded-lg border border-slate-200 p-3 text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 transition-colors inline-flex items-center gap-2"
@@ -330,13 +330,6 @@ const HomeShortcut = () => (
         >
           <Cpu className="w-4 h-4 text-blue-600" />
           算力资源
-        </Link>
-        <Link
-          to="/datasets"
-          className="rounded-lg border border-slate-200 p-3 text-sm text-slate-700 bg-slate-50 hover:bg-slate-100 transition-colors inline-flex items-center gap-2"
-        >
-          <Database className="w-4 h-4 text-blue-600" />
-          数据资源
         </Link>
         <Link
           to="/apps"
