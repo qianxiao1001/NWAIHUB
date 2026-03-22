@@ -65,7 +65,7 @@ const PolicyContent = () => {
     policy: [
       {
         title: "关于支持人工智能产业发展的若干措施",
-        dept: "上地街道产业服务办公室",
+        dept: "氪星创服产业服务办公室",
         date: "2025-12-10",
         type: "资金扶持",
         desc: "支持企业开展大模型研发与应用，最高给予 1000 万元资金支持；对购买算力服务的企业给予 30% 补贴。"
@@ -179,7 +179,7 @@ const PolicyContent = () => {
           )}>
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b border-slate-200">
-                <h3 className="font-semibold text-slate-900">上地街道政策服务计划</h3>
+                <h3 className="font-semibold text-slate-900">氪星创服政策服务计划</h3>
                 <button 
                   onClick={() => setSidebarDrawerOpen(false)}
                   className="p-1 text-slate-600 hover:bg-slate-50 rounded"
@@ -247,7 +247,7 @@ const PolicyContent = () => {
               <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg p-4 text-white shadow-md">
                 <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
                   <FileCheck className="w-4 h-4 text-blue-200" />
-                  上地街道企业服务工作台
+                  氪星创服企业服务工作台
                 </h4>
                 <p className="text-xs text-blue-100 mb-3 leading-relaxed opacity-90">
                   为专精特新企业提供政策申报、资质认定等一站式服务支持。

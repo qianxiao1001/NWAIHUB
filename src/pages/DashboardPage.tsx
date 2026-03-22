@@ -203,7 +203,7 @@ export const DashboardPage = () => {
               <span>截至 2026.03</span>
             </div>
             <div className="flex-1 text-center">
-              <h1 className="text-lg lg:text-[34px] leading-tight font-bold tracking-[0.06em] text-slate-50">上地街道·产业运营总览驾驶舱</h1>
+              <h1 className="text-lg lg:text-[34px] leading-tight font-bold tracking-[0.06em] text-slate-50">氪星创服·产业运营总览驾驶舱</h1>
               <p className="text-[11px] text-slate-400 tracking-wide">产业运行实时监测数据</p>
             </div>
             <div className="w-1/4 flex justify-end">
@@ -288,7 +288,7 @@ export const DashboardPage = () => {
 
             <div className="grid grid-cols-3 gap-2 mt-auto pt-4 border-t border-slate-800/50">
               <div className="text-center">
-                <p className="text-[10px] text-slate-500 mb-0.5">上地街道占比</p>
+                <p className="text-[10px] text-slate-500 mb-0.5">氪星创服占比</p>
                 <p className="text-sm font-bold text-blue-300">18.7%</p>
               </div>
               <div className="text-center border-l border-slate-800/50">
@@ -306,7 +306,7 @@ export const DashboardPage = () => {
           <Card title="主体画像" icon={Users} className="basis-[32%] min-h-0">
             <div className="mb-4">
               <div className="flex justify-between text-xs text-slate-400 mb-1.5">
-                <span>上地街道本地 <span className="text-blue-400 font-bold">52%</span></span>
+                <span>氪星创服本地 <span className="text-blue-400 font-bold">52%</span></span>
                 <span>省内其他 <span className="text-slate-500 font-bold">48%</span></span>
               </div>
               <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden flex">
@@ -371,11 +371,11 @@ export const DashboardPage = () => {
              <div className="relative min-h-0">
                <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 bg-slate-950/70 border border-cyan-400/25 px-6 py-1 rounded-full flex items-center gap-2">
                   <Target className="w-4 h-4 text-cyan-300" />
-                  <span className="text-slate-200 font-semibold text-sm tracking-wide">上地街道企业主体分布情况</span>
+                  <span className="text-slate-200 font-semibold text-sm tracking-wide">氪星创服企业主体分布情况</span>
                </div>
                <MapVisualization />
                <div className="absolute right-3 top-12 rounded-lg border border-cyan-400/35 bg-slate-950/82 p-3 w-[220px]">
-                 <p className="text-xs text-slate-400 mb-1">上地街道核心摘要</p>
+                 <p className="text-xs text-slate-400 mb-1">氪星创服核心摘要</p>
                  <div className="text-2xl font-mono font-bold text-cyan-300">2,157 家</div>
                  <div className="grid grid-cols-2 gap-2 mt-2 text-[11px]">
                    <div><span className="text-slate-500">区域占比</span><p className="text-slate-100 font-semibold">18.7%</p></div>

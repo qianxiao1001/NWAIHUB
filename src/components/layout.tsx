@@ -14,7 +14,7 @@ const NAV_ITEMS = [
   { name: '活动社群', path: '/community' },
 ];
 const BASE_URL = import.meta.env.BASE_URL;
-const BRAND_LOGO = `${BASE_URL}Logos/shangdi.png`;
+const BRAND_LOGO = `${BASE_URL}Logos/krstar-long-logo.png`;
 const RUANJIMU_LOGO = `${BASE_URL}Logos/软积木logo.png`;
 const KRSTAR_LOGO = `${BASE_URL}Logos/翻白色logo.png`;
 
@@ -49,7 +49,7 @@ export const Header = () => {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="h-full flex items-center justify-between">
             <div className="flex items-center mobile-touch-feedback">
-              <img src={BRAND_LOGO} alt="上地街道 Logo" className="h-8 w-auto object-contain" />
+              <img src={BRAND_LOGO} alt="氪星创服 Logo" className="h-8 w-auto object-contain" />
             </div>
 
             {/* Desktop Navigation */}
@@ -116,8 +116,8 @@ export const Header = () => {
           {/* Drawer Header */}
           <div className="flex items-center justify-between p-4 border-b border-slate-200">
             <div className="flex items-center">
-              <img src={BRAND_LOGO} alt="上地街道 Logo" className="h-7 w-auto object-contain" />
-              <span className="ml-2 text-sm font-semibold text-slate-900">上地街道</span>
+              <img src={BRAND_LOGO} alt="氪星创服 Logo" className="h-7 w-auto object-contain" />
+              <span className="ml-2 text-sm font-semibold text-slate-900">氪星创服</span>
             </div>
             <button
               className="p-1.5 text-slate-600 hover:bg-slate-50 rounded-md mobile-touch-feedback"
@@ -179,7 +179,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 mb-4 md:mb-5">
           <div className="col-span-1 md:col-span-4">
             <p className="text-[11px] md:text-[13px] text-slate-400 leading-relaxed mb-4 md:mb-5 max-w-md">
-              上地街道位于北京市海淀区，是融合高新技术产业集聚与高端人才社区发展的科技创新高地。
+              氪星创服位于北京市海淀区，是融合高新技术产业集聚与高端人才社区发展的科技创新高地。
             </p>
             <div className="rounded-xl border border-slate-700/50 bg-slate-800/45 p-3 md:p-4 max-w-md backdrop-blur-sm">
               <p className="text-[11px] text-slate-300 font-medium mb-2.5 tracking-wide">平台支撑单位</p>
@@ -219,7 +219,7 @@ export const Footer = () => {
             <ul className="space-y-2.5 text-xs">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-3.5 h-3.5 text-slate-500 mt-0.5" />
-                <span className="text-slate-400">上地街道</span>
+                <span className="text-slate-400">氪星创服</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-3.5 h-3.5 text-slate-500" />
@@ -265,7 +265,7 @@ export const Footer = () => {
               <ul className="px-3 pb-3 space-y-2 text-[11px] text-slate-400">
                 <li className="flex items-start gap-2">
                   <MapPin className="w-3.5 h-3.5 text-slate-500 mt-0.5" />
-                  <span>上地街道</span>
+                  <span>氪星创服</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="w-3.5 h-3.5 text-slate-500" />
@@ -281,7 +281,7 @@ export const Footer = () => {
         </div>
         
         <div className="pt-4 md:pt-5 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-2.5 md:gap-3 text-[10px] text-slate-500">
-          <p>© 2026 上地街道OPC技术服务平台 版权所有</p>
+          <p>© 2026 氪星创服OPC技术服务平台 版权所有</p>
           <div className="flex gap-4 md:gap-5 flex-wrap justify-center">
             <a href="#" className="hover:text-slate-300 transition-colors duration-200 ui-link-underline">隐私政策</a>
             <a href="#" className="hover:text-slate-300 transition-colors duration-200 ui-link-underline">服务条款</a>
@@ -294,7 +294,10 @@ export const Footer = () => {
 };
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
   const [showBackTop, setShowBackTop] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [pageEntering, setPageEntering] = useState(false);
 
   useEffect(() => {
     const revealTargets = Array.from(document.querySelectorAll<HTMLElement>('main section, main .ui-reveal, main .ui-reveal-group'));
@@ -328,15 +331,37 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const handleScroll = () => {
       setShowBackTop(window.scrollY > 420);
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollHeight <= 0) {
+        setScrollProgress(0);
+        return;
+      }
+      const progress = Math.min(100, Math.max(0, (window.scrollY / scrollHeight) * 100));
+      setScrollProgress(progress);
     };
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setPageEntering(true);
+    const timer = window.setTimeout(() => {
+      setPageEntering(false);
+    }, 520);
+    return () => window.clearTimeout(timer);
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#f4f8ff] text-slate-900">
+      <div className="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-transparent pointer-events-none">
+        <div
+          className="h-full bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-500 shadow-[0_0_12px_rgba(37,88,212,0.55)] origin-left transition-[width] duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Header />
-      <main className="flex-grow pt-[52px]">
+      <main className={cn("flex-grow pt-[52px]", pageEntering && "ui-page-enter")}>
         {children}
       </main>
       <Footer />

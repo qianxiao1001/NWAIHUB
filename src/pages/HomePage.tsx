@@ -109,12 +109,12 @@ const HomePageMain = () => {
       
       <div className="relative z-10 w-full max-w-[900px] mx-auto px-2 sm:px-8 py-8 sm:py-10">
         <div className="text-center">
-          <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700 px-4 py-1.5 text-sm font-medium">上地街道 · OPC技术服务平台</Badge>
+          <Badge className="mb-5 border-blue-100 bg-blue-50 text-blue-700 px-4 py-1.5 text-sm font-medium">氪星创服 · OPC技术服务平台</Badge>
           <h1 className="text-[clamp(1rem,4.1vw,3rem)] sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-3 whitespace-nowrap">
-            上地街道产业智能服务中枢
+            氪星创服产业智能服务中枢
           </h1>
           <p className="text-[clamp(0.72rem,3.1vw,1.875rem)] leading-tight font-semibold text-slate-800 mb-4 sm:text-[30px] whitespace-nowrap">
-            聚合算力、模型、数据与智能体能力，构建上地街道产业智能协同底座
+            聚合算力、模型、数据与智能体能力，构建氪星创服产业智能协同底座
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-2.5 mb-6">
@@ -243,7 +243,7 @@ const HomePageMain = () => {
               系统在线
             </span>
           </div>
-          <h2 className="text-3xl font-bold text-slate-900 mb-2">上地街道产业智能总控中心</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-2">氪星创服产业智能总控中心</h2>
           <p className="text-sm text-slate-500 leading-6 mb-5">
             以首页作为观测枢纽完成算力交互与模型运行指标态势，让管理者快速查看资源算力、模型、数据与服务健康状态。
           </p>
@@ -270,7 +270,7 @@ const HomePageMain = () => {
 
             <div className="lg:col-span-8 rounded-xl border border-slate-200 bg-slate-50/70 p-4 md:p-5">
               <div className="pb-3 mb-3 border-b border-slate-200">
-                <h3 className="text-[34px] leading-tight font-semibold text-slate-900 md:text-4xl">上地街道 · 产业运行监测</h3>
+                <h3 className="text-[34px] leading-tight font-semibold text-slate-900 md:text-4xl">氪星创服 · 产业运行监测</h3>
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-4">

@@ -8,7 +8,6 @@ import {
   Cpu,
   Boxes,
   Server,
-  Calendar,
   ArrowDownToLine,
   Star,
   Building2,
@@ -119,12 +118,14 @@ const ModelCard = ({ item }: { item: (typeof MODEL_LIST_ITEMS)[number] }) => {
         <span className="flex items-center gap-1"><Boxes className="w-3.5 h-3.5" />Safetensors</span>
       </div>
 
-      <div className="mt-auto pt-3 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
-        <span className="flex items-center gap-1"><Building2 className="w-3.5 h-3.5" />{item.provider}</span>
-        <div className="flex space-x-3">
+      <div className="mt-auto pt-3 border-t border-slate-100 text-xs text-slate-500">
+        <div className="flex items-center gap-1.5 min-w-0 mb-2">
+          <Building2 className="w-3.5 h-3.5 shrink-0" />
+          <span className="line-clamp-2 leading-snug break-words">{item.provider}</span>
+        </div>
+        <div className="flex items-center gap-4 flex-wrap">
           <span className="flex items-center gap-1"><ArrowDownToLine className="w-3.5 h-3.5" />{downloads}</span>
           <span className="flex items-center gap-1"><Star className="w-3.5 h-3.5 text-yellow-500" />{item.likes}</span>
-          <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{item.date.slice(5)}</span>
         </div>
       </div>
     </article>
