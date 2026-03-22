@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -18,6 +18,8 @@ import {
   Sparkles,
   UserRoundCheck,
   Wrench,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { Layout } from '@/components/layout';
 import { Badge, Button } from '@/components/ui/common';
@@ -65,9 +67,37 @@ const stats = [
   { label: '新增企业', value: '126', extra: '本周新增' },
 ];
 
-const PROMO_BANNER = `${import.meta.env.BASE_URL}banners/qianfanagent.png?v=20260318a`;
+const BANNER_SLIDES = [
+  {
+    title: 'AI 产业路演专场',
+    subtitle: '活动轮播',
+    image: `${import.meta.env.BASE_URL}banners/qianfanagent.png?v=20260318a`,
+  },
+  {
+    title: '企业智能化闭门研讨会',
+    subtitle: '活动轮播',
+    image: `${import.meta.env.BASE_URL}banners/doubaoagent2.png?v=20260318a`,
+  },
+  {
+    title: '开发者实战训练营',
+    subtitle: '活动轮播',
+    image: `${import.meta.env.BASE_URL}banners/fangzhou.png?v=20260318a`,
+  },
+];
 
 const HomePageMain = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % BANNER_SLIDES.length);
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const prevSlide = () => setActiveSlide((prev) => (prev - 1 + BANNER_SLIDES.length) % BANNER_SLIDES.length);
+  const nextSlide = () => setActiveSlide((prev) => (prev + 1) % BANNER_SLIDES.length);
+
   return (
   <main className="bg-[#f6f8fc]">
     <section 
@@ -149,14 +179,54 @@ const HomePageMain = () => {
     </section>
 
     <section className="py-4 border-b border-slate-200 bg-white/70">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-xl">
-          <img
-            src={PROMO_BANNER}
-            alt="平台推广图"
-            className="w-full h-[220px] sm:h-[300px] lg:h-[420px] object-contain"
-            loading="eager"
-          />
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm w-full">
+          <div className="relative w-full aspect-[16/9] min-h-[200px] sm:min-h-[260px] max-h-[440px]">
+            {BANNER_SLIDES.map((slide, idx) => (
+              <div
+                key={slide.title}
+                className={`absolute inset-0 transition-opacity duration-500 ${idx === activeSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-full h-full object-cover object-center"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-900/55 via-slate-900/20 to-transparent" />
+                <div className="absolute left-4 sm:left-6 bottom-4 sm:bottom-6 text-white max-w-[85%] sm:max-w-[70%]">
+                  <p className="text-[10px] sm:text-xs font-semibold tracking-[0.12em] uppercase opacity-90">{slide.subtitle}</p>
+                  <h3 className="text-lg sm:text-2xl md:text-3xl font-bold mt-1.5 sm:mt-2 leading-tight">{slide.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={prevSlide}
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/85 hover:bg-white text-slate-700 flex items-center justify-center shadow-sm"
+            aria-label="上一张"
+          >
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/85 hover:bg-white text-slate-700 flex items-center justify-center shadow-sm"
+            aria-label="下一张"
+          >
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+
+          <div className="absolute bottom-2.5 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+            {BANNER_SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveSlide(idx)}
+                className={`h-2.5 rounded-full transition-all ${idx === activeSlide ? 'w-6 bg-white' : 'w-2.5 bg-white/60 hover:bg-white/80'}`}
+                aria-label={`切换到第 ${idx + 1} 张`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
