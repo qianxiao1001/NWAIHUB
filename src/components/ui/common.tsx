@@ -9,10 +9,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', ...props }, ref) => {
     const variants = {
-      primary: 'bg-gradient-to-br from-[#004ac6] to-[#2563eb] text-white hover:from-[#003ea8] hover:to-[#1f57d4] border border-blue-600/60 shadow-[0_12px_30px_-18px_rgba(0,74,198,0.75)] transition-all',
-      secondary: 'bg-white/85 text-slate-700 border border-slate-300/40 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all',
-      outline: 'bg-transparent border border-slate-300/40 text-slate-600 hover:border-blue-500/40 hover:text-blue-700 hover:bg-blue-50/35 transition-all',
-      ghost: 'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-transparent transition-all',
+      primary: 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-container)] border border-[var(--color-primary)]/60 shadow-[0_12px_30px_-18px_rgba(0,61,166,0.5)] transition-all',
+      secondary: 'bg-[var(--color-surface-container-lowest)] text-[var(--color-on-surface-variant)] border border-[var(--color-outline-variant)]/40 hover:bg-[var(--color-surface-container-low)] hover:text-[var(--color-on-surface)] shadow-sm transition-all',
+      outline: 'bg-transparent border border-[var(--color-outline-variant)]/40 text-[var(--color-on-surface-variant)] hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/5 transition-all',
+      ghost: 'bg-transparent text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container-low)] hover:text-[var(--color-on-surface)] border border-transparent transition-all',
     };
 
     const sizes = {
@@ -60,12 +60,12 @@ export const Badge = ({
   interactive?: boolean;
 } & React.HTMLAttributes<HTMLSpanElement>) => {
   const variants = {
-    blue: 'bg-blue-50 text-blue-700 border-blue-200',
+    blue: 'bg-[var(--color-primary-fixed)] text-[var(--color-on-primary-fixed-variant)] border-[var(--color-primary-fixed-dim)]',
     purple: 'bg-violet-50 text-violet-700 border-violet-200',
     green: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    gray: 'bg-slate-100 text-slate-600 border-slate-200',
-    outline: 'bg-transparent border-slate-300 text-slate-600',
-    dark: 'bg-slate-800 text-slate-200 border-slate-700',
+    gray: 'bg-[var(--color-surface-container-low)] text-[var(--color-on-surface-variant)] border-[var(--color-outline-variant)]',
+    outline: 'bg-transparent border-[var(--color-outline-variant)] text-[var(--color-on-surface-variant)]',
+    dark: 'bg-[var(--color-on-surface)] text-[var(--color-on-background)] border-transparent',
   };
   
   return (

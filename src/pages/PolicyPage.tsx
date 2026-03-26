@@ -1,52 +1,49 @@
 import React, { useState } from 'react';
 import { Layout } from '@/components/layout';
-import { Button, Card, Badge } from '@/components/ui/common';
-import { 
-  FileText, CheckCircle2, Download, Search, 
-  Scale, Shield, BookOpen, ChevronRight, 
-  Landmark, Gavel, FileCheck, ArrowRight, Clock
-} from 'lucide-react';
+import { Button, Badge } from '@/components/ui/common';
 import { cn } from '@/lib/utils';
 
-// --- Hero Section ---
+// Material Symbols icon wrapper
+const Icon = ({ name, className = '' }: { name: string; className?: string }) => (
+  <span className={cn('material-symbols-outlined', className)}>{name}</span>
+);
+
+// --- Hero Section (matches reference design) ---
 const PolicyHero = () => (
-  <div className="relative bg-white border-b border-slate-200 py-6 ui-reveal">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Mobile: Top text, Bottom search | Desktop: Left text, Right search */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-        <div className="lg:max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold mb-3">
-            <Scale className="w-3.5 h-3.5" />
-            政策服务与实施标准
-          </div>
-          
-          <h1 className="mobile-title-hero lg:text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-            政策与服务中心
-          </h1>
-          
-          <p className="mobile-text-body lg:text-sm text-slate-600 leading-relaxed lg:max-w-xl mobile-text-truncate-3">
-            汇聚人工智能产业最新政策法规、技术标准与合规指南，助力企业把握发展机遇，构建可信赖的人工智能应用。
+  <section className="mb-10 ui-reveal">
+    <div className="relative overflow-hidden rounded-none border border-white/10 shadow-[0_22px_50px_-28px_rgba(0,35,117,0.75)] bg-gradient-to-br from-[#003da6] via-[#0049c8] to-[#0052d9] p-10 md:p-16 text-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-black/46 via-black/22 to-black/12" />
+      <div className="absolute inset-0 dot-pattern opacity-20" />
+      <div className="policy-hero-glow absolute inset-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_10%,rgba(255,255,255,0.16),transparent_32%),radial-gradient(circle_at_85%_8%,rgba(255,255,255,0.12),transparent_30%)]" />
+      <div className="relative z-10 max-w-3xl">
+        <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold mb-6 text-white">
+          政策与支持中心
+        </span>
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight leading-tight text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.35)]">
+          政策法规与行业标准
+        </h1>
+        <div className="mb-8 max-w-2xl rounded-xl border border-white/20 bg-black/18 backdrop-blur-sm px-5 py-4">
+          <p className="text-base md:text-lg leading-relaxed text-white !text-white [text-shadow:0_1px_6px_rgba(0,0,0,0.3)]">
+            汇聚人工智能产业最新政策法规、技术标准及扶持措施，为您提供精准的合规指引与发展支持。
           </p>
         </div>
-        
-        <div className="w-full lg:max-w-xl">
-          <div className="flex gap-2">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input 
-                type="text" 
-                placeholder="搜索政策事项、标准编号或关键词..." 
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500/15 focus:border-blue-400 transition-all duration-200 mobile-text-body"
-              />
-            </div>
-            <Button size="sm" className="h-10 px-6 bg-blue-600 hover:bg-blue-700 text-white shadow-sm">
-              搜索
-            </Button>
+        <div className="flex flex-col md:flex-row gap-3">
+          <div className="flex-1 relative">
+            <Icon name="search" className="absolute left-4 top-1/2 -translate-y-1/2 text-[#434654] text-lg" />
+            <input
+              type="text"
+              placeholder="搜索政策文件、标准编号或关键词..."
+              className="w-full pl-12 pr-6 py-3.5 bg-white text-[#181c1e] rounded-2xl border-none focus:ring-4 focus:ring-white/25 shadow-xl text-sm"
+            />
           </div>
+          <Button className="h-[52px] px-8 bg-white text-[#003da6] hover:bg-slate-50 shadow-xl font-bold rounded-2xl text-sm active:scale-95 border-0">
+            检索
+          </Button>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 );
 
 // --- Main Content ---
@@ -55,285 +52,264 @@ const PolicyContent = () => {
   const [sidebarDrawerOpen, setSidebarDrawerOpen] = useState(false);
 
   const categories = [
-    { id: 'policy', name: '产业政策', icon: Landmark, count: 12 },
-    { id: 'standard', name: '技术标准', icon: Gavel, count: 8 },
-    { id: 'compliance', name: '合规指南', icon: Shield, count: 5 },
-    { id: 'report', name: '研究报告', icon: BookOpen, count: 3 },
+    { id: 'policy', name: '产业政策', icon: 'account_balance', count: 12 },
+    { id: 'standard', name: '技术标准', icon: 'verified', count: 8 },
+    { id: 'compliance', name: '合规指南', icon: 'shield', count: 5 },
+    { id: 'report', name: '研究报告', icon: 'menu_book', count: 3 },
   ];
 
-  const documents = {
+  const documents: Record<string, Array<{
+    title: string; dept: string; date: string; type: string; id?: string; desc: string;
+  }>> = {
     policy: [
       {
-        title: "关于支持人工智能产业发展的若干措施",
-        dept: "氪星创服产业服务办公室",
-        date: "2025-12-10",
-        type: "资金扶持",
-        desc: "支持企业开展大模型研发与应用，最高给予 1000 万元资金支持；对购买算力服务的企业给予 30% 补贴。"
+        title: '关于支持人工智能产业发展的若干措施',
+        dept: '中关村管委会',
+        date: '2025-12-10',
+        type: '资金扶持',
+        desc: '为进一步发挥人工智能赋能实体经济作用，支持关键技术研发与公共算力平台建设。最高给予1000万元资金支持。',
       },
       {
-        title: "北京市通用人工智能产业创新伙伴计划",
-        dept: "北京市经信局",
-        date: "2025-11-20",
-        type: "产业规划",
-        desc: "搭建人工智能产业创新合作平台，促进算力、数据、模型、应用等产业链上下游协同发展。"
+        title: '北京市通用人工智能产业创新伙伴计划',
+        dept: '北京市经济和信息化局',
+        date: '2025-11-25',
+        type: '产业规划',
+        desc: '旨在通过算力券、数据开放及典型应用场景开放，构建通用人工智能产业协同生态体系，加速大模型迭代升级。',
       },
       {
-        title: "人工智能高新技术企业认定管理办法",
-        dept: "科技部",
-        date: "2025-10-15",
-        type: "资质认定",
-        desc: "明确人工智能领域高新技术企业的认定标准、申报流程及优惠政策，鼓励企业加大研发投入。"
-      }
+        title: '人工智能高新技术企业认定管理办法',
+        dept: '科技部',
+        date: '2025-10-15',
+        type: '资质认定',
+        desc: '规范人工智能领域高新技术企业认定标准，明确研发投入比例、核心自主知识产权及关键技术指标要求。',
+      },
     ],
     standard: [
       {
-        title: "人工智能 大模型基准测试方法",
-        dept: "国家标准委",
-        date: "2026-01-01",
-        type: "国家标准",
-        id: "GB/T 12345-2026",
-        desc: "规定了通用大模型在语言理解、逻辑推理、代码生成等方面的测试指标与评估方法。"
+        title: '人工智能 大模型基准测试方法',
+        dept: '国家标准委',
+        date: '2026-01-01',
+        type: '国家标准',
+        id: 'GB/T 12345-2026',
+        desc: '规定了通用大模型在语言理解、逻辑推理、代码生成等方面的测试指标与评估方法。',
       },
       {
-        title: "生成式人工智能服务安全基本要求",
-        dept: "TC260",
-        date: "2025-12-01",
-        type: "行业标准",
-        id: "TC260-003",
-        desc: "提出了生成式人工智能服务在语料安全、模型安全、安全措施等方面的基本要求。"
+        title: '生成式人工智能服务安全基本要求',
+        dept: 'TC260',
+        date: '2025-12-01',
+        type: '行业标准',
+        id: 'TC260-003',
+        desc: '提出了生成式人工智能服务在语料安全、模型安全、安全措施等方面的基本要求。',
       },
       {
-        title: "人工智能 深度学习算法评估规范",
-        dept: "IEEE",
-        date: "2025-09-30",
-        type: "国际标准",
-        id: "IEEE P2841",
-        desc: "International standard for evaluating deep learning algorithms, focusing on performance, robustness, and explainability."
-      }
+        title: '人工智能 深度学习算法评估规范',
+        dept: 'IEEE',
+        date: '2025-09-30',
+        type: '国际标准',
+        id: 'IEEE P2841',
+        desc: 'International standard for evaluating deep learning algorithms, focusing on performance, robustness, and explainability.',
+      },
     ],
     compliance: [
       {
-        title: "企业数据出境安全评估申报指南",
-        dept: "网信办",
-        date: "2026-02-10",
-        type: "合规指引",
-        desc: "指导企业开展数据出境安全自评估，明确申报材料要求与流程，保障数据跨境安全。"
+        title: '企业数据出境安全评估申报指南',
+        dept: '网信办',
+        date: '2026-02-10',
+        type: '合规指引',
+        desc: '指导企业开展数据出境安全自评估，明确申报材料要求与流程，保障数据跨境安全。',
       },
       {
-        title: "人工智能伦理治理白皮书",
-        dept: "人工智能产业联盟",
-        date: "2025-11-05",
-        type: "伦理规范",
-        desc: "阐述人工智能发展应遵循的伦理原则，提出企业伦理治理架构与实践建议。"
-      }
+        title: '人工智能伦理治理白皮书',
+        dept: '人工智能产业联盟',
+        date: '2025-11-05',
+        type: '伦理规范',
+        desc: '阐述人工智能发展应遵循的伦理原则，提出企业伦理治理架构与实践建议。',
+      },
     ],
     report: [
       {
-        title: "2025-2026 中国人工智能产业发展蓝皮书",
-        dept: "中国信通院",
-        date: "2026-03-01",
-        type: "行业报告",
-        desc: "全面分析中国人工智能产业发展现状、技术趋势、应用场景及未来展望。"
-      }
-    ]
+        title: '2025-2026 中国人工智能产业发展蓝皮书',
+        dept: '中国信通院',
+        date: '2026-03-01',
+        type: '行业报告',
+        desc: '全面分析中国人工智能产业发展现状、技术趋势、应用场景及未来展望。',
+      },
+    ],
+  };
+
+  const getBadgeColor = (type: string) => {
+    if (type.includes('资金')) return 'bg-amber-50 text-amber-700 border-amber-200';
+    if (type.includes('标准')) return 'bg-emerald-50 text-emerald-700 border-emerald-200';
+    if (type.includes('资质') || type.includes('认定')) return 'bg-[#ffdbd0] text-[#832700] border-[#ffb59c]';
+    if (type.includes('规划')) return 'bg-secondary/10 text-secondary border-secondary/20';
+    if (type.includes('合规') || type.includes('伦理')) return 'bg-violet-50 text-violet-700 border-violet-200';
+    return 'bg-[#dbe1ff] text-[#003ea8] border-[#b4c5ff]';
   };
 
   return (
-    <div className="bg-slate-50/50 py-6 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Mobile: Filter button and drawer | Desktop: Sidebar */}
-        <div className="lg:grid lg:grid-cols-12 lg:gap-6">
-          
-          {/* Mobile Filter Controls */}
-          <div className="lg:hidden mb-4 flex gap-2">
-            <button 
-              onClick={() => setSidebarDrawerOpen(true)}
-              className="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-sm hover:bg-slate-50 transition-colors mobile-touch-feedback"
-            >
-              <BookOpen className="w-4 h-4" />
-              分类
-            </button>
-            <select 
-              value={activeCategory} 
-              onChange={(e) => setActiveCategory(e.target.value)}
-              className="flex-1 px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-            >
-              {categories.map(cat => (
-                <option key={cat.id} value={cat.id}>{cat.name}</option>
-              ))}
-            </select>
-          </div>
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div className="flex flex-col lg:flex-row gap-8">
 
-          {/* Sidebar Drawer Overlay */}
-          {sidebarDrawerOpen && (
-            <div 
-              className="fixed inset-0 bg-black/50 z-40 lg:hidden mobile-fade-in"
-              onClick={() => setSidebarDrawerOpen(false)}
-            />
-          )}
-
-          {/* Sidebar Drawer */}
-          <div className={cn(
-            "fixed top-0 left-0 h-full w-[300px] bg-white shadow-xl z-50 lg:hidden transform transition-transform duration-300",
-            sidebarDrawerOpen ? "translate-x-0" : "-translate-x-full"
-          )}>
-            <div className="h-full flex flex-col">
-              <div className="flex items-center justify-between p-4 border-b border-slate-200">
-                <h3 className="font-semibold text-slate-900">氪星创服政策服务计划</h3>
-                <button 
-                  onClick={() => setSidebarDrawerOpen(false)}
-                  className="p-1 text-slate-600 hover:bg-slate-50 rounded"
+        {/* Sidebar */}
+        <aside className="w-full lg:w-72 shrink-0 space-y-6">
+          {/* Category Nav */}
+          <div className="bg-[var(--color-surface-container-lowest)] rounded-2xl p-5 shadow-sm border border-[var(--color-outline-variant)]/20">
+            <h3 className="text-xs font-bold text-[var(--color-on-surface-variant)] uppercase tracking-wider mb-5">
+              分类检索
+            </h3>
+            <nav className="space-y-1.5">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={cn(
+                    'w-full flex justify-between items-center px-4 py-3 rounded-xl text-sm font-medium transition-all',
+                    activeCategory === cat.id
+                      ? 'bg-[var(--color-primary)]/8 text-[var(--color-primary)] font-bold'
+                      : 'text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container-low)]'
+                  )}
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <span className="flex items-center gap-2.5">
+                    <Icon name={cat.icon} className={cn(
+                      'text-base',
+                      activeCategory === cat.id ? 'text-[var(--color-primary)]' : 'text-[var(--color-outline)]'
+                    )} />
+                    {cat.name}
+                  </span>
+                  <span className={cn(
+                    'text-xs px-2 py-0.5 rounded-full',
+                    activeCategory === cat.id
+                      ? 'bg-[var(--color-primary)]/12 text-[var(--color-primary)]'
+                      : 'bg-[var(--color-surface-container-high)] text-[var(--color-outline)]'
+                  )}>
+                    {cat.count}
+                  </span>
                 </button>
-              </div>
-              
-              <div className="flex-1 p-4 space-y-4 overflow-y-auto">
-                <div className="space-y-1">
-                  {categories.map((cat) => (
-                    <button
-                      key={cat.id}
-                      onClick={() => {
-                        setActiveCategory(cat.id);
-                        setSidebarDrawerOpen(false);
-                      }}
-                      className={cn(
-                        "w-full flex items-center justify-between px-3 py-2 rounded-md text-sm transition-all duration-200",
-                        activeCategory === cat.id
-                          ? "bg-blue-50 text-blue-700 font-medium"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                      )}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <cat.icon className={cn("w-4 h-4", activeCategory === cat.id ? "text-blue-600" : "text-slate-400")} />
-                        {cat.name}
-                      </div>
-                      <span className={cn("text-xs py-0.5 px-1.5 rounded-full", activeCategory === cat.id ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-slate-500")}>
-                        {cat.count}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+              ))}
+            </nav>
+          </div>
+
+          {/* Featured Match Card */}
+          <div className="bg-gradient-to-br from-[#003da6] to-[#0052d9] rounded-2xl p-6 shadow-xl relative overflow-hidden group">
+            <div className="absolute -right-6 -bottom-6 opacity-10 transition-transform duration-500 group-hover:scale-110">
+              <Icon name="corporate_fare" className="text-[140px] text-white" />
+            </div>
+            <div className="relative z-10">
+              <h3 className="text-lg font-bold mb-3 leading-tight text-white">北京市专精特新企业服务站</h3>
+              <p className="text-sm text-white/80 mb-5 leading-relaxed">
+                快速评估您的企业资质，一键匹配专属扶持政策与专项资金。
+              </p>
+              <button className="w-full py-3 bg-white text-[#003da6] rounded-xl font-bold hover:shadow-lg transition-all active:scale-95 text-sm shadow-md">
+                开始匹配
+              </button>
             </div>
           </div>
 
-          {/* Desktop Sidebar */}
-          <div className="hidden lg:block lg:col-span-3">
-            <div className="sticky top-20 space-y-5">
-              <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-1.5">
-                {categories.map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
-                    className={cn(
-                      "w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-sm transition-all duration-200 mb-0.5 last:mb-0",
-                      activeCategory === cat.id
-                        ? "bg-blue-50 text-blue-700 font-medium"
-                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                    )}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <cat.icon className={cn("w-4 h-4", activeCategory === cat.id ? "text-blue-600" : "text-slate-400")} />
-                      {cat.name}
-                    </div>
-                    <span className={cn("text-xs py-0.5 px-1.5 rounded-full", activeCategory === cat.id ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-slate-500")}>
-                      {cat.count}
-                    </span>
-                  </button>
-                ))}
-              </div>
+          {/* Expert Support */}
+          <div className="bg-[var(--color-surface-container-low)] rounded-2xl p-5 text-center border border-[var(--color-outline-variant)]/20">
+            <Icon name="support_agent" className="text-[#003da6] mb-3 text-3xl" />
+            <h4 className="font-bold text-[#181c1e] mb-1.5 text-sm">政策咨询专家</h4>
+            <p className="text-xs text-[#434654] mb-4">
+              工作日 9:00 - 18:00 提供一对一专业咨询服务
+            </p>
+            <button className="text-sm font-bold text-[#003da6] hover:underline">
+              立即咨询
+            </button>
+          </div>
+        </aside>
 
-              <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-lg p-4 text-white shadow-md">
-                <h4 className="font-bold mb-2 text-sm flex items-center gap-2">
-                  <FileCheck className="w-4 h-4 text-blue-200" />
-                  氪星创服企业服务工作台
-                </h4>
-                <p className="text-xs text-blue-100 mb-3 leading-relaxed opacity-90">
-                  为专精特新企业提供政策申报、资质认定等一站式服务支持。
-                </p>
-                <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0 text-xs backdrop-blur-sm">
-                  立即匹配
-                </Button>
-              </div>
+        {/* Main List */}
+        <div className="flex-1 min-w-0">
+          {/* List header */}
+          <div className="flex justify-between items-center mb-5 px-1">
+            <h2 className="text-xl font-bold text-[var(--color-on-surface)] flex items-center gap-2">
+              <Icon name="feed" className="text-[var(--color-primary)] text-2xl" />
+              最新政策动态
+            </h2>
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-[var(--color-on-surface-variant)]">排序:</span>
+              <select className="bg-transparent border-none focus:ring-0 text-[var(--color-primary)] font-bold cursor-pointer text-sm">
+                <option>发布日期</option>
+                <option>热度最高</option>
+              </select>
             </div>
           </div>
 
-          {/* Main List */}
-          <div className="lg:col-span-9">
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-3">
-              <h2 className="mobile-title-section lg:text-lg font-bold text-slate-900 flex items-center gap-2">
-                {categories.find(c => c.id === activeCategory)?.name}
-                <span className="text-xs font-normal text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded-full">
-                  {documents[activeCategory as keyof typeof documents]?.length || 0}
-                </span>
-              </h2>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-slate-500">排序:</span>
-                <select className="text-xs border-none bg-transparent p-0 text-slate-700 font-medium focus:ring-0 cursor-pointer hover:text-blue-600">
-                  <option>最新发布</option>
-                  <option>热度最高</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {/* @ts-ignore */}
-              {documents[activeCategory as keyof typeof documents]?.map((doc, idx) => (
-                <div key={idx} className="card-enterprise group relative bg-white rounded-lg border border-slate-200 p-4 hover:border-blue-300 hover:shadow-md transition-all duration-200 mobile-touch-feedback">
-                  <div className="flex flex-col gap-3">
-                    {/* Top: Badge and Title */}
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <Badge variant="secondary" className={cn(
-                          "font-medium border px-1.5 py-0 text-[10px] h-5",
-                          doc.type.includes("标准") ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
-                          doc.type.includes("资金") ? "bg-amber-50 text-amber-700 border-amber-100" :
-                          "bg-blue-50 text-blue-700 border-blue-100"
-                        )}>
-                          {doc.type}
-                        </Badge>
-                        <h3 className="text-base font-bold text-slate-900 leading-tight group-hover:text-blue-600 transition-colors cursor-pointer">
-                          {doc.title}
-                        </h3>
-                      </div>
-                      <span className="text-xs text-slate-400 flex-shrink-0 flex items-center gap-1">
-                        <Clock className="w-3 h-3" /> {doc.date}
+          {/* Policy Items */}
+          <div className="space-y-5">
+            {(documents[activeCategory] || []).map((doc, idx) => (
+              <article
+                key={idx}
+                className="bg-[var(--color-surface-container-lowest)] rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-xl border border-[var(--color-outline-variant)]/10 group"
+              >
+                <div className="flex flex-col md:flex-row md:items-start gap-5">
+                  <div className="flex-1 min-w-0">
+                    {/* Tags row */}
+                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                      <span className={cn(
+                        'text-xs font-bold px-3 py-1 rounded-full border',
+                        getBadgeColor(doc.type)
+                      )}>
+                        {doc.type}
+                      </span>
+                      <span className="text-xs text-[var(--color-on-surface-variant)] flex items-center gap-1">
+                        <Icon name="apartment" className="text-sm" />
+                        {doc.dept}
+                      </span>
+                      <span className="text-xs text-[var(--color-on-surface-variant)] flex items-center gap-1">
+                        <Icon name="calendar_today" className="text-sm" />
+                        {doc.date}
                       </span>
                     </div>
-                    
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-[var(--color-on-surface)] mb-3 group-hover:text-[var(--color-primary)] transition-colors cursor-pointer leading-snug">
+                      {doc.title}
+                    </h3>
+
                     {/* Description */}
-                    <p className="text-xs text-slate-500 leading-relaxed mobile-text-truncate-3">
+                    <p className="text-sm text-[var(--color-on-surface-variant)] line-clamp-2 leading-relaxed mb-5">
                       {doc.desc}
                     </p>
-                    
-                    {/* Bottom: Metadata and Actions */}
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-3 border-t border-slate-100">
-                      <div className="flex items-center gap-3 text-xs text-slate-400">
-                        <span className="flex items-center gap-1.5">
-                          <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                          {doc.dept}
-                        </span>
-                        {/* @ts-ignore */}
+
+                    {/* Meta row */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-[var(--color-surface-container-low)]">
+                      <div className="flex items-center gap-4 text-xs text-[var(--color-on-surface-variant)]">
                         {doc.id && (
-                          <span className="font-mono bg-slate-50 px-1.5 py-0.5 rounded border border-slate-100 text-slate-500">
+                          <span className="font-mono bg-[var(--color-surface-container-low)] px-2 py-0.5 rounded border border-[var(--color-outline-variant)]/30 text-[var(--color-outline)]">
                             {doc.id}
                           </span>
                         )}
                       </div>
-                      
-                      <div className="flex items-center gap-2">
-                        <button className="text-xs text-slate-500 hover:text-blue-600 font-medium px-2 py-1">
+                      <div className="flex items-center gap-2.5">
+                        <button className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-xl border border-[var(--color-outline-variant)] text-xs font-bold hover:bg-[var(--color-surface-container-low)] transition-all active:scale-95 text-[var(--color-on-surface-variant)]">
+                          <Icon name="visibility" className="text-sm" />
                           预览
                         </button>
-                        <button className="text-xs flex items-center gap-1 text-blue-600 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-md font-medium transition-colors">
-                          <Download className="w-3 h-3" /> 下载
+                        <button className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-xl bg-[var(--color-primary)] text-white text-xs font-bold shadow-lg shadow-[var(--color-primary)]/20 transition-all active:scale-95">
+                          <Icon name="download" className="text-sm" />
+                          下载
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-              ))}
+              </article>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <div className="flex items-center justify-center pt-10">
+            <div className="flex gap-2">
+              <button className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--color-surface-container-lowest)] border border-[var(--color-outline-variant)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container-low)] transition-all">
+                <Icon name="chevron_left" className="text-lg" />
+              </button>
+              <button className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--color-primary)] text-white font-bold">1</button>
+              <button className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--color-surface-container-lowest)] border border-[var(--color-outline-variant)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container-low)] transition-all text-sm font-medium">2</button>
+              <button className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--color-surface-container-lowest)] border border-[var(--color-outline-variant)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container-low)] transition-all text-sm font-medium">3</button>
+              <button className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--color-surface-container-lowest)] border border-[var(--color-outline-variant)] text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container-low)] transition-all">
+                <Icon name="chevron_right" className="text-lg" />
+              </button>
             </div>
           </div>
         </div>
